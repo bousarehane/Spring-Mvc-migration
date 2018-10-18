@@ -1,0 +1,638 @@
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+
+@import './assets/fonts/fonts.css';
+
+/* style du studio maquette html */
+
+@import './assets/fonts/fonts-picto.css';
+
+/* style du studio maquette html */
+
+@import './assets/css/styles.css';
+
+/** Pour le bug IE d'affichage du header */
+@media screen and (-ms-high-contrast: active),
+(-ms-high-contrast: none) {
+    img#wod {
+        width: 136px;
+    }
+    img#worldline {
+        width: 183px;
+    }
+}
+
+/** Empilement de modals : un nouveau modal cache le précédent */
+ngb-modal-window:last-of-type {
+    z-index: 1080;
+}
+ngb-modal-backdrop:last-of-type {
+    z-index: 1070;
+}
+
+/** Les messages de notifications doivent être au dessus des modals */
+div.ui-growl {
+    z-index: 9999;
+}
+
+td, th {
+    text-align: center;
+    vertical-align: middle;
+}
+
+fieldset.offerCommonPanel > legend {
+    padding: 5px;
+}
+
+fieldset.targetingInnerFieldset {
+    border-bottom: 1px solid #c7c7c9;
+    padding: 1em 0;
+}
+
+fieldset.noborder {
+    border: none;
+}
+
+hr.targeting {
+    display: block;
+    width: 45%;
+    margin: 1em auto;
+    border-color: #c7c7c9;
+}
+
+a.selector_filled:not([href]):hover {
+    font-weight: bold;
+    color: orange;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+a.selector_filled:not([href]) {
+    font-weight: bold;
+    color: orange;
+    text-decoration: none;
+}
+
+a.selector_empty:not([href]):hover {
+    color: #0056b3;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+a.selector_empty:not([href]) {
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+
+/*
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948;
+}
+.ng-invalid:not(form)  {
+  border-left: 5px solid #a94442;
+}
+*/
+
+app-selector.class-invalid{
+    border: 1px red solid;
+    background-color: red;
+}
+
+input.class-invalid {
+    border: 1px red solid;
+}
+
+p-calendar.class-invalid {
+    border: 1px red solid;
+}
+
+p-listbox.class-invalid {
+    border: 1px red solid;
+}
+
+p-dropdown.class-invalid {
+    border: 1px red solid;
+}
+
+p-triStateCheckbox.class-invalid {
+    border: 1px red ;
+}
+
+labelOffre {
+    border-left: 10px;
+}
+
+.offerCommonPanel {
+    border: 2px solid #0182c3;
+    padding: 1.1rem;
+}
+
+/* *****************************************************
+****** DETAIL D'UN ITEM WEBHOOK ************
+********************************************************/
+
+.previsualisationWebhookItem {
+    background-color: white;
+    padding: 0.5rem 0.6rem 1rem 0.6rem;
+}
+
+
+/* Input / TextArea / Label */
+
+.rowWebhookItemFormInput,
+.rowWebhookItemFormDate,
+.rowWebhookItemFormArea {
+    padding: 0.5rem 0 0.5rem 0;
+}
+
+.rowWebhookItemFormInput label,
+.rowWebhookItemFormDate label,
+.rowWebhookItemFormArea {
+    display: block;
+    color: #88888a;
+    font-size: 0.9rem;
+    padding: 0 0 0.2rem 0.3rem;
+    text-transform: uppercase
+}
+
+.rowWebhookItemFormDate input {
+    border: none;
+    font-size: 1rem;
+    padding-left: 0.2rem;
+    margin-top: -0.1rem;
+}
+
+.rowWebhookItemFormInput input {
+    display: block;
+    border: none;
+    font-size: 1rem;
+    margin-top: 0.1rem
+}
+
+.rowWebhookItemFormArea textarea {
+    display: block;
+    min-width: 100%;
+    border: none;
+    min-height: 12.5rem;
+    resize: none;
+    margin-top: -0.1rem;
+    font-size: 1rem;
+}
+
+/* Pour les dates " Du ... à ... au ... à ... */
+
+.rowWebhookItemFormDate label.SameLine {
+    display: inline-block;
+    width: 15%;
+}
+
+.rowWebhookItemFormDate input.SameLine {
+    display: inline-block;
+    width: 30%;
+    margin-top: 0.15rem;
+}
+
+.rowWebhookItemFormInput input.SameLine {
+    display: inline-block;
+    width: 60%;
+    margin-top: -0.1rem;
+}
+
+.rowWebhookItemFormInput label.SameLine {
+    display: inline-block;
+    width: 35%;
+}
+
+/* ------------------------------------------------- */
+/* Fin item webhook */
+/* ------------------------------------------------- */
+
+/*  INPUT */
+
+.offresGenerales>div.formText input {
+    border: none;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    vertical-align: text-top;
+    margin-top: -0.15rem;
+    width: 200rem;
+}
+
+.offresGenerales>div.formDate input {
+    display: inline-block;
+    border-radius: 10px;
+    padding: 0.1rem;
+    width: 40%;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    padding-left: 0.5rem;
+}
+
+.offresGenerales>div.formInput input {
+    display: inline-block;
+    border: none;
+    font-size: 1rem;
+    padding-bottom: 1rem;
+    vertical-align: text-top;
+    margin-top: -0.15rem;
+    width: 200rem;
+}
+
+.offresGenerales>div.formDate input[name="modifStatut"] {
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+
+/* 
+* MODAL
+*/
+
+.modal-header {
+    background-color: #0182c3;
+    color: white;
+    text-transform: uppercase;
+}
+
+.modal-header h2 {
+    font: 0.9rem "texgyreadventorbold";
+}
+
+/* Modal taille XL custom */
+@media screen and (min-width: 992px) {
+    .modal-xl > div.modal-dialog {
+        max-width: 900px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .modal-xl > div.modal-dialog {
+        max-width: 1100px;
+    }
+}
+
+@media screen and (min-width: 1500px) {
+    .modal-xl > div.modal-dialog {
+        max-width: 1400px;
+    }
+}
+
+@media screen and (min-width: 1650px) {
+    .modal-xl > div.modal-dialog {
+        max-width: 1500px;
+    }
+}
+
+@media screen and (min-width: 1750px) {
+    .modal-xl > div.modal-dialog {
+        max-width: 1600px;
+    }
+}
+
+/* NGBCalendars */
+
+.input-group-cal,
+app-datetime.dflex .input-group-cal {
+    position: relative;
+    display: flex;
+    width: 100%;
+    /*padding: 1.43em 0.4em 1.43em 0;*/
+}
+
+input[ngbdatepicker] {
+    margin: 0;
+    outline: medium none;
+    font-weight: normal;
+    color: #222222;
+    width: calc(100% - 2.3em);
+}
+
+button.datepicker-group-append {
+    border: 1px solid #2399e5;
+    color: #FFFFFF;
+    background: #2399e5;
+    padding: .25rem .75rem;
+    border-radius: .25rem;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+div.ngb-dp-header button.btn-link,
+div.ngb-tp button.btn-link {
+    font-weight: 400;
+    color: #007bff;
+    background-color: transparent;
+    border: 1px solid transparent;
+    margin: inherit;
+    padding: inherit;
+    font-size: 1rem;
+    border-radius: .25rem;
+    display: inline-block;
+    text-align: center;
+}
+
+div.ngb-tp button.btn-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+    background-color: transparent;
+    border-color: transparent;
+}
+
+div.dflex,
+app-datetime.dflex {
+    display: flex;
+}
+
+app-datetime.dflex div.dSameLine {
+    display: flex;
+}
+
+div.dSameLine,
+app-datetime.dSameLine {
+    display: inline-block;
+}
+
+div.dSameLine.caldate {
+    width: 59%;
+}
+
+div.dSameLine.caltime {
+    width: 39%;
+}
+
+@media screen and (max-width: 1600px) and (min-width: 1000px) {
+    .input-group-cal {
+        padding: 0.6rem 0;
+    }
+    div.dSameLine.caldate {
+        width: 100%;
+    }
+    div.sSameLine.caltime {
+        width: 100%;
+    }
+}
+
+
+/* fin NGBDatepicker */
+
+td,
+th {
+    overflow: hidden;
+}
+
+tbody.ui-datatable-data td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+div.col-form-actions {
+    text-align: center;
+}
+
+div.col-form-actions button {
+    margin-left: 0.3rem;
+    margin-right: 0.3rem;
+}
+
+.homeMessage p {
+    padding: 0.3rem 0;
+}
+
+ul.homeMenu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0.3rem 0;
+}
+
+ul.homeMenu li a {
+    display: block;
+    color: #000;
+    padding: 8px 10px;
+    text-decoration: none;
+}
+
+
+/* Change the link color on hover */
+
+ul.homeMenu li a:hover {
+    text-decoration: underline;
+}
+
+.vueListeDossier {
+    height: 25rem;
+    overflow-y: auto;
+}
+
+
+/* p-dropdown => on évite la mise en majuscule des labels */
+
+.ui-dropdown label.ui-dropdown-label {
+    text-transform: none;
+    font-size: inherit;
+}
+
+
+div.row {
+    padding: 0.1rem;
+}
+
+div.row textarea {
+    border: 1px solid #d6d6d6;
+    border-radius: 3px;
+    padding: .25rem;
+    resize: none;
+    width: 90%;
+    height: 90%;
+    font-size: 0.9rem;
+}
+
+
+/* Validation de formulaires */
+
+app-datetime.ng-invalid.ng-dirty input {
+    border: 1px solid red !important;
+}
+
+/* Arborescence des dossiers */
+div.ui-tree.ui-widget-content {
+    width: 100%;
+    border: none;
+}
+
+a.breadCrumbLink {
+    text-decoration: none;
+    background-color: transparent;
+}
+
+a.breadCrumbLink:hover {
+    text-decoration: underline !important;
+    cursor: pointer;    
+}
+
+a.actionLink:not([href]):hover {
+    color: #0056b3;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+a.actionLink:not([href]) {
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+div.expandFormLink {
+    text-align: right;
+}
+
+
+/* corrections i -> em */
+
+.menuCampagne>button>em {
+    float: left;
+    font-size: 1.9rem;
+}
+
+.menuCampagne li>button>em {
+    color: #88888a;
+    font-size: 1.5rem;
+}
+
+.menuCampagne li.active>button>em {
+    color: white;
+}
+
+.breadcrumbs button:hover>em {
+    color: #072f84;
+    font-size: 1.4rem;
+    line-height: 1.4rem;
+    vertical-align: text-bottom;
+}
+
+.breadcrumbs button em {
+    font-size: 1.5rem;
+    color: white;
+    vertical-align: middle;
+}
+
+button.btn em,
+button.btn-d em {
+    font-size: 1.5rem;
+    display: inline-block;
+}
+
+header button em {
+    font-size: 4rem;
+    color: white;
+}
+
+header .myAccount em {
+    font-size: 4.3rem;
+}
+
+.underAccount button em {
+    color: black;
+    font-size: 1.5rem;
+    vertical-align: text-top;
+}
+
+.infosGenerales>div.formDate em {
+    display: inline-block;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.menuOutils em {
+    font-size: 4.5rem;
+    color: #0182c3;
+}
+
+.menuOutils li.active em {
+    color: white;
+}
+
+/*
+.menuOutils li.dataExists em {
+    color: #c7c7c9;
+}*/
+
+.menuOutils li.dataExists em {
+    background-color:#CCD6DD;
+}
+ ;
+
+
+/*
+.menuOutils li.dataExists em {
+    background-color: #d6d6d6;
+}*/
+
+.lesDossiers em {
+    font-size: 4.7rem;
+}
+
+.lesDossiers li.active em::before {
+    background-color: white;
+    border-radius: 50%;
+}
+
+li.campFavorite button:last-child em {
+    color: #0182c3;
+    font-size: 2.7rem;
+}
+
+.campagneOuverte>button>em {
+    font-size: 2rem;
+    color: white;
+}
+
+.modifStatut em {
+    font-size: 1.6rem;
+    background-color: #a5c6e7;
+    color: white;
+    border-radius: 50%;
+    margin-left: 0.5rem;
+}
+
+.btn-formModal button em {
+    font-size: 1.7rem;
+    display: inline-block;
+}
+
+.menuSelection em {
+    font-size: 4.5rem;
+    color: #0182c3;
+}
+
+.menuSelection li.active em {
+    color: white;
+}
+
+.underFormDate em {
+    display: inline-block;
+    font-size: 1.8rem;
+}
+
+/* Notification avec lien */
+div.ui-growl-item span.toastAction {
+    cursor: pointer;
+}
+div.ui-growl-item span.toastAction:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.ui-inputtext {
+    width: 50%;
+    
+}
+
+/* pour corriger le probleme de scroll si plusieur modal (NgbModal  de ngbootstrap) sont ouverts */
+.modal { overflow: auto !important; }
+
+.ui-inputtext.ng-dirty.ng-invalid, p-dropdown.ng-dirty.ng-invalid > .ui-dropdown, p-autocomplete.ng-dirty.ng-invalid > .ui-autocomplete > .ui-inputtext, p-calendar.ng-dirty.ng-invalid > .ui-calendar > .ui-inputtext, p-chips.ng-dirty.ng-invalid > .ui-inputtext, p-inputmask.ng-dirty.ng-invalid > .ui-inputtext, p-checkbox.ng-dirty.ng-invalid .ui-chkbox-box, p-radiobutton.ng-dirty.ng-invalid .ui-radiobutton-box, p-inputswitch.ng-dirty.ng-invalid .ui-inputswitch, p-listbox.ng-dirty.ng-invalid .ui-inputtext, p-multiselect.ng-dirty.ng-invalid > .ui-multiselect, p-spinner.ng-dirty.ng-invalid > .ui-inputtext, p-selectbutton.ng-dirty.ng-invalid .ui-button, p-togglebutton.ng-dirty.ng-invalid .ui-button {
+    border-bottom-color:#c0c0c0;
+}

@@ -1,0 +1,731 @@
+/*********************/
+/**** GRID SYSTEM ****/
+/*********************/
+
+.container { width: 930px; margin: 0 auto; }
+
+.rowWithMinHeight { margin-left: 0px; margin-right: 0px; min-height: 25px; }
+.row { margin-left: 0px; margin-right: 0px; }
+.row:before, .row:after { content: " "; display: table; }
+.row:after { clear: both; }
+
+.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12 { float: left; min-height: 1px; padding-left: 5px; padding-right: 5px; }
+
+.width-12, .col-12 { width: 100%;         }
+.width-11, .col-11 { width: 91.66666667%; }
+.width-10, .col-10 { width: 83.33333333%; }
+.width-9, .col-9  { width: 75%;          }
+.width-8, .col-8  { width: 66.66666667%; }
+.width-7, .col-7  { width: 58.33333333%; }
+.width-6, .col-6  { width: 50%;          }
+.width-5, .col-5  { width: 41.66666667%; }
+.width-4, .col-4  { width: 33.33333333%; }
+.width-3, .col-3  { width: 25%;          }
+.width-2, .col-2  { width: 16.66666667%; }
+.width-1, .col-1  { width: 8.33333333%;  }
+
+.offset-12 { margin-left: 100%;         }
+.offset-11 { margin-left: 91.66666667%; }
+.offset-10 { margin-left: 83.33333333%; }
+.offset-9  { margin-left: 75%;          }
+.offset-8  { margin-left: 66.66666667%; }
+.offset-7  { margin-left: 58.33333333%; }
+.offset-6  { margin-left: 50%;          }
+.offset-5  { margin-left: 41.66666667%; }
+.offset-4  { margin-left: 33.33333333%; }
+.offset-3  { margin-left: 25%;          }
+.offset-2  { margin-left: 16.66666667%; }
+.offset-1  { margin-left: 8.33333333%;  }
+.offset-0  { margin-left: 0%;           }
+
+/****************************/
+/**** STANDARD HTML TAGS ****/
+/****************************/
+
+* { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+*:before, *:after { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+
+body { background-color: #FFFFFF; color: #000000; font-family: Verdana,​ ​sans-serif; font-size: 11px; margin: 0; overflow-y: scroll; line-height: 25px; }
+
+a { color: #0066A1; text-decoration: none; cursor: pointer; }
+a:hover { color: #FF6600; }
+a.fixed { min-width: 95px; text-align: center; }
+
+form { margin: 0; }
+
+input[type="text"], input[type="password"], input[type="reset"], select { border: 1px solid #CCCCCC; font-family: Verdana, sans-serif; font-size: 10px; padding-left: 5px; height: 19px; margin: 3px 0; line-height: 15px; }
+select { padding-left: 3px; }
+
+input[type="button"], input[type="submit"], input[type="reset"] { border: none; background: url("../img/button-bg.gif") repeat-x scroll 0 0 transparent; color: #0066A1; font-family: Verdana, sans-serif; font-size: 12px; padding: 0px 3px 3px 3px; margin: 0; height: 22px; vertical-align: top; }
+input[type="button"]:hover, input[type="submit"]:hover, input[type="reset"]:hover { color: #FF6600; cursor: pointer; }
+input[type="button"].fixed, input[type="submit"].fixed, input[type="reset"].fixed { min-width: 85px; }
+
+input[type="radio"] { height: 20px; vertical-align: top; margin: 3px 0; }
+input[type="checkbox"] { margin-left: 0; margin-top: 10px; margin-bottom: 7px; }
+
+input[disabled], input[disabled]:hover { color: #AAAAAA !important; }
+
+textarea { border: 1px solid #ccc; resize: none; overflow-y: hidden; font-family: Verdana, sans-serif; }
+
+ul { list-style-type: none; margin: 0; padding: 0; }
+
+img { border: 0; }
+
+p { margin: 0; }
+
+label { line-height: 25px; }
+label:after { content: ":"; }
+
+.serviceLineFieldsBlock { margin-top: 5px; }
+.serviceLineFieldsBlock label { float: left; margin: 3px 0 10px; line-height: 15px !important;cursor: pointer; width:84%;}
+.serviceLineFieldsBlock label:after { content: ""; }
+.serviceLineFieldsBlock input[type="checkbox"] { float: left; margin: 5px 5px 7px 0 !important; }
+
+strong { font-weight: bold; }
+.normal { font-weight: normal; !important}
+.text-italic { font-style: italic; }
+
+/***********************/
+/**** HELPER STYLES ****/
+/***********************/
+
+.thin { height: 15px; line-height: 15px; }
+.medium-thin { height: 22px; line-height: 22px; }
+
+.full { width: 100%; }
+.mid-full { width: 50%; }
+
+.float-left { float: left; }
+.float-right { float: right; }
+
+.inner { padding: 10px 5px; }
+
+.big-padding-top { padding-top: 10px  !important; }
+.big-padding-left { padding-left: 10px !important;}
+.big-padding-right { padding-right: 10px  !important; }
+.big-padding-bottom { padding-bottom: 10px  !important; }
+
+.padding-top { padding-top: 5px  !important;}
+.padding-left { padding-left: 5px  !important;}
+.padding-right { padding-right: 5px  !important;}
+.padding-bottom { padding-bottom: 5px  !important;}
+
+.no-padding { padding: 0  !important;}
+.no-padding-top { padding-top: 0  !important;}
+.no-padding-left { padding-left: 0  !important;}
+.no-padding-right { padding-right: 0  !important;}
+.no-padding-bottom { padding-bottom: 0  !important;}
+
+.big-margin-top { margin-top: 10px  !important;; }
+.big-margin-left { margin-left: 10px  !important;; }
+.big-margin-right { margin-right: 10px  !important;; }
+.big-margin-bottom { margin-bottom: 10px  !important;; }
+
+.margin-top { margin-top: 5px  !important;}
+.margin-left { margin-left: 5px !important;}
+.margin-right { margin-right: 5px  !important;}
+.margin-bottom { margin-bottom: 5px !important;}
+
+.no-margin { margin: 0  !important;}
+.no-margin-top { margin-top: 0  !important;}
+.no-margin-left { margin-left: 0  !important;}
+.no-margin-right { margin-right: 0  !important;}
+.no-margin-bottom { margin-bottom: 0  !important;}
+
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+.text-center { text-align: center; }
+
+.text-bold { font-weight: bold; }
+
+.hidden { display: none; }
+
+.bordered { border: 1px solid #CCCCCC; }
+.border-bottom { border-bottom: 1px solid #CCCCCC; }
+
+.gray { color: #AAAAAA; }
+.black { color: #000000 !important; }
+.red { color: #FF0000; }
+.green { color: #009900; }
+
+.small-text { font-size: 10px; }
+.large-text { font-size: 13px; }
+
+.listRow2 td { background: none repeat scroll 0 0 #F6F6F6; border-color: #F6F6F6; }
+
+.long-buttonWidth {width:132px !important;}
+.short-buttonWidth {width:95px !important;}
+.anchor-buttonWidth { width:145px; }
+
+.no-border{border:none !important;}
+
+.calendar { line-height: normal; }
+.calendar td { box-sizing: content-box; }
+
+/****************************/
+/**** GENERIC MEX STYLES ****/
+/****************************/
+
+#breadCrumbWrapper p { display: inline; }
+
+.link { color: #0066A1; text-decoration: none; cursor: pointer; }
+.link:hover { color: #FF6600; }
+
+div.button { display: inline-block; margin-top: 1px; }
+div.button:before { content: ""; background: url("../img/button.gif") no-repeat scroll left center transparent; width: 5px; height: 22px; display: block; vertical-align: top; float: left; }
+div.button:after { content: ""; background: url("../img/button.gif") no-repeat scroll right center transparent; width: 5px; height: 22px; display: block; vertical-align: top; float: right; }
+div.button:hover { cursor: pointer; }
+
+a.anchorButton { display: inline-block; border: none; background: url("../img/button-bg.gif") repeat-x scroll 0 0 transparent; font-size: 12px; margin-top: 1px; line-height: 20px; height: 22px; text-align: center; }
+a.anchorButton:before { content: ""; background: url("../img/button.gif") no-repeat scroll left center transparent; width: 5px; height: 22px; display: inline-block; vertical-align: top; float: left; }
+a.anchorButton:after { content: ""; background: url("../img/button.gif") no-repeat scroll right center transparent; width: 5px; height: 22px; display: inline-block; vertical-align: top; float: right; }
+a.anchorButton:hover { color: #FF6600; cursor: pointer; }
+
+div.link-button { display: inline-block; margin-top: 1px; line-height: 20px; height: 22px; }
+div.link-button:before { content: ""; background: url("../img/button.gif") no-repeat scroll left center transparent; width: 5px; height: 22px; display: block; vertical-align: top; float: left; }
+div.link-button:after { content: ""; background: url("../img/button.gif") no-repeat scroll right center transparent; width: 5px; height: 22px; display: block; vertical-align: top; float: right; }
+div.link-button:hover { cursor: pointer; }
+div.link-button p { display: inline; }
+
+a.link-button { padding-left: 10px; padding-right: 10px; display: inline-block; border: none; background: url("../img/button-bg.gif") repeat-x scroll 0 0 transparent; font-size: 12px; line-height: 20px; height: 22px; text-align: center; min-width: 85px; box-sizing: content-box; -moz-box-sizing: content-box; }
+a.link-button:hover { color: #FF6600; cursor: pointer; }
+
+input.inputOk { border: none; width: 25px; height: 22px; margin: 2px 0 0 5px; padding: 2px 3px 3px 3px !important; font-size: 10px; background: url("../img/bt_ok_withouttext.gif") no-repeat scroll left center transparent; font-weight: bold; }
+input.date { width: 90px; float: left; }
+
+label.separator-small { width: 30px; float: left; }
+label.separator-medium { width: 56px; float: left; }
+
+h1.title { margin: 0; color: #0066A1; font-family: Verdana, sans-serif; font-size: 15px; font-weight: bold; }
+.subtitle { color: #0066A1; font-weight: bold; }
+
+h2.subtitle { color: #000000; font-size: 11px; font-weight: bold; margin: 0; padding: 0; }
+
+img.calendarTrigger { margin-left: 5px; margin-bottom: -6px; }
+img.help { margin-left: 5px; margin-bottom: -2px; background: url(../img/help.png) no-repeat center transparent; height: 15px; }
+img.error { margin-left: 5px; margin-bottom: -2px; background: url(../img/error.gif) no-repeat center transparent; height: 55px; }
+
+.imageHelp { background: url("../img/help.png") no-repeat center; width: 15px; height: 30px; display: block; float: left; }
+.imageError { background: url("../img/error.gif") no-repeat center; width: 48px; height: 48px; display: block; float: left; }
+
+.beforeChevronRight { padding-left: 6px; background: url("../img/icon_hide.gif") no-repeat scroll left center transparent;}
+.beforeChevronDown { padding-left: 10px; background: url("../img/icon_show.gif") no-repeat scroll left center transparent;}
+
+.afterPipe:after { padding: 0 10px; content: "|"; color: #000000; }
+.afterPipe:after:hover { color: #000000; }
+
+.panel { border: 1px solid #CCCCCC; padding: 5px 10px; margin: 10px 0; line-height: 30px; }
+.panel label { line-height: 30px; }
+.panel input[type="text"], .panel input[type="password"], .panel select { margin: 6px 0 5px; }
+.panel .t-calendar-trigger { margin-top: 5px !important; }
+.panel input[type="radio"] { height: 24px; vertical-align: top; margin: 3px 0; } 
+
+.panel-warning { background-color: #FFEEDD; border: 1px dotted #D21033; color: #D21033; line-height: 20px; }
+.panel-warning h1 { font-weight: bold; font-size: 13px; margin: 0px; }
+.panel-warning input { margin-top: 20px; height: 44px; background-image: none; }
+
+.form { line-height: 30px; }
+.form label { line-height: 30px; }
+.form input[type="text"], .panel input[type="password"], .form select, .panel select { margin: 6px 0 5px; }
+.form .t-calendar-trigger { margin-top: 5px !important; }
+.form input[type="radio"] { height: 24px; vertical-align: top; margin: 3px 0; } 
+
+.row-button { margin-top: 10px; margin-bottom: 5px; }
+
+.t-calendar-trigger { margin-top: 2px !important; padding-left: 5px !important; vertical-align: top !important; float: left !important; }
+
+/* For reference: 
+.validation { float: left; font-size: 12.1333px; margin: 4px 0; width: 925px; color: #FF0033; border: 1px solid #FF0033; padding: 2px 0 2px 5px; } 
+.confirmation { float: left; font-size: 12.1333px; font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; margin: 4px 0; width: 925px; color: #009900; border: 1px solid #009900; padding: 2px 0 2px 5px; text-align: left; }
+*/
+DIV.t-error, .errorPanel { border: 1px solid red; padding: 0; margin: 4px 0;}
+.t-error ul { margin: 0 !important; padding: 0 !important;}
+.t-error li { margin-left: 5px !important; padding: 0 !important; font-size: 12px; }
+DIV.t-error DIV { background-color: #FFFFFF !important; display: none; }
+
+LABEL.t-error{ color: #000000 !important }
+INPUT.t-error{ color: #000000 !important; font-style: normal }
+IMG.t-error-icon { margin-left: 6px !important; margin-top: 8px !important; }
+
+.warningMessage { background-color: #FFEEDD; border: 1px solid #FF6600; color: #FF6600; padding: 5px; font-weight: bold; margin-bottom: 10px; margin-top: 10px; line-height: 20px; }
+.warningMessage li { margin-right: 15px; font-weight: normal; }
+
+.successPanel { border: 1px solid #009900 !important; padding: 0; margin: 4px 0; }
+.successMessage, .successPanel div { margin-left: 5px; font-size:12px; color: #009900;}
+.errorMessage, .errorPanel div { margin-left: 5px; font-size:12px; color: #FF0000; }
+.confirmationMessage { margin-bottom: 10px; border: 1px solid #009900; padding: 0 5px; color: #009900; }
+
+.tooltip { background-color: #FFFFFF; border: 2px solid #000000; font-size: 10px; padding: 2px; position: absolute; width: 250px; z-index: 100; line-height: 13px; }
+
+#tooltip { left: 0; padding: 2px 5px; visibility: hidden; }
+#tooltip h2 { float: left; font-size: 10px; margin: 5px 0 0; padding: 0; }
+#tooltip p { clear: both; padding: 5px 0; }
+#tooltip ul li { float: left; padding: 5px 2px 5px 10px; width: 40%; }
+
+.overlay { background: #808080; position: absolute; top: 0px; left: 0px; height: 100%; width: 100%; opacity: 0.35; -ms-filter: "alpha(opacity=35)"; filter: alpha(opacity=35); z-index: 100; }
+.overlay-terminal { background: #808080; position: absolute; top: 0px; left: 0px; height: 1000%; width: 100%; opacity: 0.35; -ms-filter: "alpha(opacity=35)"; filter: alpha(opacity=35); z-index: 100; }
+.popup { position: absolute; visibility: hidden; width: 30%; z-index: 100; border: 1px solid #000; margin: 15% 35%; top: 0; left: 0; opacity: 100; filter: alpha(opacity = 100); background: #FFF; padding: 10px; }
+
+.popupWindow { background-color: #FFFFFF; border: 1px solid #0066A1; border-radius: 10px; box-shadow: 0 5px 5px #555555; display: inline-block; left: 40%; opacity: 1; position: absolute; top: 20%; width: 252px; z-index: 110; padding: 15px; }
+.popupWindow div { line-height: 15px; }
+.popupWindowButtonsBlock { margin-top: 10px; text-align: center; }
+.popupWindowButtonsBlock button { border: 1px solid #CCCCCC; border-radius: 4px; background: url("../img/tab.png") repeat-x scroll 0 0 transparent; color: #0066A1; font-family: Verdana, sans-serif; font-size: 12px; padding: 1px 3px 3px 3px; margin-right: 5px; height: 22px; vertical-align: top; width: 60px; text-align: center; }
+.popupWindowButtonsBlock button:hover { color: #FF6600; cursor: pointer; }
+
+p.paragraph { line-height: 15px; }
+
+ul.list { list-style-type: disc; padding: 0 0 0 25px; }
+
+.color-active { color: #008000; }
+.color-closed { color: #FF0000; }
+.color-suspended { color: #FFA500; }
+.color-awaiting_activation { color: #800080; }
+
+.openArrowImage { background: url(../img/arrow_up.gif) no-repeat right transparent; padding: 0 10px 0 0; color: #000000; font-weight: bold; }
+.closeArrowImage { background: url(../img/arrow_down.gif) no-repeat right transparent; padding: 0 10px 0 0; color: #000000; font-weight: bold; }
+
+.nextArrowImage { background: url(../img/page_next.gif) no-repeat right transparent; padding: 0 10px; }
+.previousArrowImage { background: url(../img/page_previous.gif) no-repeat left transparent; padding: 0 10px; }
+
+.formLegend { color: #FF0000; font-size: 9px; font-style: italic; }
+.mandatory:after { color: #FF0000; content: "*"; padding-left: 5px; line-height: normal; }
+
+/***********************/
+/**** HEADER STYLES ****/
+/***********************/
+
+#blockHeader #blockLogo { float: left;}
+#blockHeader #blockLogo #imgLogo { background: url('../img/small-logo.png') no-repeat scroll center center transparent; width: 186px; height: 63px; margin: 28px 5px 5px 0; vertical-align: top; }
+#blockHeader #blockLogo #imgLogoBanqueAccord { background: url('../img/small-logo_BanqueAccord.png') no-repeat scroll center center transparent; width: 186px; height: 63px; margin: 28px 5px 5px 0; vertical-align: top; }
+
+#blockHeader #blockNavig { float: right; text-align: right; margin: 10px 0 0; width: 725px; height:85px; }
+
+#blockHeader #blockNavig #blockLinks { display: block; line-height:15px; margin-bottom:5px; }
+#blockHeader #blockNavig #blockLinks p { display: inline-block; }
+#blockHeader #blockNavig #blockLinks a { padding-right: 7px; }
+#blockHeader #blockNavig #blockLinks #linkLogout { padding-right: 0; }
+#blockHeader #blockNavig #blockLinks #linkLogout:after { padding: 0; content: ""; }
+#blockHeader #blockNavig #blockLinks strong.header-seperator{ color: #0066A1; float: right; font-weight: normal; padding-left: 0px; padding-right: 5px; }
+
+#blockHeader #blockNavig #blockLinks #blockLocaleLinks { float: right;}
+#blockHeader #blockNavig #blockLinks #blockLocaleLinks #pageLanguageSelect.checkedLocale {text-decoration: underline; }
+#blockHeader #blockNavig #blockLinks #blockLocaleLinks #pageLanguageSelect { float: left; text-transform: uppercase; }
+#blockHeader #blockNavig #blockLinks #blockLocaleLinks #pageLanguageSelect:HOVER { text-decoration: underline; }
+
+#blockHeader #blockNavig #blockLinks p { float: right; }
+
+#blockHeader #blockNavig #blockUserInformation p{ float: right; }
+#blockHeader #blockNavig #blockUserInformation #spanLoggedIn { font-weight: bold; color:#0066A1;line-height:15px; margin-bottom:3px; }
+
+#blockHeader #blockNavig #blockSimulated { text-align: left; display: block; margin-left:5px; line-height: 15px; margin-bottom: 5px; word-break: break-all;}
+#blockHeader #blockNavig #blockSimulated #merchantName {font-weight: bold; font-size: 25px; padding-right:15px;}
+#blockHeader #blockNavig #blockSimulated #removelink {vertical-align: top; display: inline-block; margin-bottom: 0px; position:absolute}
+
+#blockHeader #blockMenu { height: 40px; background: url("../img/sprite.png") no-repeat scroll 50% 0 transparent; }
+#blockHeader #blockMenu li { display: inline-block; float: left; }
+#blockHeader #blockMenu li a { height: 40px; line-height: 36px; display: inline-block; background: url("../img/fd_menu_sep.gif") no-repeat scroll right 0px transparent; font-size: 13px; padding: 0px 15px; }
+#blockHeader #blockMenu li.selected a { color: #FFF; background: url("../img/sprite.png") no-repeat scroll -12px -40px transparent; }
+#blockHeader #blockMenu li.item-0.selected a { background: url("../img/sprite.png") no-repeat scroll left -40px transparent; }
+
+#blockHeader #blockMenu li.help { float: right; }
+#blockHeader #blockMenu li.help a { background-position: left 0px; }
+#blockHeader #blockMenu li.help.selected a { background: url("../img/sprite.png") no-repeat scroll right -40px transparent; }
+
+/***********************/
+/**** TOP STYLES ****/
+/***********************/
+
+#blockTop { text-align: right; }
+#blockTop #linkTop {background: url("../img/arrow_up.gif") no-repeat scroll right center transparent; padding: 0 10px 3px; margin-right: 9px;}
+
+/***********************/
+/**** FOOTER STYLES ****/
+/***********************/
+
+#blockFooter #blockBar { height: 40px; background: url("../img/sprite.png") no-repeat scroll 50% 0 transparent; }
+#blockFooter #blockBar a { height: 40px; line-height: 36px; font-size: 13px; padding: 0px 15px; }
+#blockFooter #blockBar #linkCompany { float: right; font-style: italic; display: none; }
+
+#blockFooter #blockContactPopup { position: absolute; visibility: hidden; width: 30%; z-index: 100; border: 1px solid #000000; margin: 15% 35%; top: 0; left: 0; background: #FFFFFF; padding: 10px; }
+#blockFooter #blockContactPopup h1 { float: left; }
+#blockFooter #blockContactPopup #linkClose { float: right; font-weight: bold; font-size: 12px; }
+
+#blockFooter #blockContactPopup #formContactPopup label { display: block; }
+#blockFooter #blockContactPopup #formContactPopup #fieldMessage { width: 100%; font-size: 12px; padding: 2px; margin-bottom: 10px; }
+#blockFooter #blockContactPopup #formContactPopup #addressField { width: 100%; font-size: 12px; padding: 2px; height: 25px;}
+#blockFooter #blockContactPopup #formContactPopup #blockButtons { margin-top: 10px; text-align: right; }
+#blockFooter #blockContactPopup #formContactPopup #buttonSend { margin-right: 5px; }
+
+/***************************/
+/**** KAWWA GRID STYLES ****/
+/***************************/
+
+div.pagination { margin: 0 !important; padding: 0 !important; }
+
+p.total { line-height: 25px !important; margin: 0 !important; }
+p.total span.ttltitle { color: #0066A1; font-size: 12px; margin-right:5px; }
+
+p.resNum { line-height: 25px !important; }
+div.pagination .resNum select { font-size: 10px; padding-left: 5px !important; height: 19px !important; margin: 3px 5px 3px 0 !important;}
+
+p.pagNums { line-height: 25px !important; }
+
+div.pagination .pagNums input.input { font-size: 10px !important; margin: 2px 0 0 5px; background: url("../img/bt_ok_withouttext.gif") no-repeat scroll 0 0 transparent !important; vertical-align: top !important; padding: 2px 3px 3px 3px!important; }
+
+div.t-data-grid { font-size: 11px !important; }
+
+#results th, #results td { line-height: 15px !important; font-size: 10px !important; height: 23px !important; padding: 2px }
+
+/**************************/
+/**** DATA GRID STYLES ****/
+/**************************/
+
+table.dataGrid { width: 100%; padding: 1px; font-family: Verdana, sans-serif; font-size: 11px; line-height: 25px; border-collapse: collapse; table-layout: fixed; }
+table.dataGrid th { line-height: 15px; height: 25px; border: 2px solid #FFFFFF; font-size: 11px; font-weight: bold; padding: 0 5px; background: none repeat scroll 0 0 #EDEDED; margin: 1px; word-wrap: break-word; }
+table.dataGrid td { line-height: 15px; height: 25px; border: 2px solid #FFFFFF; font-size: 11px; padding: 0 5px; margin: 1px; word-wrap: break-word; }
+#halRolePairsBlock { padding-left: 1px; padding-top: 1px; }
+/*************************/
+/**** STEP BAR STYLES ****/
+/*************************/
+
+#stepBar .previous, #stepBar .current, #stepBar .next { display: inline-block; font-weight: bold; min-width: 160px; padding: 2px; text-align: center; vertical-align: middle; border-radius: 4px; line-height: 15px; }
+
+#stepBar .previous { background-color: #FFFFFF;  border: 1px solid #0066A1; color: #0066A1;}
+#stepBar .current { background-color: #0A70AC;  border: 1px solid #0066A1; color: #FFFFFF;}
+#stepBar .next { background-color: #F2F2F2;  border: 1px solid #F2F2F2; color: #BFBFBF;}
+
+#stepBar .separator { background-image: url("../img/triangle.png"); display: inline-block; height: 20px; vertical-align: middle; width: 20px; }
+
+/**********************************/
+/**** SPECIFIC MEX PAGE STYLES ****/
+/**********************************/
+
+/* --- Login page */
+
+#blockLogin { margin-top: 50px; text-align: center; }
+
+#blockLogin #blockLogo { margin-bottom: 25px; }
+#blockLogin #blockLogo #imgLogo { margin: 0 auto; background: url('../img/large-logo.gif') no-repeat scroll center center transparent; width: 372px; height: 110px; }
+
+#blockLogin #blockText { width: 550px; margin: 0 auto; }
+#blockLogin #blockText h1 { color: #0066A1; font-size: 12px; font-weight: bold; margin: 0 auto 10px; }
+#blockLogin #blockText p { font-size: 11px; margin: 0 auto 10px; }
+
+#blockLogin #formLogin { background-color: #F9F9F9; padding: 10px; border: 0; }
+#blockLogin #formLogin label { width: 250px; font-size: 11px; font-weight: bold; text-align: left; display: block; margin: 0 auto; text-align: center; color: #777777; }
+#blockLogin #formLogin label:after { content: ""; }
+#blockLogin #formLogin input[type="text"], #blockLogin #formLogin input[type="password"] { width: 250px; margin: 0 auto 5px; font-size: 14px; padding: 2px; display: block; height: auto; }
+#blockLogin #formLogin input[type="submit"] { margin: 25px auto 0; }
+
+#blockLogin #blockPassword { margin-top: 10px; font-size: 11px; }
+#blockLogin #blockPassword a { text-decoration: underline; }
+#blockLogin #blockPassword a:hover { color: #0066A1; }
+
+/* --- Hal Role Choice page */
+
+#blockHalrolechoice { margin: 10px auto; width: 930px; }
+#blockHalrolechoice #formHalrole select { width: 205px; }
+#blockHalrolechoice #formHalrole #blockButtons { margin-top: 10px; }
+
+/* --- Transaction List page */
+
+.imageCreditEN { background: url("../img/credit.gif") no-repeat scroll center center transparent; height: 23px; }
+.imageDebitEN { background: url("../img/debit.gif") no-repeat scroll center center transparent; height: 23px; }
+.imageChargebackCreditEN { background: url("../img/chargeback_credit.gif") no-repeat scroll center center transparent; height: 23px; }
+.imageChargebackDebitEN { background: url("../img/chargeback_debit.gif") no-repeat scroll center center transparent; height: 23px; }
+
+.imageCreditNL { background: url("../img/credit_nl.gif") no-repeat scroll center center transparent; height: 23px;}
+.imageDebitNL { background: url("../img/debit_nl.gif") no-repeat scroll center center transparent; height: 23px;}
+.imageChargebackCreditNL { background: url("../img/chargeback_credit_nl.gif") no-repeat scroll center center transparent; height: 23px; }
+.imageChargebackDebitNL { background: url("../img/chargeback_debit_nl.gif") no-repeat scroll center center transparent; height: 23px; }
+
+.imageCreditFR { background: url("../img/credit_fr.gif") no-repeat scroll center center transparent; height: 23px; }
+.imageDebitFR { background: url("../img/debit_fr.gif") no-repeat scroll center center transparent; height: 23px; }
+.imageChargebackCreditFR { background: url("../img/chargeback_credit_fr.gif") no-repeat scroll center center transparent; height: 23px; }
+.imageChargebackDebitFR { background: url("../img/chargeback_debit_fr.gif") no-repeat scroll center center transparent; height: 23px; }
+
+.imageCreditDE { background: url("../img/credit_de.gif") no-repeat scroll center center transparent; height: 23px; }
+.imageDebitDE { background: url("../img/debit_de.gif") no-repeat scroll center center transparent; height: 23px; }
+.imageChargebackCreditDE { background: url("../img/chargeback_credit_de.gif") no-repeat scroll center center transparent; height: 23px; }
+.imageChargebackDebitDE { background: url("../img/chargeback_debit_de.gif") no-repeat scroll center center transparent; height: 23px; }
+
+.imageCreditES { background: url(../img/credit_es.gif) no-repeat center transparent; height: 23px; }
+.imageDebitES { background: url(../img/debit_es.gif) no-repeat center transparent; height: 23px; }
+.imageChargebackCreditES { background: url(../img/chargeback_credit_es.gif) no-repeat center transparent; height: 23px; }
+.imageChargebackDebitES { background: url(../img/chargeback_debit_es.gif) no-repeat center transparent; height: 23px; }
+
+.imgStateHASREFUND { background: url("../img/refund.png") no-repeat scroll center center transparent; display: block; float: right; height: 18px; width: 28px; }
+
+#results th, #results td {word-wrap: break-word;}
+
+/* Generic */
+#transactionList .currency { text-align: right; }
+
+/* Rabo */
+#transactionList .status, #transactionList .type, #transactionList .paymentMean { text-align: center; }
+#transactionList .kawwaAmt { text-align: right; }
+
+
+#paymentList .paymentnumber { padding-left: 25px; }
+#paymentList .type { text-align: center;}
+#paymentList .kawwaAmt { padding-right: 25px; text-align: right;}
+#paymentList .currency { text-align: right; }
+
+/* SIPS */
+#transactionList .transactionStatus, #transactionList .transactionType { text-align: center; }
+#transactionList .initialAmount, #transactionList .currentAmount { text-align: right; }
+/* hide liability shift per default (exception: sipsbelgium) */
+#transactionList .liabilityShift { text-align: center; display: none;  }
+
+/* --- Transaction Detail page */
+
+#transactionDetails strong { word-wrap: break-word; }
+.word-wrap { word-wrap: break-word; }
+
+.imgStateCurrentAmountImg { background: url("../img/warning.png") no-repeat center; width: 28px; height: 18px; display: block; float: right; }
+.imgOvertakeAmountImg { background: url("../img/overtakeAmt.png") no-repeat center; width: 19px; height: 19px; display: block; float: right; }
+
+#transHistoryZone .paddingImg {padding: 1px 0 0 12px; }
+
+#rabobankTransactionDetails .imagePosition { top: -25px; left: -50px; position: relative; }
+#sipsTransactionDetails .imagePosition { top: 1px; left: -36px; position: relative; }
+
+span.enlargeImage { margin: 0 10px 0 0; float: right }
+span.enlargeImage:hover { color: #000; position: relative; z-index: 500; cursor: default }
+span.enlargeImage b { display: block; position: absolute; left: -9999px; opacity: 0; }
+span.enlargeImage:hover b { top: 40px; left: 35px; background: #fff; opacity: 1.0; cursor: default }
+
+.visa { background: url(../img/paymentmeans/visa.png) no-repeat center transparent; border: 0 none; height: 62px; width: 90px; padding: 0; }
+.visa_electron { background: url(../img/paymentmeans/visa_electron.png) no-repeat center transparent; border:0 none; height:62px; width:100px; padding: 0; }
+.ideal { background: url(../img/paymentmeans/ideal.png) no-repeat center transparent; border: 0 none; height: 55px; width: 63px; padding: 0; }
+.mastercard { background: url(../img/paymentmeans/mastercard.png) no-repeat center transparent; border: 0 none; height: 62px; width: 90px; padding: 0; }
+.minitix { background: url(../img/paymentmeans/minitix.png) no-repeat center transparent; border: 0 none; height: 62px; width: 65px; padding: 0; }
+.maestro { background: url(../img/paymentmeans/maestro.png) no-repeat center transparent; border: 0 none; height: 53px; width: 90px; padding: 0; }
+.bcmc { background: url(../img/paymentmeans/bcmc.png) no-repeat center transparent; border: 0 none; height: 62px; width: 98px; padding: 0; }
+.vpay { background: url(../img/paymentmeans/vpay.png) no-repeat center transparent; border: 0 none; height: 68px; width: 63px; padding: 0; }
+
+.amex { background: url(../img/paymentmeans/amex.png) no-repeat center transparent; border: 0 none; height: 60px; width: 68px; padding: 0; }
+.kbconline { background: url(../img/paymentmeans/kbconline.png) no-repeat center transparent; border: 0 none; height: 68px; width: 85px; padding: 0; }
+.paypal { background: url(../img/paymentmeans/paypal.png) no-repeat center transparent; border: 0 none; height: 34px; width: 98px; padding: 0; }
+.inghomepay { background: url(../img/paymentmeans/inghomepay.png) no-repeat center transparent; border: 0 none; height: 27px; width: 98px; padding: 0; }
+.cbconline { background: url(../img/paymentmeans/cbconline.png) no-repeat center transparent; border: 0 none; height: 68px; width: 88px; padding: 0; }
+
+.elv { background: url(../img/paymentmeans/elv.png) no-repeat center transparent; border: 0 none; height: 60px; width: 67px; padding: 0; }
+.sofort { background: url(../img/paymentmeans/sofort.png) no-repeat center transparent; border: 0 none; height: 32px; width: 91px; padding: 0; }
+.arvato { background: url(../img/paymentmeans/arvato.png) no-repeat center transparent; border: 0 none; height: 38px; width: 90px; padding: 0; }
+.klarna { background: url(../img/paymentmeans/klarna.png) no-repeat center transparent; border: 0 none; height: 22px; width: 98px; padding: 0; }
+.giropay { background: url(../img/paymentmeans/giropay.png) no-repeat center transparent; border: 0 none; height: 38px; width: 90px; padding: 0; }
+.payolution { background: url(../img/paymentmeans/payolution.png) no-repeat center transparent; border: 0 none; height: 22px; width: 85px; padding: 0; }
+
+.diners { background: url(../img/paymentmeans/diners.png) no-repeat center transparent; border: 0 none; height: 68px; width: 68px; padding: 0; }
+.jcb { background: url(../img/paymentmeans/jcb.png) no-repeat center transparent; border: 0 none; height: 68px; width: 54px; padding: 0; }
+.yapital { background: url(../img/paymentmeans/yapital.png) no-repeat center transparent; border: 0 none; height: 24px; width: 98px; padding: 0; }
+.passbe { background: url(../img/paymentmeans/passbe.png) no-repeat center transparent; border: 0 none; height: 62px; width: 90px; padding: 0; }
+
+.visaSmallImg { background: url(../img/paymentmeans/visa_small.png) no-repeat center transparent; border: 0 none; height: 32px; width: 45px; padding: 0; position: absolute; }
+.visa_electronSmallImg { background: url(../img/paymentmeans/visa_electron_small.png) no-repeat center transparent; border:0 none; height:32px; width:55px; padding: 0; position: absolute; }
+.idealSmallImg { background: url(../img/paymentmeans/ideal_small.png) no-repeat center transparent; border: 0 none; height: 29px; width: 32px; padding: 0; position: absolute; }
+.mastercardSmallImg { background: url(../img/paymentmeans/mastercard_small.png) no-repeat center transparent; border: 0 none; height: 32px; width: 45px; padding: 0; position: absolute; }
+.minitixSmallImg { background: url(../img/paymentmeans/minitix_small.png) no-repeat center transparent; border: 0 none; height: 32px; width: 32px; padding: 0; position: absolute; }
+.maestroSmallImg { background: url(../img/paymentmeans/maestro_small.png) no-repeat center transparent; border: 0 none; height: 26px; width: 45px; padding: 0; position: absolute; }
+.bcmcSmallImg { background: url(../img/paymentmeans/bcmc_small.png) no-repeat center transparent; border: 0 none; height: 31px; width: 49px; padding: 0; position: absolute; }
+.vpaySmallImg { background: url(../img/paymentmeans/vpay_small.png) no-repeat center transparent; border: 0 none; height: 32px; width: 36px; padding: 0; position: absolute; }
+
+.amexSmallImg { background: url(../img/paymentmeans/amex_small.png) no-repeat center transparent; border:0 none; width:32px; height:28px; padding: 0; position: absolute; }
+.kbconlineSmallImg { background: url(../img/paymentmeans/kbconline_small.png) no-repeat center transparent; border:0 none; width:45px; height:30px; padding: 0; position: absolute; }
+.paypalSmallImg { background: url(../img/paymentmeans/paypal_small.png) no-repeat center transparent; border:0 none; width:49px; height:30px; padding: 0; position: absolute; }
+.inghomepaySmallImg { background: url(../img/paymentmeans/inghomepay_small.png) no-repeat center transparent; border:0 none; width:49px; height:30px; padding: 0; position: absolute; }
+.cbconlineSmallImg { background: url(../img/paymentmeans/cbconline_small.png) no-repeat center transparent; border:0 none; width:39px; height:30px; padding: 0; position: absolute; } 
+
+.elvSmallImg { background: url(../img/paymentmeans/elv_small.png) no-repeat center transparent; border: 0 none; height: 32px; width: 36px; padding: 0; position: absolute; }
+.sofortSmallImg { background: url(../img/paymentmeans/sofort_small.png) no-repeat center transparent; border: 0 none; height: 30px; width: 45px; padding: 0; position: absolute; }
+.arvatoSmallImg { background: url(../img/paymentmeans/arvato_small.png) no-repeat center transparent; border: 0 none; height: 30px; width: 45px; padding: 0; position: absolute; }
+.giropaySmallImg { background: url(../img/paymentmeans/giropay_small.png) no-repeat center transparent; border: 0 none; height: 30px; width: 45px; padding: 0; position: absolute; }
+.klarnaSmallImg { background: url(../img/paymentmeans/klarna_small.png) no-repeat center transparent; border: 0 none; height: 30px; width: 50px; padding: 0; position: absolute; }
+.payolutionSmallImg { background: url(../img/paymentmeans/payolution_small.png) no-repeat center transparent; border: 0 none; height: 30px; width: 50px; padding: 0; position: absolute; }
+
+.dinersSmallImg { background: url(../img/paymentmeans/diners_small.png) no-repeat center transparent; border: 0 none; height: 32px; width: 32px; padding: 0; position: absolute; }
+.jcbSmallImg { background: url(../img/paymentmeans/jcb_small.png) no-repeat center transparent; border: 0 none; height: 32px; width: 25px; padding: 0; position: absolute; }
+.yapitalSmallImg { background: url(../img/paymentmeans/yapital_small.png) no-repeat center transparent; border: 0 none; height: 13px; width: 47px; padding: 0; position: absolute; }
+.passbeSmallImg { background: url(../img/paymentmeans/passbe_small.png) no-repeat center transparent; border: 0 none; height: 32px; width: 45px; padding: 0; position: absolute; }
+
+/* --- Merchant Tree View component */
+
+.active { background-color: #008000; }
+.closed { background-color: #FF0000; }
+.suspended { background-color: #FFA500; }
+.awaiting_activation { background-color: #800080; }
+
+.cg, .unit, .pos { background-position: center center; background-repeat: no-repeat; display: inline-block; height: 13px; width: 13px; vertical-align: top; margin-top: 6px; }
+.cg { background-image: url("../img/cg.png"); }
+.pos { background-image: url("../img/pos.png"); }
+.unit { background-image: url("../img/unit.png"); }
+.selectedNode{ color:#0066A1; font-weight:bold; }
+
+#treeView{ width:200px; margin-right:5px; float:left}
+#treeViewHeader{ border: 1px solid #CCCCCC; line-height: 15px; padding: 2px; color: #0066A1; font-weight: bold; }
+#treeViewContent{ border: 1px solid #CCCCCC; overflow: auto; white-space: nowrap; min-height: 240px; padding: 2px}
+
+/* --- Merchant General Information Page */
+
+#merchantTabBar{ margin-left: 205px; margin-top: 0 !important;}
+#merchantgeneralinfo h3{ color:#0066A1; }
+#merchantgeneralinfo dl.t-beandisplay{ margin: 0 !important; border: none !important;}
+#merchantgeneralinfo dl.t-beandisplay dt{ width: 220px !important; }
+
+/* --- Merchant Tab Bar component */
+
+.tabBar a { display: inline-block; background-color: #D2D2D2; background-image: url("../img/tab.png"); background-position: center top; background-repeat: repeat-x; border-style: solid solid none; border-color: #CCCCCC #CCCCCC; border-width: 1px 1px medium; border-top-left-radius: 4px; border-top-right-radius: 4px; padding: 4px 2px 5px; margin-right: 3px; width: 160px; text-align: center; line-height: 15px; }
+.tabBar p { display: inline-block; }
+
+
+/* --- Merchant Service pages */
+
+.serviceLogo { width: 100px; position: absolute; margin-left: 580px; }
+
+/* --- Multi-acquirer page */
+
+.editButton { background: url("../img/edit.png") no-repeat scroll 0 0 transparent !important; cursor: pointer; padding: 0px 7px 6px; margin:0 5px; }
+.removeButton { background: url("../img/delete.png") no-repeat scroll 0 0 transparent !important; cursor: pointer;  padding: 14px 6px 6px; float: right; margin:0 5px; }
+
+/* --- Help page */
+
+#helpList { list-style-type: disc; }
+
+DL.t-beandisplay {background-color: transparent;border: 1px solid #CCCCCC;padding: 0;font-family: Verdana, Geneva, Arial, Helvetica, sans-serif !important;font-size: 11px ;}
+DL.t-beandisplay DT,dl.t-beandisplay dt {font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;margin-bottom: 0px;padding-right:5px;width: 50%;min-width: 220px;text-align: right;clear: none;vertical-align: none;}
+dl.t-beandisplay dd {font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;margin-bottom: 0px;font-weight: normal !important;}
+
+/* --- Loading mixin */
+
+#loadingScreenLabel { position: absolute; top: 20%; left: 40%; width: 20%; text-align: center; padding: 15px; z-index: 120; background-color: #FFF; border: 1px solid #0066A1; box-shadow: 0px 5px 5px #555; border-radius: 10px; }
+#loadingScreenLabel span { background-image: url("../img/ajax_loader_1.gif"); background-repeat: no-repeat; background-position: bottom; height: 50px; display: inline-block; color: #0066A1; font-weight: bold; font-size: x-large; }
+
+/*--- Styles for Select multiple authorization Start */
+.progress-label {position: absolute; left: 150px; text-align: center; float: inherit; top: 4px;	font-weight: bold; text-shadow: 1px 1px 0 #fff;}
+.ui-dialog-titlebar {display: none;}
+.ui-widget-overlay {position: fixed; top: 0;left: 0; width: 100%; height: 100%;}
+.ui-dialog {position: absolute; top: 0;	left: 0; padding: .2em; outline: 0;	border: 1px solid #000000 !important;}
+.ui-dialog .ui-dialog-content {position: relative; border: 0; padding: .5em 1em; background: none; overflow: auto;}
+.ui-progressbar { height: 3em; overflow: hidden; position: relative; text-align: center;}
+.ui-progressbar .ui-progressbar-value {	margin: -1px; height: 100%;}
+.ui-progressbar .ui-progressbar-overlay {background: url("../img/animated-overlay.gif"); height: 100%; filter: alpha(opacity=25);opacity: 0.25;}
+.ui-progressbar-indeterminate .ui-progressbar-value {background-image: none;}
+.ui-widget {font-family: Verdana,Arial,sans-serif; font-size: 1.1em;}
+.ui-widget-content {border: 1px solid #aaaaaa; background: #ffffff url(../img/ui-bg_flat_75_ffffff_40x100.png) 50% 50% repeat-x; font-family: Verdana, Geneva, Arial, Helvetica, sans-serif !important; color: #222222;}
+.ui-dialog.ui-widget.ui-widget-content.ui-corner-all.ui-front {top: 487px !important;}
+
+/* Exception-page look&feel - START */
+
+#exceptionMessage{ font-size: 16px; margin-bottom: 70px; line-height: 25px; }
+#exceptionReport{ padding: 25px; }
+
+/* Exception-page look&feel - END*/
+
+/*--- Styles Change Expired Password Page */
+#warningBlock{ font-size: 12px; }
+
+/* ADDED for componet */
+.width95 { width: 95%; }
+
+#showHideDiv a{ width: 100%;float: left;}
+.width45 { width: 45%; }
+
+.t-data-grid a.statusActive {color: #008000; !important}
+.t-data-grid a.statusSuspended {color: #FF0000;!important}
+.t-data-grid a.statusClosed {color: #FF0000;!important}
+.t-data-grid a.statusAwaitingActivation {color: #FFA500; !important}
+
+#merchantSearch IMG.t-error-icon{vertical-align:top }
+	
+.ipHidden{display:none;}
+.closeadvancesearchDiv {display: none;float: left; width: 100%;}
+.merchantDetailsNameDiv {width: 26.5%;float: left;text-align: right;margin-right: 13px}
+
+.statusActive {color: #008000; !important}
+.statusSuspended {color: #FF0000;!important}
+.statusClosed {color: #FF0000;!important}
+.statusAwaitingActivation {color: #FFA500; !important}
+.errorSpan{color: #FF0000; margin-left: 5px;}
+
+.beforeChevronUp { padding-left: 10px; background: url("../img/icon_up.gif") no-repeat scroll left center transparent;}
+.text-blue{color:#000099;}
+
+#widgetDiv a,#userWidgetDiv a,#trnWidgetDiv a,#payWidgetDiv a{color: #000000 !important; font-weight: bold;}
+#MerchantDashboard .t-data-grid a{font-weight: normal;}
+#widgetDiv a{line-height: 22px;}
+.subUploadLogoDiv{width: 150% !important;max-width:1000px !important}
+.cursorDefault{cursor: default}
+#nonEditTable td{cursor: default;}
+
+.visa-class{ background: url("../img/services/visa.png") no-repeat center transparent;padding-left: 65px;}
+.acceptgiro-class{ background: url("../img/services/acceptgiro.png") no-repeat center transparent;padding-left: 65px;}
+.amex-class{ background: url("../img/services/amex.png") no-repeat center transparent;padding-left: 65px;}
+.diners-class{ background: url("../img/services/diners") no-repeat center transparent;padding-left: 65px;}
+.mastercard-class{ background: url("../img/services/mastercard.png") no-repeat center transparent;padding-left: 65px;}
+.maestro-class{ background: url("../img/services/maestro.png") no-repeat center transparent;padding-left: 65px;}
+.incasso-class{ background: url("../img/services/incasso.png") no-repeat center transparent;padding-left: 65px;}
+.rembours-class{ background: url("../img/services/rembours.png") no-repeat center transparent;padding-left: 65px;}
+.minitix-class{ background: url("../img/services/minitix.png") no-repeat center transparent;padding-left: 65px;}
+.ideal-class{ background: url("../img/services/ideal.png") no-repeat center transparent;padding-left: 65px;}
+.sofort-class{ background: url("../img/services/sofort.png") no-repeat center transparent;padding-left: 65px;}
+.elv-class{ background: url("../img/services/elv.png") no-repeat center transparent;padding-left: 65px;}
+.bcmc-class{ background: url("../img/services/bcmc.png") no-repeat center transparent;padding-left: 65px;}
+.paypal-class{ background: url("../img/services/paypal.png") no-repeat center transparent;padding-left: 65px;}
+.vpay-class{ background: url("../img/services/vpay.png") no-repeat center transparent;padding-left: 65px;}
+.visaelectron-class{ background: url("../img/services/visaelectron.png") no-repeat center transparent;padding-left: 65px;}
+.inghomepay-class{ background: url("../img/services/inghomepay.png") no-repeat center transparent;padding-left: 65px;}
+.cbconline-class{ background: url("../img/services/cbconline.png") no-repeat center transparent;padding-left: 65px;}
+.kbconline-class{ background: url("../img/services/kbconline.png") no-repeat center transparent;padding-left: 65px;}
+.netbanking-class{ background: url("../img/services/netbanking.png") no-repeat center transparent;padding-left: 65px;}
+.amex-class{ background: url("../img/services/amex.png") no-repeat center transparent;padding-left: 65px;}
+.buyster-class{ background: url("../img/services/buyster.png") no-repeat center transparent;padding-left: 65px;}
+.cb-class{ background: url("../img/services/cb.png") no-repeat center transparent;padding-left: 65px;}
+.giropay-class{ background: url("../img/services/giropay.png") no-repeat center transparent;padding-left: 65px;}
+.diners-class{ background: url("../img/services/diners.png") no-repeat center transparent;padding-left: 65px;}
+.payolution-class{ background: url("../img/services/payolution.png") no-repeat center transparent;padding-left: 65px;}
+.jcb-class{ background: url("../img/services/jcb.png") no-repeat center transparent;padding-left: 65px;}
+
+.break-word{word-wrap: break-word;}
+.margin-left-update{margin:34%;}
+.servicePackageLogo{margin-left: 222px;margin-top: 30px;position: absolute;width: 100px;}
+.buttonHeight{height:35px}
+.checkBoxSpan{vertical-align: 3px;}	
+.historyTable{border-collapse: separate; border: 1px solid #ccc;}
+.statusActive{color: #008000;}
+.serviceLink{padding: 10px; margin:15px 0 0 15px; border-radius: 5px;}
+.serviceDiv{margin-bottom: 0px; margin-left: 35px; margin-top: 19px;}
+.marignLeft30{margin-left: 30px}
+
+
+/* Time picker start */
+
+.clockImage {background: url("../img/clock.png") no-repeat center; display: block;float: left; height: 30px; margin: 0 0 0 4px; width: 15px;}
+.trnClockTimePickerFrom {background: url("../img/clock.png") no-repeat center; display: block;float: left; height: 30px; margin: 0 0 0 4px; width: 15px;}
+.clockTimePickerTo {background: url("../img/clock.png") no-repeat center;  display: block;float: left; height: 30px; margin: 0 0 0 4px; width: 15px;}
+
+#ui-timepicker-div .ui-timepicker-inline { display: inline; }
+#ui-timepicker-div .ui-timepicker-table { display: inline-table; width: 0; }
+#ui-timepicker-div .ui-timepicker-table table { margin:2px 0 0 0; border-collapse: collapse; }
+#ui-timepicker-div .ui-timepicker-hours, .ui-timepicker-minutes { padding: 3px;  }
+#ui-timepicker-div .ui-timepicker-table .ui-timepicker-title {text-align: center; }
+#ui-timepicker-div .ui-timepicker-table th.periods { padding: 1px; width: 35px; }
+#ui-timepicker-div .ui-timepicker-table td span {display:block; padding:3px 4px 3px 8px; width: 19px; text-align:right; text-decoration:none; }
+#ui-timepicker-div .ui-timepicker-table td a { cursor: pointer; text-align:right; text-decoration:none;}
+#ui-timepicker-div .ui-timepicker .ui-timepicker-buttonpane {background-image: none; margin: 11px 0 0 0; padding:0 3px; border-left: 0; border-right: 0; border-bottom: 0;}
+#ui-timepicker-div .ui-timepicker .ui-timepicker-buttonpane button { margin: 8px 3px 6px; cursor: pointer; padding: 3px 9px 4px 9px; width:auto; overflow:visible; }
+#ui-timepicker-div .ui-timepicker-table td { padding: 1px; width: 35px; }
+#ui-timepicker-div .ui-helper-clearfix:before,#ui-timepicker-div .ui-helper-clearfix:after{content:"";display:table}
+#ui-timepicker-div .ui-widget-content{border:1px solid #ddd;background:#eee url(../img/timepicker/ui-bg_highlight-soft_100_eeeeee_1x100.png) 50% top repeat-x;color:#333}
+#ui-timepicker-div .ui-widget-header{border:1px solid #e78f08;background:#f6a828 url(../img/timepicker/ui-bg_gloss-wave_35_f6a828_500x100.png) 50% 50% repeat-x;color:#fff;font-weight:bold}
+#ui-timepicker-div .ui-state-default,#ui-timepicker-div .ui-widget-content #ui-timepicker-div .ui-state-default,#ui-timepicker-div .ui-widget-header #ui-timepicker-div .ui-state-default{border:1px solid #ccc;background:#f6f6f6 url(../img/timepicker/ui-bg_glass_100_f6f6f6_1x400.png) 50% 50% repeat-x;font-weight:bold;color:#1c94c4; font-size: 14px}
+#ui-timepicker-div .ui-state-default a,#ui-timepicker-div .ui-state-default a:link,#ui-timepicker-div .ui-state-default a:visited{color:#1c94c4;text-decoration:none}
+#ui-timepicker-div .ui-state-hover,#ui-timepicker-div .ui-widget-content #ui-timepicker-div .ui-state-hover,#ui-timepicker-div .ui-widget-header #ui-timepicker-div .ui-state-hover,#ui-timepicker-div .ui-state-focus,#ui-timepicker-div .ui-widget-content #ui-timepicker-div .ui-state-focus,#ui-timepicker-div .ui-widget-header #ui-timepicker-div .ui-state-focus{border:1px solid #fbcb09;background:#fdf5ce url(../img/timepicker/ui-bg_glass_100_fdf5ce_1x400.png) 50% 50% repeat-x;font-weight:bold;color:#c77405}
+#ui-timepicker-div .ui-state-active,#ui-timepicker-div .ui-widget-content #ui-timepicker-div .ui-state-active,#ui-timepicker-div .ui-widget-header #ui-timepicker-div .ui-state-active {background: url("../img/timepicker/ui-bg_glass_65_ffffff_1x400.png") repeat-x scroll 50% 50% #FFFFFF; border: 1px solid #FBD850; color: #EB8F00; font-weight: bold;}
+
+/*  Time picker end */
+/* For merchant component */
+.urlWidth { width: 42.66666667%; }
+.margin-top-label{margin-top:7px !important}
+.popupButtonWidthNo{width:60px !important}
+.popupButtonWidthYes{width:50px !important}

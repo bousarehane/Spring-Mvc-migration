@@ -1,0 +1,12 @@
+<div id="stepBar" class="row big-margin-bottom">
+    <div class="stepBarTest" *ngFor="let step of stepList; let idx = index" >
+        
+        <span [ngClass]="[idx < currentStepIndex ? 'previous' : idx === currentStepIndex ? 'current' : 'next']">{{idx +1}}. {{step}}</span>
+         <div *ngIf="idx === stepList.length - 1;else otherContentLabel">
+          </div>
+          <ng-template #otherContentLabel>
+              <span class="separator"></span>
+          </ng-template>
+        
+    </div>
+</div>

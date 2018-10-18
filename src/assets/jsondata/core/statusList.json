@@ -1,0 +1,22 @@
+[{  
+    "value": null,  
+    "label": null  
+}, {  
+     "value": "IN_PREPARATION",  
+    "label": "EN Préparation"
+}, {  
+    "value": "TO_DIFFUSE",  
+    "label": "A diffuser"
+}, {  
+    "value": "TO_VALIDATE",  
+    "label": "A Valider" 
+}, {  
+    "value": "DIFFUSED",  
+    "label": "Diffusée"   
+}, {  
+    "value": "SUSPENDED",  
+    "label": "Suspendue"   
+}, {  
+    "value": "ENDED",  
+    "label": "Echue"   
+}]   

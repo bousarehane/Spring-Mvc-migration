@@ -1,0 +1,19 @@
+<div class="panel_b mainPanel">
+	<h2 translate>SEARCH_CRITERIA</h2>
+		<div class="panel_body_b" >	
+			<app-campaign [searchModel]="searchModel" (searchModelSubmit)="doFind($event)" (toClear)="doClear()"></app-campaign>
+		</div>
+</div>
+<div class="panel_b campagneOuverte">
+		<h2 translate>RESULT</h2>
+		<div class="panel_body_b">
+			<app-campaign-list [campaigns]="campaigns" [campaignsToBeSorted]="campaignsToBeSorted" 
+			(toUpdate)="goUpdate($event)"  
+			(toDetail)="goDetail($event)" 
+			[totalRecords]="totalRecords" [currentPage]="currentPage" [pageSize]="pageSize"
+			(haveBeenDeleted)="doHaveBeenDeleted($event)"
+			(loadTable)="doLoadTablePagination($event)"
+			(selectedCountSubmit)="doSelectSize($event)">
+			</app-campaign-list>
+		</div>
+</div>

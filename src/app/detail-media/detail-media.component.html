@@ -1,0 +1,142 @@
+<div class="panel_b">
+    <h2 translate>Détails sur le média</h2>
+    <div class="panel_body_b" >	
+
+        <div class="row">
+            <div class="col-md-12 col-form-actions">
+                <button type="button" translate  class="btn btn-default float-right" (click)="doClear()">
+                    <em aria-hidden="true" class="icon-ico_close" title="{{'button.close' | translate}}"> </em>button.close</button>
+
+                <button type="button" translate  class="btn btn-default float-right" (click)="doClear()">
+                        <em aria-hidden="true" class="icon-ico_close" title="{{'button.suspend' | translate}}"> </em>button.suspend</button>
+                
+            </div>
+        </div>
+        <form #detailForm="ngForm" (submit)="doSave(detailForm)">
+            <div class="container-fluid">
+                
+                <div class="row padding-form-field">
+                    <div class="col-md-5">
+                        <label translate>Nom du média:</label>
+                    </div>
+                    <div class="col-md-7">
+                        <span title="{{mediaBean.name}}">{{mediaBean.name}}</span>        
+                    </div>
+                </div>
+
+                <div class="row padding-form-field">
+                        <div class="col-md-5">
+                            <label translate>Référence du média:</label>
+                        </div>
+                        <div class="col-md-7">
+                            <span title="{{mediaBean.reference}}">{{mediaBean.reference}}</span>        
+                        </div>
+                    </div>
+
+                <div class="row padding-form-field" >
+                    <div class="col-md-5">
+                        <label translate>Durée de l'affichage du média (en secondes):</label>
+                    </div>
+                <div class="col-md-7">
+                        <span title="{{mediaBean.displayTime}}">{{mediaBean.displayTime}}</span>        
+                    </div>   
+                </div>
+
+                <div class="row padding-form-field" >
+                    <div class="col-md-5">
+                        <label translate>Localisation du média:</label>
+                    </div>
+                <div class="col-md-7">
+                        <span title="{{mediaBean.location}}">{{mediaBean.location}}</span>        
+                    </div>   
+                </div>
+                
+                <div class="row padding-form-field" >
+                    <div class="col-md-5">
+                        <label translate>Type de média:</label>
+                    </div>
+                <div class="col-md-7">
+                        <span title="{{mediaBean.type}}">{{mediaBean.type}}</span>        
+                    </div>   
+                </div>
+                
+                <div class="row padding-form-field" >
+                    <div class="col-md-5">
+                        <label translate>Dimension de médias (pixels):</label>
+                    </div>
+                <div class="col-md-7">
+                        <span title="{{mediaBean.dimension}}">{{mediaBean.dimension}}</span>        
+                    </div>   
+                </div>
+                <div class="row padding-form-field" >
+                    <div class="col-md-5">
+                        <label translate>Taille:</label>
+                    </div>
+                <div class="col-md-7">
+                        <span title="{{mediaBean.displaySize}}">{{mediaBean.displaySize}}</span>        
+                    </div>   
+                </div>
+
+                <div class="row padding-form-field" >
+                    <div class="col-md-5">
+                        <label translate>Profondeur des couleurs (bits/pixel):</label>
+                    </div>
+                <div class="col-md-7">
+                        <span title="{{mediaBean.colourDepth}}">{{mediaBean.colourDepth}}</span>        
+                    </div>   
+                </div>
+
+                <div class="row padding-form-field" >
+                    <div class="col-md-5">
+                        <label translate>Etat:</label>
+                    </div>
+                <div class="col-md-7">
+                        <span title="{{mediaBean.status}}">{{mediaBean.status}}</span>        
+                    </div>   
+                </div>
+
+                <div class="row padding-form-field" >
+                    <div class="col-md-5">
+                        <label translate>Raison de Désactivation:</label>
+                    </div>
+                <div class="col-md-7">
+                        <span title="{{mediaBean.deactivationReason}}">{{mediaBean.deactivationReason}}</span>        
+                    </div>   
+                </div>
+
+                <div class="row padding-form-field" >
+                    <div class="col-md-5">
+                        <label translate>Commentaire:</label>
+                    </div>
+                <div class="col-md-7">
+                        <span title="{{mediaBean.comment}}">{{mediaBean.comment}}</span>        
+                    </div>   
+                </div>
+                <div class="row padding-form-field" >
+                    <div class="col-md-5">
+                        <label translate>Dernière mise à jour par:</label>
+                    </div>
+                <div class="col-md-7">
+                        <span title="{{mediaBean.lastUpdatedBy}}">{{mediaBean.lastUpdatedBy}}</span>        
+                    </div>   
+                </div>
+
+                <div class="row padding-form-field" >
+                    <div class="col-md-5">
+                        <label translate>Date de la dernière mise à jour:</label>
+                    </div>
+                <div class="col-md-7">
+                        <span title="{{mediaBean.lastUpdatedDate | date: datePatternFull}}">{{mediaBean.lastUpdatedDate | date: datePattern}}</span>     
+                    </div>   
+                </div>
+
+          <div class="row">
+              <div class="col-md-12 col-form-actions">
+                  <button type="button" translate  class="btn btn-default float-right" (click)="doClear()">
+                          <em aria-hidden="true" class="icon-ico_close" title="{{'CLEAR' | translate}}"> </em>CLEAR</button>
+              </div>
+          </div>
+            </div>
+        </form>
+    </div>
+</div>

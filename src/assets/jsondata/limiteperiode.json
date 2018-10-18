@@ -1,0 +1,18 @@
+[
+    {
+        "value": null,
+        "label": null
+    },
+    {
+        "value": "jour",
+        "label": "Jour"
+    },
+    {
+        "value": "semaine",
+        "label": "Semaine"
+    },
+    {
+        "value": "mois",
+        "label": "Mois"
+    }
+]

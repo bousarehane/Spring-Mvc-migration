@@ -1,0 +1,18 @@
+[
+    {
+        "value": null,
+        "label": null
+    },
+    {
+        "value": "day",
+        "label": "PERIOD_DAY"
+    },
+    {
+        "value": "week",
+        "label": "PERIOD_WEEK"
+    },
+    {
+        "value": "month",
+        "label": "PERIOD_MONTH"
+    }
+]

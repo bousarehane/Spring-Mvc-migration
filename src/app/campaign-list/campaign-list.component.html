@@ -1,0 +1,101 @@
+<p class="errorP" *ngIf="errorMessage">
+  {{ errorMessage }}
+</p>
+<!--<app-field-messages [messages]="errorsMap.get('global_form_message')"> </app-field-messages>-->
+
+
+<div *ngIf="campaigns.length >0" style="padding: .5em .75em;" class="ui-widget-header">
+<ngb-pagination *ngIf="campaigns.length >0" [collectionSize]="totalRecords" [(page)]="currentPage"  (pageChange)="doLoadTablePagination($event)"
+        [pageSize]="pageSize" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>
+
+    <div class="row">
+            <div class="col-md-1" style="padding-right: 8px;">
+                    <p-dropdown #dd [options]="numberRecords" [(ngModel)]="selectedCount" placeholder="{{ 'CHOOSE_TYPE' | translate }}" name="selectedCount" (onChange)="doSelectSize($event)"
+                        [style]="{'width':'100%'}"></p-dropdown>
+            </div>
+            <div style="padding-top :3px;" class="col-md-7">
+                <span title="campaigne_page" translate> CAMPAGNE_PAGE</span>
+            </div>
+
+            <div style="padding-top :3px;" class="col-md-4">
+                    <span title="{{start}}"> Campagnes {{start}} to {{end}} of {{totalRecords}}</span>
+            </div>
+            
+     </div>
+</div>
+<p-dataTable *ngIf="campaigns.length >0" [value]="campaigns" selectionMode="single" (onRowSelect)="onRowSelect($event)">
+
+  <p-column header="{{'REFERENCE' | translate}}" [style]="{'width':'15%'}" field="campaignRef" sortable="custom" (sortFunction)="sortByFiealds($event)">
+        <ng-template let-campaign="rowData" pTemplate type="body">
+            <span class="sizeText" title="{{campaign.campaignRef}}">{{campaign.campaignRef}}</span>
+        </ng-template>
+  </p-column>
+    
+  <p-column header="{{'NAME' | translate}}" [style]="{'width':'15%'}"  field="name" sortable="custom" (sortFunction)="sortByFiealds($event)">
+      <ng-template let-campaign="rowData" pTemplate type="body">
+          <span class="sizeText" title="{{campaign.name}}">{{campaign.name}}</span>
+      </ng-template>
+  </p-column>
+
+  <p-column header="{{'TYPE' | translate}}">
+        <ng-template let-campaign="rowData" pTemplate type="body">
+          <span class="sizeText" title="{{campaign.type}}">{{campaign.type}}</span>
+        </ng-template>
+  </p-column>
+
+  <p-column header="{{'STATUS_UPPERCASE' | translate}}">
+        <ng-template let-campaign="rowData" pTemplate type="body">
+          <span class="sizeText" title="{{campaign.status}}">{{campaign.status}}</span>
+        </ng-template>
+   </p-column>
+   <p-column header="{{'NIVEAU' | translate}}">
+        <ng-template let-campaign="rowData" pTemplate type="body">
+            <span class="sizeText" title="{{campaign.level}}">{{campaign.level}}</span>
+        </ng-template>
+   </p-column>
+  <p-column header="{{'START_DATE' | translate}}">
+      <ng-template let-campaign="rowData" pTemplate type="body">
+          <span class="sizeText" title="{{campaign.activationDate | date: datePatternFull}}">{{campaign.activationDate | date: datePattern}}</span>
+      </ng-template>
+  </p-column>
+  <p-column header="{{'END_DATE' | translate}}">
+      <ng-template let-campaign="rowData" pTemplate type="body">
+          <span class="sizeText" title="{{campaign.deactivationDate | date: datePatternFull}}">{{campaign.deactivationDate | date: datePattern}}</span>
+      </ng-template>
+  </p-column>
+  
+  <p-column header="{{'MEDIA' | translate}}">
+        <ng-template let-campaign="rowData" pTemplate type="body">
+                <span class="sizeText" title="{{campaign.nbPicture}}">{{campaign.nbPicture}}</span>
+        </ng-template>
+   </p-column>
+   <p-column header="{{'TERMINAUX' | translate}}">
+        <ng-template let-campaign="rowData" pTemplate type="body">
+                <span class="sizeText" title="{{campaign.nbTerminal}}">{{campaign.nbTerminal}}</span>
+        </ng-template>
+   </p-column>
+   <p-column header="{{'PLAYLIST' | translate}}">
+        <ng-template let-campaign="rowData" pTemplate type="body">
+                <span class="sizeText" title="{{campaign.playListVersion}}">{{campaign.playListVersion}}</span>
+        </ng-template>
+   </p-column>
+   <p-column header="{{'REFERENCE_MARCHANT' | translate}}">
+        <ng-template let-campaign="rowData" pTemplate type="body">
+                <span class="sizeText" title="{{campaign.merchantRef}}">{{campaign.merchantRef}}</span>
+        </ng-template>
+   </p-column>
+ 
+ <!--<p-column header="{{'ACTIONS' | translate}}" styleClass="col-button" [style]="{'width':'135px'}">
+      <ng-template let-campaign="rowData" pTemplate="body">
+          <button type="button" title="{{'DETAILS' | translate}}" pButton (click)="goDetailCampaign(campaign)" icon="fa-search"></button>
+          <button type="button" title="{{'EDIT' | translate}}" pButton [disabled]="btnUpdateCmp" (click)="goUpdateCampaign(campaign)" icon="fa-pencil"></button>
+          <button type="button" title="{{'DELETE' | translate}}" pButton [disabled]="! isDeleteAllowed(campaign.statut) || btnUpdateCmp"
+          confirm confirmMessage="CONFIRM_DELETE_CAMPAIGN" [translateParams]="{name: campaign.name}" (clickConfirmed)="goDeleteCampaign(campaign)" icon="fa-trash"></button>
+      </ng-template>
+  </p-column>-->
+
+  <p-footer style="color :#007bff;">
+      <ngb-pagination *ngIf="campaigns.length >0" [collectionSize]="totalRecords" [(page)]="currentPage" [maxSize]="5" (pageChange)="doLoadTablePagination($event)"
+          [pageSize]="pageSize" [rotate]="true" [ellipses]="false" [boundaryLinks]="true" ></ngb-pagination>
+  </p-footer>
+</p-dataTable>

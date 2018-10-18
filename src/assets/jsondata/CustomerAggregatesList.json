@@ -1,0 +1,22 @@
+[
+    {
+        "value": null,
+        "label": null
+    },
+    {
+        "value": "agr1",
+        "label": "CA mois n"
+    },
+    {
+        "value": "agr2",
+        "label": "CA mois n-1"
+    },
+    {
+        "value": "agr3",
+        "label": "nb visite n"
+    },
+    {
+        "value": "agr4",
+        "label": "nb visite n-1"
+    }
+]

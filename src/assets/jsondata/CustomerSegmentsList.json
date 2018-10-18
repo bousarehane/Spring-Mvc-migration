@@ -1,0 +1,18 @@
+[
+    {
+        "value": "RFNEWNEW",
+        "label": "Nouveau client"
+    },
+    {
+        "value": "RFTBCTBC",
+        "label": "Très bon client"
+    },
+    {
+        "value": "RFBC BC",
+        "label": "Bon client"
+    },
+    {
+        "value": "RFMC MC",
+        "label": "Client moyen"
+    }
+]

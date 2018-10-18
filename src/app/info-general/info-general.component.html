@@ -1,0 +1,172 @@
+<div class="panel_b mainPanel">
+    <h2 translate>My Campaign</h2>
+    <div class="panel_body_b" >
+    <form #detailForm="ngForm" (submit)="doFind($event)">
+        <div class="container-fluid">
+            <div style="margin-top: 10px;margin-left: 20px;">
+             <div class="row col-3" style="padding-left: 0; padding-right: 0;">
+                <div id="campaignTreeView" class="bordered">
+                  <div id="campaignTreeViewHeader" class="row padding-left subtitle border-bottom">
+                      My Campaign
+                  </div>
+                  <div id="campaignTreeViewContent" style="margin-right:1px;white-space: nowrap; overflow: auto;" class="row inner t-zone">
+                     <ul>
+                        <div *ngFor="let itemCampaign of nodes; let first = first; index as i" [attr.data-index]="i">
+                          
+                            <div *ngIf="itemCampaign.padding;else otherContent">
+                                <div class="padding"></div>
+                            </div>
+                            <ng-template #otherContent>
+                                <li [style]="itemCampaign.nodeLineStyle">
+                                    <img class="treeIcon" src="{{itemCampaign.nodeIcon}}" /> 
+                                    
+                                    <div style="margin-left:19px;">
+                                    <div *ngIf="itemCampaign.terminal;else otherContentPrime">
+                                        Liste des terminaux
+                                    </div>
+                                    <ng-template #otherContentPrime>
+                                      <a href=""  [routerLink]="['/infoGeneralCmp']" (click)="getActionFromNodeLink(itemCampaign.type,nodes[0].reference,itemCampaign.reference)">{{itemCampaign.name}} - {{itemCampaign.reference}}</a>
+                                       <!--   <a href=""  [routerLink]="['reference', itemCampaign.reference, '/detailCampaign']" (click)="getActionFromNodeLink(itemCampaign.type,nodes[0].reference,itemCampaign.reference)">{{itemCampaign.name}} - {{itemCampaign.reference}}</a>!-->
+                                        
+                                    </ng-template>
+                                </div>
+                                </li>
+                            </ng-template>
+                        </div>
+                       
+                     </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </form>
+    </div>
+    </div>
+<div class="panel_b campagneOuverte" style="margin: 0 !important;">
+<div class="panel_b">
+    <h2 translate>Détails de la campagne</h2>
+    <div class="panel_body_b" >	
+          
+            <p-tabMenu #menuItems [model]="items" [activeItem]="activeItem" (click)="activateMenu()"></p-tabMenu><br/>
+            
+        <div class="row bordered inner">
+            <div class="col-md-12 col-form-actions">
+                <button type="button" translate  class="btn btn-default float-right" (click)="doClear()">
+                    <em aria-hidden="true" class="icon-ico_close" title="{{'button.update' | translate}}"> </em>button.update</button>
+
+                <button type="button" translate  class="btn btn-default float-right" (click)="doClear()">
+                        <em aria-hidden="true" class="icon-ico_close" title="{{'button.addMedia' | translate}}"> </em>button.addMedia</button>
+                
+                <button type="button" translate  class="btn btn-default float-right" (click)="doClear()">
+                        <em aria-hidden="true" class="icon-ico_close" title="{{'button.assignEditTerminal' | translate}}"> </em>button.assignEditTerminal</button>
+    
+            </div>
+        </div>
+        <form #detailForm="ngForm" (submit)="doSave(detailForm)">
+            <div class="container-fluid">
+                
+                <div class="row padding-form-field">
+                    <div class="col-md-5">
+                        <label translate>NAME_OF_CAMPAIGN_</label>
+                    </div>
+                    <div class="col-md-7">
+                        <span title="{{campaign.name}}">{{campaign.name}}</span>        
+                    </div>
+                </div>
+
+                <div class="row padding-form-field">
+                        <div class="col-md-5">
+                            <label translate>Référence de la campagne</label>
+                        </div>
+                        <div class="col-md-7">
+                            <span title="{{campaign.reference}}">{{campaign.reference}}</span>        
+                        </div>
+                    </div>
+
+                <div class="row padding-form-field" >
+                    <div class="col-md-5">
+                        <label translate>TYPE_</label>
+                    </div>
+                <div class="col-md-7">
+                        <span title="{{campaign.type}}">{{campaign.type}}</span>        
+                    </div>   
+                </div>
+                
+
+                <div *ngIf="campaign.displayMerchantReference" class="row padding-form-field">
+                    <div class="col-md-5">
+                        <label translate>REFERENCE_MARCHANT</label>
+                    </div>
+                    <div class="col-md-7">
+                            <span title="{{campaign.merchantReference}}">{{campaign.merchantReference}}</span>        
+                    </div>   
+                
+                </div>
+
+                
+                <div class="row padding-form-field">
+                    <div class="col-md-5">
+                        <label translate>LEVEL_</label>
+                    </div>
+                  <div class="col-md-7">
+                        <span title="{{campaign.level}}">{{campaign.level}}</span>        
+                  </div>  
+                </div>
+
+                <div class="row padding-form-field">
+                    <div class="col-md-5">
+                        <label  translate>ACTIVATION_DATE</label>
+                    </div>
+                    <div class="col-md-7">
+                        <span  title="{{campaign.activationDate | date: datePatternFull}}">{{campaign.activationDate | date: datePattern}}</span>
+                </div> 
+             </div>
+             <div class="row padding-form-field">
+                <div class="col-md-5">
+                    <label  translate>DEACTIVATION_DATE</label>
+                </div>
+                <div class="col-md-7">
+                    <span title="{{campaign.deactivationDate | date: datePatternFull}}">{{campaign.deactivationDate | date: datePattern}}</span>
+            </div> 
+            </div>
+            
+           
+        <div class="row padding-form-field">
+                <div class="col-md-5">
+                    <label  translate>Code de catégorie publicitaire:</label>
+                </div>
+                <div class="col-md-7">
+                  <span title="{{campaign.advertisingCategoryCode}}">{{campaign.advertisingCategoryCode}}</span>
+            </div> 
+         </div>
+        
+         <div class="row padding-form-field">
+                <div class="col-md-5">
+                    <label  translate>Etat:</label>
+                </div>
+                <div class="col-md-7">
+                  <span title="{{campaign.status}}">{{campaign.status}}</span>
+            </div> 
+         </div>
+
+         <div class="row padding-form-field">
+                <div class="col-md-5">
+                    <label for="defaultCampaign" translate>DEFAULT_CAMPAIGN</label>
+                </div>
+                <div class="col-md-7">
+                    <span title="{{campaign.defaultCampaignValue}}">{{campaign.defaultCampaignValue}}</span>
+                </div>
+           </div>
+
+          <div class="row">
+              <div class="col-md-12 col-form-actions">
+                  <button type="button" translate  class="btn btn-default float-right" (click)="doClear()">
+                          <em aria-hidden="true" class="icon-ico_close" title="{{'CANCEL' | translate}}"> </em>CANCEL</button>
+              </div>
+          </div>
+            </div>
+        </form>
+    </div>
+</div>
+</div>

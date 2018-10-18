@@ -1,0 +1,12 @@
+<div class="dSameLine caldate">
+    <div class="input-group-cal">
+        <input class="form-control" [(ngModel)]="dpDate" [disabled]="disabled" placeholder="{{'DATE_PICKER_PLACEHOLDER' | translate}}"
+            ngbDatepicker #datePicker="ngbDatepicker">
+        <button type="button" class="input-group-append datepicker-group-append" (click)="disabled || datePicker.toggle()">
+            <em class="fa fa-calendar"></em>
+        </button>
+    </div>
+</div>
+<!--<div class="dSameLine caltime">
+    <ngb-timepicker name="time" [(ngModel)]="dpTime" [disabled]="disabled"></ngb-timepicker>
+</div>!-->

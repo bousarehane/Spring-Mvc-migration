@@ -1,0 +1,149 @@
+
+<div class="panel_b">
+    <h2 translate>Add média</h2>
+      <div class="panel_body_b" >	
+          <app-step-bar [currentStepIndex]="currentStepIndex" ></app-step-bar>
+          <div class="row"></div>
+          <div class="row">
+              <div class="col-md-12">
+                  <h1 class="title float-left">Détails de la campagne</h1>
+              </div>
+          </div>
+          <form #addMediaForm="ngForm" (submit)="doSave(addMediaForm)" >
+              <div class="container-fluid">
+                  <div class="row padding-form-field">
+                      <div class="col-md-5">
+                          <label translate>NAME_OF_CAMPAIGN_</label>
+                      </div>
+                      <div class="col-md-7">
+                          <span title="{{campaign.name}}">{{campaign.name}}</span>       
+                      </div>
+                  </div>
+
+                  <div class="row padding-form-field">
+                      <div class="col-md-5">
+                          <label translate>Référence de la campagne</label>
+                      </div>
+                      <div class="col-md-7">
+                          <span title="{{campaign.reference}}">{{campaign.reference}}</span>        
+                      </div>
+                  </div>
+
+                  <div class="row">
+                      <div class="col-md-12">
+                          <h1 class="title float-left">Détails sur le média</h1>
+                      </div>
+                  </div>
+
+                  <div class="row padding-form-field" >
+                      <div class="col-md-5">
+                          <label translate>Nom du média:</label>
+                      </div>
+                      <div class="col-md-7">
+                          <input pInputText type="text" name="nameMedia" [(ngModel)]="mediaBean.name" #nameMedia="ngModel"  required>
+    
+                          <div *ngIf="(nameMedia.dirty || addMediaForm.submitted) && nameMedia.invalid && nameMedia.errors.required" class="ui-message ui-messages-error">
+                              <div *ngIf="nameMedia.errors.required" translate>
+                                  Vous devez fournir une valeur pour Nom du média.
+                              </div>
+                          </div>           
+                      </div>  
+                  </div>
+
+                  <div class="row padding-form-field" >
+                      <div class="col-md-5">
+                          <label translate>Durée de l'affichage du média (en secondes):</label>
+                      </div>
+                      <div class="col-md-7">
+                          <input pInputText type="text" name="dureeMedia" [(ngModel)]="mediaBean.displayTime" #dureeMedia="ngModel"  required>
+    
+                          <div *ngIf="(dureeMedia.dirty || addMediaForm.submitted) && dureeMedia.invalid && dureeMedia.errors.required" class="ui-message ui-messages-error">
+                              <div *ngIf="dureeMedia.errors.required" translate>
+                                  Vous devez fournir une valeur pour Durée de l'affichage du média (en secondes).
+                              </div>
+                          </div>           
+                      </div>  
+                  </div>
+
+                  <div class="row padding-form-field" >
+                      <div class="col-md-5">
+                          <label translate>Chargement média:</label>
+                      </div>
+                      <div class="col-md-2">
+                          <input type='file' name="file"   (change)="onSelectFile($event)">
+                      </div>  
+
+                      <div class="col-md-2">
+                      <button type="button" translate  class="btn btn-default float-right" (click)="uploadMediaFile(addMediaForm , $event)">
+                        <em aria-hidden="true" class="icon-ico_close" title="{{'Upload' | translate}}"> </em>Upload</button>
+                     </div>
+                  </div>
+                  
+
+                  <div class="row padding-form-field" >
+                      <div class="col-md-5">
+                          <label translate>Type de média:</label>
+                      </div>
+                      <div class="col-md-7">
+                          <span title="{{mediaBean.type}}">{{mediaBean.type}}</span>       
+                      </div>  
+                  </div>    
+                  
+                  <div class="row padding-form-field" >
+                      <div class="col-md-5">
+                          <label translate>Dimension de médias (pixels):</label>
+                      </div>
+                      <div class="col-md-7">
+                          <span title="{{mediaBean.dimension}}">{{mediaBean.dimension}}</span>       
+                      </div>  
+                  </div>    
+                  <div class="row padding-form-field" >
+                      <div class="col-md-5">
+                          <label translate>Taille:</label>
+                      </div>
+                      <div class="col-md-7">
+                          <span title="{{mediaBean.displaySize}}">{{mediaBean.displaySize}}</span>       
+                      </div>  
+                  </div>    
+                  <div class="row padding-form-field" >
+                      <div class="col-md-5">
+                          <label translate>Profondeur des couleurs (bits/pixel):</label>
+                      </div>
+                      <div class="col-md-7">
+                          <span title="{{mediaBean.colourDepth}}">{{mediaBean.colourDepth}}</span>       
+                      </div>  
+                  </div>   
+                  
+                  <div class="row padding-form-field">
+                      <div class="col-md-5">
+                          <label for="comment" translate>COMMENTAIRE</label>
+                      </div>
+                      <div class="col-md-7">
+                          <textarea [(ngModel)]="mediaBean.comment" pInputTextarea name="comment" [readOnly]="readOnly"></textarea>
+                      </div>
+                  </div>
+
+                  <div class="row">
+                      <div class="col-md-12">
+                          <h1 class="title float-left">Média</h1>
+                      </div>
+                  </div>
+                  <div class="mediaDisplay">
+                      <img [src]="url" height="200"> <br/>
+                  </div>
+                 
+                  <div class="row">
+                      <div class="col-md-12 col-form-actions">
+                          
+                          <button type="submit" translate class="btn btn-primary float-right" *ngIf="! readOnly" >
+                              <em aria-hidden="true" class="icon-ico_save" title="{{'SAVE_MEDIA' | translate}}"> </em>SAVE</button>
+
+                          <button type="button" translate  class="btn btn-default float-right" (click)="doClear()">
+                                  <em aria-hidden="true" class="icon-ico_close" title="{{'CLEAR' | translate}}"> </em>CLEAR</button>
+                          
+                      </div>
+                  </div>
+              </div>
+          </form>
+      </div>
+  </div>

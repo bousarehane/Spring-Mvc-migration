@@ -1,0 +1,67 @@
+<div class="panel_b mainPanel">
+<h2 translate>My Campaign</h2>
+<div class="panel_body_b" >
+<form #detailForm="ngForm" (submit)="doFind($event)">
+    <div class="container-fluid">
+        <div style="margin-top: 10px;margin-left: 20px;">
+         <div class="row col-3" style="padding-left: 0; padding-right: 0;">
+            <div id="campaignTreeView" class="bordered">
+              <div id="campaignTreeViewHeader" class="row padding-left subtitle border-bottom">
+                  My Campaign
+              </div>
+              <div id="campaignTreeViewContent" style="margin-right:1px;white-space: nowrap; overflow: auto;" class="row inner t-zone">
+                 <ul>
+                    <div *ngFor="let itemCampaign of nodes; let first = first; index as i" [attr.data-index]="i">
+                      
+                        <div *ngIf="itemCampaign.padding;else otherContent">
+                            <div class="padding"></div>
+                        </div>
+                        <ng-template #otherContent>
+                            <li [style]="itemCampaign.nodeLineStyle">
+                                <img class="treeIcon" src="{{itemCampaign.nodeIcon}}" /> 
+                                
+                                <div style="margin-left:19px;">
+                                <div *ngIf="itemCampaign.terminal;else otherContentPrime">
+                                    Liste des terminaux
+                                </div>
+                                <ng-template #otherContentPrime>
+                                  <a href=""  [routerLink]="['/detailCampaign']" (click)="getActionFromNodeLink(itemCampaign.type,nodes[0].reference,itemCampaign.reference)">{{itemCampaign.name}} - {{itemCampaign.reference}}</a>
+                                   <!--   <a href=""  [routerLink]="['reference', itemCampaign.reference, '/detailCampaign']" (click)="getActionFromNodeLink(itemCampaign.type,nodes[0].reference,itemCampaign.reference)">{{itemCampaign.name}} - {{itemCampaign.reference}}</a>!-->
+                                    
+                                </ng-template>
+                            </div>
+                            </li>
+                        </ng-template>
+                    </div>
+                   
+                 </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+</form>
+</div>
+</div>
+
+<div class="panel_b campagneOuverte" style="margin: 0 !important;" *ngIf="nextPage === 'campaignDetailsStep0'">
+    <app-detail-com-step0 [campaign]="campaign" ></app-detail-com-step0>
+</div>
+
+<div class="panel_b campagneOuverte" style="margin: 0 !important;" *ngIf="nextPage === 'campaignDetails'">
+    <app-detail-comp [campaign]="campaign" ></app-detail-comp>
+</div>
+
+<div class="panel_b campagneOuverte" *ngIf="nextPage === 'mediaDetails'">
+    <app-detail-media [mediaBean]="mediaBean" ></app-detail-media>
+</div>
+
+<div class="panel_b campagneOuverte" *ngIf="nextPage === 'mediaDetailsStep0'">
+    <app-detail-media-step0 [mediaBean]="mediaBean" [campaign]="campaign" ></app-detail-media-step0>
+</div>
+
+
+
+    
+
+

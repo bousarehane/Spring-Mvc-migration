@@ -1,0 +1,16 @@
+[{  
+    "value": null,  
+    "label": null  
+}, {  
+     "value": "NATION",  
+    "label": "National"
+}, {  
+    "value": "REGION",  
+    "label": "Région"
+}, {  
+    "value": "PDV",  
+    "label": "PDV" 
+}, {  
+    "value": "INTNET",  
+    "label": "Internet"   
+}]   

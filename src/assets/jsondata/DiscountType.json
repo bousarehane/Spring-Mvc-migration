@@ -1,0 +1,10 @@
+[{  
+    "value": null,  
+    "label": null  
+}, {  
+     "value": "PERCENT",  
+    "label": "%"
+}, {  
+    "value": "AMOUNT",  
+    "label": "€"
+}]   

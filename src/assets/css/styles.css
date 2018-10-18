@@ -1,0 +1,1973 @@
+/* ****************************************
+*********    STUDIO    -     WOD   ********
+*******************************************/
+
+
+/* 
+
+	- RESET 
+	- DEFAULT GENERAL
+	- HEADER
+	- SCROLLBARS
+	- INFORMATIONS GENERALES
+	- MENU DES CAMPAGNES
+	- INPUT / TEXTAREA / SELECT / LABEL
+	- MENU OUTILS
+	- PANEL FREQUENCE
+	- FIL D'ARIANE
+	- EXPLORATEUR DE FICHIER
+	- MENU CAMPAGNE OUVERTE
+		--> FORMULAIRE CAMPAGNE OUVERTE
+	- FENETRE MODALE NOUVELLE CAMPAGNE
+	- MENU SELECTION (recherche / explorer / favoris)
+	- FOOTER
+
+
+	- MEDIA QUERIES
+	
+
+*/
+
+
+/* ***********************************************
+************************* RESET ******************
+**************************************************/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video,
+button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: top;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+body,
+input,
+select,
+textarea {
+    font: 1em "texgyreadventorregular", Helvetica, Arial, sans-serif;
+}
+
+
+a:hover {
+    text-decoration: underline;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+hr {
+    display: none;
+}
+
+a.skip_links {
+    left: -99999px;
+    position: absolute;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+
+/* *************************************************
+****************** DEFAULT GENERAL *****************
+****************************************************/
+
+
+/* Cacher l'élément */
+
+.skip {
+    position: absolute;
+    left: -9999px;
+}
+
+
+/* Body */
+
+body {
+    height: 100%;
+    width: 100%;
+    background-color: #c7c7c9;
+}
+
+body.onMobile {
+    overflow: hidden;
+}
+
+
+/* Main */
+
+main {
+    padding: 0.6rem;
+    padding: 0;
+    /*overflow:auto;*/
+    padding-top: 5rem;
+    min-height: 80%;
+}
+
+
+/* Panel avec bandeau bleu #0182c3 */
+
+.panel_b {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.panel_b>h2 {
+    padding: 0.2rem 0.2rem 0.2rem 1.1rem;
+    background-color: #0182c3;
+    color: white;
+    margin-top: 1rem;
+    font: 0.9rem "texgyreadventorbold";
+    text-transform: uppercase;
+}
+
+.panel_body_b {
+    background-color: white;
+    padding: 1rem;
+}
+
+
+/* Boutons bleu #072f84 */
+
+button.btn {
+    background-color: #072f84;
+    color: white;
+    padding: 0.1rem 0.4rem 0.1rem 0.2rem;
+    display: inline-block;
+    margin-right: 0.34rem;
+    margin-bottom: 0.6rem;
+    border: 0.1rem solid #072f84;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+
+/* Boutons HOVER et FOCUS */
+
+button.btn:hover,
+button.btn:focus {
+    background-color: white;
+    border: 0.1rem solid #072f84;
+    color: #072f84;
+}
+
+
+/* bouton breadcrumbs */
+
+.breadcrumbs button:hover {
+    background-color: white;
+    border: 0.1rem solid #072f84;
+    color: #072f84;
+    cursor: pointer;
+    padding: 0rem;
+}
+
+.breadcrumbs button:hover>i {
+    color: #072f84;
+    font-size: 1.4rem;
+    line-height: 1.4rem;
+    vertical-align: text-bottom;
+}
+
+
+/* BOUTONS DESACTIVES */
+
+button.btn-d {
+    background-color: #cdd5e6;
+    color: white;
+    padding: 0.2rem 0.4rem 0.2rem 0.4rem;
+    display: inline-block;
+    margin-right: 0.5rem;
+    margin-bottom: 0.6rem;
+    cursor: default;
+}
+
+
+/* PICTO DANS LES BOUTONS */
+
+button.btn i,
+button.btn-d i {
+    font-size: 1.5rem;
+    display: inline-block;
+}
+
+
+/* Design des SELECT */
+
+select {
+    display: block;
+    width: 41%;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    border: 1px solid #cbcbcb;
+    padding-left: 0.3rem;
+}
+
+
+/* Design des LABEL */
+
+label {
+    display: block;
+    color: #88888a;
+    font-size: 0.9rem;
+    padding-bottom: .4rem;
+    text-transform: uppercase;
+    margin-top: 0.15rem;
+}
+
+input {
+    border: 1px solid #cbcbcb;
+}
+
+
+/* ***********************************************
+************************* HEADER *****************
+**************************************************/
+
+header {
+    background-color: #88888a;
+    height: 4rem;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+}
+
+header button {
+    /* Pas de initial dans IE */
+    /*background-color: initial;*/
+    background-color: transparent;
+    cursor: pointer;
+}
+
+header button i {
+    font-size: 4rem;
+    color: white;
+}
+
+header .myAccount {
+    float: right;
+}
+
+header .myAccount i {
+    font-size: 4.3rem;
+}
+
+header .myAccount span {
+    display: none;
+}
+
+header .logoWL {
+    display: none;
+}
+
+header h1 {
+    display: inline-block;
+    cursor: pointer;
+}
+
+header h1 img {
+    height: 3.1rem;
+    margin: 0.5rem 0 0 -0.8rem;
+}
+
+header h1 strong>img {
+    display: none;
+}
+
+
+/* Disparition des logos */
+
+.boutonCampagne,
+.logos {
+    transition: 1s;
+}
+
+.myAccount {
+    transition: 0s;
+}
+
+.boutonCampagne.isOpen {
+    transform: rotate(90deg);
+    margin-left: 88.8%;
+    transition: 1s;
+}
+
+.menuCampagne.isClose {
+    left: -100%;
+    top: 3.5rem;
+}
+
+.menuCampagne.isOpen {
+    left: 0;
+    top: 3.2rem;
+    position: fixed;
+}
+
+.logos.vanish,
+.myAccount.vanish {
+    opacity: 0;
+    transition: 1s;
+}
+
+.myAccount.vanish {
+    opacity: 0;
+    transition: 0s;
+}
+
+
+/* MENU DEROULANT AVEC PARAMETRES USER */
+
+.underAccount {
+    background-color: white;
+    z-index: 10;
+    width: 14.5rem;
+    position: absolute;
+    top: 4rem;
+    right: 0;
+    padding: 0.2rem 0.7rem 0.7rem 0.7rem;
+    border-bottom: 3px solid #88888a;
+    border-left: 3px solid #88888a;
+    border-right: 3px solid #88888a;
+}
+
+.accountIsClose {
+    display: none;
+}
+
+.accountIsOpen {
+    display: block;
+}
+
+.underAccount>p {
+    background-color: white;
+    color: #0659a7;
+    font-size: 1.3rem;
+    margin-top: 0;
+    border-bottom: 1px solid grey;
+    font-weight: bold;
+    padding-bottom: 0.5rem;
+}
+
+.underAccount>p em {
+    text-transform: uppercase;
+}
+
+.underAccount form {
+    padding-top: 0.7rem;
+    text-transform: uppercase;
+    color: grey;
+    padding-bottom: 0.1rem;
+    border-bottom: 1px solid grey;
+}
+
+.underAccount form select {
+    width: 75%;
+}
+
+.underAccount button {
+    /* Pas de initial dans IE */
+    /*background-color: initial;*/
+    background-color: transparent;
+    cursor: pointer;
+    padding-top: 0.7rem;
+    font-size: 0.9rem;
+}
+
+.underAccount button i {
+    color: black;
+    font-size: 1.5rem;
+    vertical-align: text-top;
+}
+
+.underAccount::before {
+    background-color: #88888a;
+    display: block;
+    content: "";
+    height: 0rem;
+    width: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 10px solid white;
+    right: 0;
+    position: absolute;
+    top: -0.6rem;
+    right: 0.7rem;
+}
+
+
+/* **************************************************
+************************* SCROLLBARS ****************
+*****************************************************/
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px
+}
+
+ ::-webkit-scrollbar-button {
+    width: 0;
+    height: 0;
+}
+
+ ::-webkit-scrollbar-track {
+    background: #88888a;
+    border: none;
+    box-shadow: none;
+}
+
+ ::-webkit-scrollbar-thumb {
+    background: #0182c3;
+    border: none;
+    box-shadow: none;
+}
+
+ ::-webkit-scrollbar-thumb:hover {
+    background: #a5c6e7;
+}
+
+
+/* ***************************************************************
+************************* INFORMATIONS GENERALES *****************
+******************************************************************/
+
+.infosGenerales {
+    margin: 0 auto;
+    background-color: white;
+    padding: 1rem;
+}
+
+
+/* ***************************************************************
+************************* MENU DES CAMPAGNES *********************
+******************************************************************/
+
+.menuCampagne {
+    display: block;
+    ;
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    background-color: #88888a;
+    transition: 1s;
+}
+
+.menuCampagne ul {
+    margin: 0 auto;
+    text-align: center;
+    width: 80%;
+    margin-top: 2rem;
+}
+
+.menuCampagne li {
+    width: 100%;
+    display: block;
+    padding: 0.5rem;
+    background-color: white;
+    margin-bottom: 1rem;
+    color: #16ade8;
+    font-family: "texgyreadventorregular";
+    cursor: pointer;
+}
+
+.menuCampagne li::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    background: #2098D1;
+    height: 4px;
+    -webkit-transition-property: left, right;
+    transition-property: left, right;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+}
+
+.menuCampagne li:hover::before {
+    left: 0;
+    right: 0;
+}
+
+.menuCampagne li.active::before {
+    display: none;
+}
+
+.menuCampagne li.active {
+    padding: 0.5rem;
+    background-color: #0182c3;
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.menuCampagne>button {
+    width: 100%;
+    display: block;
+    padding: 0.5rem;
+    background-color: white;
+    margin-bottom: 1rem;
+    color: #16ade8;
+    font-family: "texgyreadventorbold";
+    margin: 0 auto;
+    text-align: center;
+    width: 80%;
+    cursor: pointer;
+}
+
+.menuCampagne>button>i {
+    float: left;
+    font-size: 1.9rem;
+}
+
+.menuCampagne ul li>button {
+    display: none;
+}
+
+
+/* ***************************************************************
+********************* INPUT / TEXTAREA / SELECT ******************
+******************************************************************/
+
+
+/*  INPUT */
+
+.infosGenerales>div.formText input {
+    border: none;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    vertical-align: text-top;
+    margin-top: -0.15rem;
+    ;
+}
+
+.infosGenerales>div.formDate input {
+    display: inline-block;
+    border-radius: 10px;
+    padding: 0.1rem;
+    width: 40%;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    padding-left: 0.5rem;
+}
+
+.infosGenerales>div.formInput input {
+    display: inline-block;
+    border: none;
+    font-size: 1rem;
+    padding-bottom: 1rem;
+    vertical-align: text-top;
+    margin-top: -0.15rem;
+}
+
+.infosGenerales>div.formDate input[name="modifStatut"] {
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+
+/* TEXT AREA */
+
+.infosGenerales>div.formArea textarea {
+    border: none;
+    resize: none;
+    margin-left: 0.3rem;
+    width: 90%;
+    height: 14.1rem;
+    font-size: 0.9rem;
+}
+
+
+/* PICTO STATUT */
+
+.infosGenerales>div.formDate i {
+    display: inline-block;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+
+/* PICTO CALENDRIER */
+
+.infosGenerales .modifStatut {
+    display: inline-block;
+    font-size: 1.6rem;
+    background-color: #a5c6e7;
+    color: white;
+    border-radius: 50%;
+    margin-left: 0.5rem;
+}
+
+
+/* ********************************
+********** MENU OUTILS ************
+***********************************/
+
+.menuOutils {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 2rem;
+    padding-bottom: 1.5rem;
+}
+
+.menuOutils ul {
+    display: block;
+    height: 6.6rem;
+    overflow: hidden;
+    white-space: nowrap;
+    overflow-x: scroll;
+}
+
+.menuOutils ul li {
+    display: inline-block;
+    background-color: white;
+    margin-right: 0.6rem;
+    cursor: pointer;
+}
+
+.menuOutils ul li button {
+    position: relative;
+    /* Pas de initial dans IE */
+    /*background-color: initial;*/
+    background-color: transparent;
+    cursor: pointer;
+}
+
+
+/* Animation au passage de la souris */
+
+.menuOutils ul li button::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    background: #2098D1;
+    height: 4px;
+    -webkit-transition-property: left, right;
+    transition-property: left, right;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+}
+
+.menuOutils ul li:hover button::before {
+    left: 0;
+    right: 0;
+}
+
+.menuOutils ul li.active button::before {
+    display: none;
+}
+
+.menuOutils i {
+    font-size: 4.5rem;
+    color: #0182c3;
+}
+
+.menuOutils li.active {
+    background-color: #0182c3;
+    float: left;
+}
+
+.menuOutils li.active i {
+    color: white;
+}
+
+
+/* Petite flèche bleu sous le bouton ACTIF */
+
+.menuOutils li.active::after {
+    background-color: #c7c7c9;
+    display: block;
+    content: "";
+    height: 0rem;
+    width: 0;
+    border-left: 35px solid transparent;
+    border-right: 37px solid transparent;
+    border-top: 13px solid #0182c3;
+}
+
+
+/* ************************************
+********** PANEL FREQUENCE ************
+***************************************/
+
+.frequencePanel {
+    border: 2px solid #0182c3;
+    padding: 1.1rem;
+}
+
+.frequencePanel>legend {
+    color: #0182c3;
+    text-transform: uppercase;
+    font-size: 1rem;
+    padding: 0.4rem;
+}
+
+.frequencePanel label {
+    display: inline-block;
+    width: 4rem;
+}
+
+.frequencePanel select {
+    display: inline-block;
+    width: 10rem;
+}
+
+
+/* ************************************
+********** FIL D'ARIANE ***************
+***************************************/
+
+.breadcrumbs {
+    background-color: #a5c6e7;
+    padding: 0.2rem 0.2rem 0.2rem 0.4rem;
+    font-size: 0.8rem;
+    position: relative;
+    padding-left: 1rem;
+}
+
+.breadcrumbs ul {
+    width: 93.1%;
+}
+
+.breadcrumbs li {
+    display: inline-block;
+}
+
+.breadcrumbs li::before {
+    content: "\3E";
+    display: inline-block;
+    width: 0.7rem;
+    margin-top: -0.3rem;
+}
+
+.breadcrumbs button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #072f84;
+}
+
+.breadcrumbs button i {
+    font-size: 1.5rem;
+    color: white;
+    vertical-align: middle;
+}
+
+
+/* *******************************************
+********** EXPLORATEUR DE FICHIER ************
+**********************************************/
+
+.explorateurDossiers {
+    background-color: white;
+    padding: 1.2rem 0.6rem 0.6rem 0.9rem;
+}
+
+
+/* arborescence de fichiers/dossiers */
+
+.lesDossiers {
+    margin-top: 1rem;
+}
+
+.lesDossiers ul {
+    display: block;
+    height: 10.1rem;
+    overflow: hidden;
+    white-space: nowrap;
+    overflow-x: auto;
+}
+
+.lesDossiers li {
+    height: 7.9rem;
+    width: 7.9rem;
+    margin: 0.4rem 0.4rem 0.4rem 0;
+    border: 4px solid #a5c6e7;
+    text-align: center;
+    display: inline-block;
+}
+
+.lesDossiers li.active,
+.lesDossiers li:hover,
+.lesDossiers li:focus {
+    background-color: #a5c6e7;
+}
+
+
+/* Partie supérieure d'un fichier avec le logo */
+
+.lesDossiers div.logoAction {
+    width: 100%;
+    height: 60%;
+    padding: 0.2rem;
+    display: block;
+}
+
+
+/* Partie inférieure d'un fichier avec le texte */
+
+.descriptAction {
+    display: block;
+    width: 80%;
+    margin: 0.5em auto 0;
+    line-height: 1.1em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* Bouton d'un fichier/dossier */
+
+.lesDossiers button {
+    width: 100%;
+    margin-top: 0.2em;
+    /* Pas de initial dans IE */
+    /*background-color: initial;*/
+    background-color: transparent;
+    font-family: "texgyreadventorbold";
+    overflow: hidden;
+    cursor: pointer;
+    text-overflow: ellipsis;
+    font-size: 0.9rem;
+}
+
+
+/* Image d'un fichier/dossier */
+
+.lesDossiers i {
+    font-size: 4.7rem;
+}
+
+.lesDossiers li.active i::before {
+    background-color: white;
+    border-radius: 50%;
+}
+
+
+/* fichier/dossier favori */
+
+li.campFavorite {
+    position: relative;
+}
+
+li.campFavorite button:last-child {
+    position: absolute;
+    top: -11px;
+    right: -45.8px;
+}
+
+li.campFavorite button:last-child i {
+    color: #0182c3;
+    font-size: 2.7rem;
+}
+
+
+/* TRI  DES  FICHIERS / DOSSIERS */
+
+.triDossiers {
+    display: none;
+}
+
+
+/* ********************************************
+************* UNE CAMPAGNE OUVERTE ************
+***********************************************/
+
+.campagneOuverte {
+    position: relative;
+}
+
+.campagneOuverte>button {
+    /* Pas de initial dans IE */
+    /*background-color: initial;*/
+    background-color: transparent;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.campagneOuverte>button>i {
+    font-size: 2rem;
+    color: white;
+}
+
+
+/* Boutons d'action sur une campagne */
+
+.actionsCampagne {
+    background-color: white;
+    padding: 1rem 0.6rem 0 0.6rem;
+}
+
+
+/* *****************************************************
+****** FORMULAIRE DANS UNE CAMPAGNE OUVERTE ************
+********************************************************/
+
+.previsualisationCampagne {
+    background-color: white;
+    padding: 0.5rem 0.6rem 1rem 0.6rem;
+}
+
+
+/* Input / TextArea / Label */
+
+.rowPrevisuFormInput,
+.rowPrevisuFormDate,
+.rowPrevisuFormArea {
+    padding: 0.5rem 0 0.5rem 0;
+}
+
+.rowPrevisuFormInput label,
+.rowPrevisuFormDate label,
+.rowPrevisuFormArea {
+    display: block;
+    color: #88888a;
+    font-size: 1.1rem;
+    padding: 0 0 0.2rem 0.3rem;
+    text-transform: uppercase
+}
+
+.rowPrevisuFormDate input {
+    border: none;
+    font-size: 1rem;
+    padding-left: 0.2rem;
+    margin-top: -0.1rem;
+}
+
+.rowPrevisuFormInput input {
+    display: block;
+    border: none;
+    font-size: 1rem;
+    margin-top: 0.1rem
+}
+
+.rowPrevisuFormArea textarea {
+    display: block;
+    min-width: 100%;
+    border: none;
+    min-height: 12.5rem;
+    resize: none;
+    margin-top: -0.1rem;
+    font-size: 1rem;
+}
+
+
+/* Pour les dates " Du ... à ... au ... à ... */
+
+.rowPrevisuFormDate label.SameLine {
+    display: inline-block;
+    width: 15%;
+}
+
+.rowPrevisuFormDate input.SameLine {
+    display: inline-block;
+    width: 35%;
+    margin-top: 0.15rem;
+}
+
+.rowPrevisuFormInput input.SameLine {
+    display: inline-block;
+    width: 54%;
+    margin-top: -0.1rem;
+}
+
+.rowPrevisuFormInput label.SameLine {
+    display: inline-block;
+    width: 15%;
+}
+
+.modifStatut {
+    display: inline-block;
+    /* Pas de initial dans IE */
+    /*background-color: initial;*/
+    background-color: transparent;
+}
+
+.modifStatut i {
+    font-size: 1.6rem;
+    background-color: #a5c6e7;
+    color: white;
+    border-radius: 50%;
+    margin-left: 0.5rem;
+}
+
+
+/* ***************************************
+************* FENETRE MODALE  ************
+******************************************/
+
+
+/* On cache la modale */
+
+.dialog[aria-hidden="true"] {
+    display: none;
+}
+
+
+/* La page entière intégrant la modale une fois que celle-ci est visible */
+
+.dialog-overlay {
+    z-index: 900;
+    background-color: rgba(0, 0, 0, 0.66);
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+
+/* La modale en elle même */
+
+.dialog-content {
+    background-color: rgb(255, 255, 255);
+    z-index: 901;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 90%;
+    width: 600px;
+}
+
+.dialog-content div.panel_b {
+    width: 100%;
+}
+
+
+/* titre modale */
+
+.dialog h2 {
+    margin: 0;
+    width: 100%;
+}
+
+.dialog-content div.modalForm {
+    margin-bottom: 1.5rem;
+}
+
+.dialog-content div.modalForm label {
+    display: inline-block;
+}
+
+.dialog-content div.modalForm input {
+    display: inline-block;
+    margin-left: 1.4rem;
+    border-radius: 10px;
+    border: 1px solid grey;
+    padding: 0.1rem;
+    font-size: 0.9rem;
+    width: 65%;
+}
+
+.dialog-content div.modalForm select {
+    display: inline-block;
+    margin-left: 1rem;
+    margin-top: -1.1rem;
+}
+
+.dialog-content form {
+    padding: 2rem;
+}
+
+
+/* bouton fermeture modale */
+
+.dialog-close {
+    position: absolute;
+    top: -0.5em;
+    right: 0em;
+    border: 0;
+    padding: 0;
+    background-color: transparent;
+    font-weight: bold;
+    font-size: 2.15em;
+    width: 1.2em;
+    height: 1.2em;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.15s;
+    color: white;
+}
+
+
+/* Boutons dans la modal */
+
+.btn-formModal button {
+    position: static;
+    display: inline-block;
+    border: none;
+    padding: 0.3rem 1rem 0.3rem 0.3rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    margin: 0.1rem;
+}
+
+.btn-formModal button i {
+    font-size: 1.7rem;
+    display: inline-block;
+}
+
+.btn-formModal button.validerModal {
+    background-color: #072f84;
+    color: white;
+}
+
+.btn-formModal button.closeModal {
+    color: white;
+    background-color: #c7c7c9;
+}
+
+.btn-formModal {
+    text-align: center;
+}
+
+
+/* ********************************************************************
+********* MENU SELECTION ( RECHERCHE / CAMPAGNE / FAVORIS ) ***********
+***********************************************************************/
+
+.menuSelection ul {
+    text-align: center;
+}
+
+.menuSelection li {
+    display: inline-block;
+    background-color: white;
+    margin: 0 0.2rem 0 0.2rem;
+    cursor: pointer;
+    position: relative;
+}
+
+.menuSelection i {
+    font-size: 4.5rem;
+    color: #0182c3;
+}
+
+.menuSelection li.active {
+    background-color: #0182c3;
+}
+
+.menuSelection li.active i {
+    color: white;
+}
+
+.menuSelection li:before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    background: #2098D1;
+    height: 4px;
+    -webkit-transition-property: left, right;
+    transition-property: left, right;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+}
+
+.menuSelection li:hover::before {
+    left: 0;
+    right: 0;
+}
+
+.menuSelection li.active:before {
+    display: none;
+}
+
+.menuSelection li.active::after {
+    background-color: #c7c7c9;
+    display: block;
+    content: "";
+    height: 0rem;
+    width: 0;
+    border-left: 35px solid transparent;
+    border-right: 37px solid transparent;
+    border-top: 13px solid #0182c3;
+}
+
+
+/* ************************************
+************** FOOTER *****************
+***************************************/
+
+footer {
+    margin-top: 3rem;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 0.5rem;
+    font-size: 0.9rem;
+}
+
+
+/* *********************************************************************
+************************************************************************
+************************** DEBUT MEDIA QUERIES *************************
+************************************************************************
+************************************************************************/
+
+
+/* ************************
+********* > 592px ********
+***************************/
+
+@media screen and (min-width: 592px) {
+    .menuOutils ul {
+        display: block;
+        height: 6.6rem;
+        overflow: auto;
+        white-space: normal;
+        overflow-x: initial;
+    }
+}
+
+
+/* ************************
+********* > 1000px ********
+***************************/
+
+@media screen and (min-width: 1000px) {
+    main {
+        padding-top: 3.5rem;
+        min-height: 95%;
+    }
+    label {
+        margin-right: 0.5rem;
+    }
+    .panel_b {
+        width: 95%;
+    }
+    /* Header */
+    header h1 strong {
+        border-left: 1px solid lightgray;
+        margin-left: 0.4rem;
+        line-height: 4.2rem;
+        font-size: 2.1rem;
+    }
+    header h1 strong>img {
+        display: inline-block;
+        height: 4.6rem;
+        margin-top: -0.1rem;
+        padding-left: 0rem;
+        margin-left: -0.1rem;
+    }
+    header .myAccount span {
+        display: inline-block;
+        font-size: 1.2rem;
+        color: white;
+        margin-top: 1.1rem;
+        margin-right: 0.6rem;
+        font-weight: bold;
+    }
+    header .myAccount select {
+        margin-top: 1.4rem;
+        width: 100%;
+    }
+    .boutonCampagne {
+        display: none;
+    }
+    .logos {
+        margin-left: 1rem;
+    }
+    .underAccount>p {
+        display: none;
+    }
+    .boutonCampagne,
+    .logos {
+        transition: 0s;
+    }
+    /* MENU CAMPAGNES */
+    .menuCampagne {
+        display: block;
+        left: 0;
+        /* Pas de initial dans IE */
+        /* position: initial; */
+        position: static;
+        z-index: 1;
+        width: auto;
+        height: auto;
+        background-color: #c7c7c9;
+        transition: initial;
+        text-align: center;
+    }
+    .sizeText {
+        font-size: 12px;
+    }
+    .menuCampagne li {
+        display: inline-block;
+        width: auto;
+        margin-right: 0.6rem;
+        padding: 0.6rem 0.9rem 0.6rem 0.8rem;
+        position: relative;
+    }
+    .menuCampagne li:first-child,
+    .menuCampagne li.active {
+        padding: 0.6rem 0.9rem 0.6rem 0.8rem;
+    }
+    .menuCampagne li>button {
+        position: absolute;
+        /* Pas de initial dans IE */
+        /*background-color: initial;*/
+        background-color: transparent;
+        top: -2.7px;
+        right: -3.9px;
+        cursor: pointer;
+    }
+    .menuCampagne li>button>i {
+        color: #88888a;
+        font-size: 1.5rem;
+    }
+    /* Désactivé : MSTSOFTAST-231 */
+    /*.menuCampagne li.active {
+        border-bottom: 8px solid white;
+    }*/
+    .menuCampagne li.active>button>i {
+        color: white;
+    }
+    .menuCampagne ul {
+        display: inline-block;
+        width: auto;
+    }
+    .menuCampagne>button {
+        margin-top: 2rem;
+        display: inline-block;
+        width: auto;
+        padding: 0.35rem;
+    }
+    .menuCampagne button span {
+        display: none;
+    }
+    /* FORM / INPUT / TEXTAREA / LABEL / SELECT */
+    .infosGenerales>div.formText {
+        display: inline-block;
+        width: 26%;
+    }
+    .infosGenerales>div.formInput {
+        display: inline-block;
+        width: 35%;
+    }
+    .underFormDate i {
+        display: inline-block;
+        font-size: 1.8rem;
+    }
+    .infosGenerales>div.formArea {
+        margin-top: 0.5rem;
+    }
+    .underFormDate {
+        display: inline-block;
+        width: 49%;
+    }
+    .underFormDate label[for=valideDu] {
+        display: inline-block;
+        width: 29%;
+        text-align: right;
+    }
+    /* SELECT */
+    .infosGenerales>div.formSelect {
+        display: inline-block;
+        width: 31%;
+    }
+    .infosGenerales>div.formSelect select {
+        margin-top: 0rem;
+        display: inline-block;
+        width: 46%;
+    }
+    /* LABEL */
+    .infosGenerales>div.formSelect label {
+        display: inline-block;
+        width: 46%;
+        text-align: right;
+    }
+    .infosGenerales>div.formText label {
+        display: inline-block;
+    }
+    .infosGenerales>div.formInput label {
+        display: inline-block;
+    }
+    .infosGenerales>div.formArea label {
+        display: inline-block;
+        text-align: right;
+        width: 14.2%;
+    }
+    .underFormDate label {
+        display: inline-block;
+    }
+    /* INPUT */
+    .infosGenerales>div.formText input {
+        display: inline-block;
+        width: 38.4%;
+        margin-top: 0rem;
+    }
+    .infosGenerales>div.formInput input {
+        display: inline-block;
+        width: 50%;
+    }
+    .infosGenerales>div.formDate input {
+        width: 26.1%;
+    }
+    .underFormDate input {
+        width: 26.3%;
+    }
+    /* TEXT AREA */
+    .infosGenerales>div.formArea textarea {
+        display: inline-block;
+        width: 76.5%;
+        height: 10rem;
+    }
+    /* MENU OUTILS (Vertical) */
+    .menuOutils {
+        margin: 0 auto;
+        margin-top: 2rem;
+        display: inline-block;
+        margin-left: 2.5%;
+        width: 11%;
+    }
+    .menuOutils ul li button {
+        background-color: white;
+    }
+    .menuOutils ul {
+        width: 5.3rem;
+        height: auto;
+        overflow-x: hidden;
+        overflow-y: hidden;
+    }
+    .menuOutils ul li {
+        margin: 0 0 1rem 0;
+        /* Pas de initial dans IE */
+        /*background-color: initial;*/
+        background-color: transparent;
+        display: block;
+    }
+    .menuOutils li.active button {
+        background-color: #0182c3;
+        float: left;
+    }
+    .menuOutils li.active {
+        position: relative;
+    }
+    .menuOutils li.active::before {
+        display: none;
+    }
+    .menuOutils li.active::after {
+        position: absolute;
+        top: 0;
+        right: -67%;
+        border-top: 35px solid transparent;
+        border-bottom: 37px solid transparent;
+        border-left: 13px solid #0182c3;
+    }
+    /* PÄNEL DE FREQUENCE */
+    .panel_b.panelFrequence {
+        display: inline-block;
+        width: 83.5%;
+        margin-top: 1rem;
+    }
+    /* ******* MENU DE SELECTION CAMPAGNES *********** */
+    .menuSelection {
+        display: inline-block;
+        width: 5.8rem;
+        margin-top: 1rem;
+    }
+    .menuSelection ul {
+        overflow: hidden;
+    }
+    .menuSelection li {
+        display: block;
+        margin: 0 0 0.8rem 0.6rem;
+        width: 4.5rem;
+    }
+    .menuSelection li.active {
+        position: relative;
+    }
+    .menuSelection li.active::after {
+        position: absolute;
+        top: 0;
+        right: -67%;
+        border-top: 35px solid transparent;
+        border-bottom: 37px solid transparent;
+        border-left: 13px solid #0182c3;
+    }
+    /* ****** mainPanel *********** */
+    .mainPanel {
+        display: inline-block;
+        width: 31.4%;
+        margin: 0 0.7rem 0.7rem 0.7rem;
+    }
+    .lesDossiers ul {
+        white-space: normal;
+        overflow-x: hidden;
+        overflow-y: auto;
+        height: 26.9rem;
+    }
+    /* ****** Campagne Ouverte *********** */
+    .campagneOuverte {
+        display: inline-block;
+        width: 53.8%;
+        margin: 0 0.7rem 0.7rem 0.7rem;
+    }
+    .campagneOuverte>button {
+        top: 14.7px;
+    }
+    /* ************* Tri Dossiers ********** */
+    .triDossiers {
+        display: block;
+        background-color: white;
+        border-top: 1px solid lightgrey;
+        padding-top: 0.5rem;
+    }
+    .triDosssiers form {
+        padding: 0 0 0 0.9rem;
+    }
+    .triDossiers label {
+        color: #88888a;
+        font-size: 0.8rem;
+        padding: 0.1rem 0 0.2rem 0.9rem;
+        text-transform: uppercase;
+        display: inline-block;
+        margin-top: 0.2rem;
+    }
+    .triDossiers select {
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        width: 12.1rem;
+        margin-left: 0.5rem;
+        font-size: 0.8rem;
+        display: inline-block;
+        margin-top: 0.2rem;
+    }
+    /* *********** FOOTER *************** */
+    footer {
+        margin-top: 0;
+        text-align: right;
+        margin-right: 2.9rem;
+    }
+}
+
+
+/* ************************
+********* > 1200px ********
+***************************/
+
+@media screen and (min-width: 1200px) {
+    /* MENU OUTILS VERTICALE + PANEL A DROITE */
+    /* CUSTO des largeurs*/
+    .menuOutils {
+        width: 9%;
+    }
+    .panel_b.panelFrequence.rightSidebar {
+        /*width: 85.5%;*/
+        width: 80.5%;
+    }
+    /* mainPanel */
+    .mainPanel {
+        /*width: 27.3%;*/
+        width: 32.3%;
+    }
+    /* CAMPAGNE OUVERTE */
+    .campagneOuverte {
+        /*width: 59.3%;*/
+        width: 55.3%;
+    }
+    /* *********** TEXTAREA / INPUT / LABEL *********** */
+    .rowPrevisuFormArea textarea {
+        display: inline-block;
+        width: 71.2%;
+        min-width: auto;
+        margin-left: 0.1rem;
+    }
+    .rowPrevisuFormInput label.SameLine {
+        display: inline-block;
+        width: 12rem;
+    }
+    .rowPrevisuFormDate input.SameLine {
+        width: 25%;
+    }
+    .rowPrevisuFormDate label {
+        display: inline-block;
+    }
+    .rowPrevisuFormInput input {
+        display: inline-block;
+        margin-left: 0.3rem;
+    }
+    .rowPrevisuFormInput label,
+    .rowPrevisuFormDate label,
+    .rowPrevisuFormArea label {
+        padding-top: 0.1rem;
+        font-size: 0.9rem;
+        width: 12rem;
+        text-align: right;
+        display: inline-block;
+    }
+    .rowPrevisuFormDate label.SameLine {
+        width: 10%;
+        text-align: center;
+    }
+    .menuCampagne ul li>button {
+        display: block;
+    }
+    .rowPrevisuFormDate input[name='creation'] {
+        width: 14.5%;
+    }
+    .rowPrevisuFormDate input[name='modification'] {
+        width: 14.5%;
+    }
+}
+
+
+/* ************************
+********* > 1300px ********
+***************************/
+
+
+/* CUSTO on désactive cette media query */
+
+
+/*@media screen and (min-width: 1300px) {
+    .campagneOuverte {
+        width: 63.3%;
+    }
+    .mainPanel {
+        width: 24.7%;
+    }
+    .rowPrevisuFormArea textarea {
+        width: 73.2%;
+    }
+}*/
+
+
+/* ************************
+********* > 1500px ********
+***************************/
+
+@media screen and (min-width: 1500px) {
+    .campagneOuverte {
+        width: 59.7%;
+    }
+    .mainPanel {
+        width: 30.1%;
+    }
+    .rowPrevisuFormArea textarea {
+        width: 77.2%;
+    }
+    /* MENU OUTILS VERTICALE + PANEL A DROITE */
+    .menuOutils {
+        width: 7%;
+    }
+    .panel_b.panelFrequence.rightSidebar {
+        width: 87.7%;
+    }
+    .rowPrevisuFormDate input[name='creation'] {
+        width: 10.5%;
+    }
+    .rowPrevisuFormDate input[name='modification'] {
+        width: 10.5%;
+    }
+    .underFormDate {
+        width: 34%;
+    }
+    .underFormDate label[for=valideDu] {
+        width: 42%;
+    }
+    .infosGenerales>div.formDate input {
+        width: 20.1%;
+    }
+    .infosGenerales>div.formText {
+        display: inline-block;
+        width: 17%;
+    }
+}
+
+
+/* ************************
+********* > 1650px ********
+***************************/
+
+@media screen and (min-width: 1650px) {
+    /* MENU OUTILS VERTICALE + PANEL A DROITE */
+    .menuOutils {
+        width: 6%;
+    }
+    .panel_b.panelFrequence.rightSidebar {
+        width: 88.8%;
+    }
+    .infosGenerales>div.formText {
+        display: inline-block;
+        width: 15%;
+    }
+}
+
+
+/* ************************
+********* > 1750px ********
+***************************/
+
+@media screen and (min-width: 1750px) {
+    .campagneOuverte {
+        width: 57.8%;
+    }
+    .mainPanel {
+        width: 33.7%;
+    }
+    .rowPrevisuFormArea textarea {
+        width: 79.2%;
+    }
+    .lesDossiers ul {
+        height: 33.6rem;
+    }
+}
+
+
+/* ************************
+********* > 17650px ********
+***************************/
+
+@media screen and (min-width: 1765px) {
+    .lesDossiers ul {
+        height: 33.7rem;
+    }
+}
+
+
+
+.ui-growl {
+   z-index:99999999999 !important;
+}
+
+a {
+    color: #0066A1 !important;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a.link-button {
+    padding-left: 10px;
+    padding-right: 10px;
+    display: inline-block;
+    border: none;
+    background: url("../img/button-bg.gif") repeat-x scroll 0 0 transparent;
+    font-size: 12px;
+    line-height: 20px;
+    height: 22px;
+    text-align: center;
+    min-width: 85px;
+    box-sizing: content-box;
+    -moz-box-sizing: content-box;
+}
+button.link-button {
+    padding-left: 10px;
+    padding-right: 10px;
+    display: inline-block;
+    color:#0066A1 !important;
+    border: none !important;
+    background: url("../img/button-bg.gif") repeat-x scroll 0 0 transparent !important;
+    font-size: 12px;
+    line-height: 20px;
+    height: 22px;
+    text-align: center;
+    min-width: 85px;
+    box-sizing: content-box;
+    -moz-box-sizing: content-box;
+}
+div.link-button { display: inline-block; margin-top: 1px; line-height: 20px; height: 22px; margin-left: 270px;
+    margin-bottom: 10px }
+div.link-button:before { content: ""; background: url("../img/button.gif") no-repeat scroll left center transparent; width: 5px; height: 22px; display: block; vertical-align: top; float: left; }
+div.link-button:after { content: ""; background: url("../img/button.gif") no-repeat scroll right center transparent; width: 5px; height: 22px; display: block; vertical-align: top; float: right; }
+div.link-button:hover { cursor: pointer; }
+div.link-button p { display: inline; }
+
+.float-right {
+    float: right;
+}
+
+.test{
+    margin-top: 20px;
+}
+
+.ui-messages-error {
+    margin: 0;
+    margin-top: 0px;
+    margin-bottom: 4px;
+  }
+
+  .padding-form-field{
+    padding: 0.6rem 0 !important;
+  }
+
+  h1.title {
+    margin: 0;
+    color: #0066A1;
+    font-family: Verdana, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+ .float-left {
+    float: left;
+ }
+
+ #stepBar .stepBarTest .previous, #stepBar .stepBarTest .current, #stepBar .stepBarTest .next { display: inline-block; font-weight: bold; min-width: 160px; padding: 2px; text-align: center; vertical-align: middle; border-radius: 4px; line-height: 15px; }
+ 
+ #stepBar .stepBarTest .previous { background-color: #FFFFFF;  border: 1px solid #0066A1; color: #0066A1;}
+ #stepBar .stepBarTest .current { background-color: #0A70AC;  border: 1px solid #0066A1; color: #FFFFFF;}
+ #stepBar .stepBarTest .next { background-color: #F2F2F2;  border: 1px solid #F2F2F2; color: #BFBFBF;}
+ 
+ #stepBar .stepBarTest .separator { background-image: url("../img/triangle.png"); display: inline-block; height: 20px; vertical-align: middle; width: 20px; }
+ 
+ .top-buffer { margin-top:30px; }
+
+ .vasConfirmationMessage 
+ { 
+     margin-top: 10px;
+     margin-bottom: 10px;  
+     border: 1px solid #009900; 
+     padding: 0 5px; 
+     color: #009900;
+ }
+
+
+/* --- Merchant Tab Bar component */
+
+.tabBar a { display: inline-block; background-color: #D2D2D2; background-image: url("../img/tab.png"); background-position: center top; background-repeat: repeat-x; border-style: solid solid none; border-color: #CCCCCC #CCCCCC; border-width: 1px 1px medium; border-top-left-radius: 4px; border-top-right-radius: 4px; padding: 4px 2px 5px; margin-right: 3px; width: 160px; text-align: center; line-height: 15px; }
+.tabBar p { display: inline-block; }
+.inner { padding: 10px 5px; }
+.subtitle { color: #0066A1; font-weight: bold; }

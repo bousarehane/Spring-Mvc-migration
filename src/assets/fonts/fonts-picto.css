@@ -1,0 +1,137 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('icomoon.eot?pnjjuq');
+  src:  url('icomoon.eot?pnjjuq#iefix') format('embedded-opentype'),
+    url('icomoon.ttf?pnjjuq') format('truetype'),
+    url('icomoon.woff?pnjjuq') format('woff'),
+    url('icomoon.svg?pnjjuq#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-ico_add:before {
+  content: "\e900";
+}
+.icon-ico_adiffuser:before {
+  content: "\e901";
+}
+.icon-ico_avalider:before {
+  content: "\e902";
+}
+.icon-ico_clients:before {
+  content: "\e903";
+}
+.icon-ico_close:before {
+  content: "\e904";
+}
+.icon-ico_delete:before {
+  content: "\e905";
+}
+.icon-ico_demar:before {
+  content: "\e906";
+}
+.icon-ico_diffusee:before {
+  content: "\e907";
+}
+.icon-ico_divers:before {
+  content: "\e908";
+}
+.icon-ico_echue:before {
+  content: "\e909";
+}
+.icon-ico_encrea:before {
+  content: "\e90a";
+}
+.icon-ico_export:before {
+  content: "\e90b";
+}
+.icon-ico_fav:before {
+  content: "\e90c";
+}
+.icon-ico_folder:before {
+  content: "\e90d";
+}
+.icon-ico_folder_add:before {
+  content: "\e90e";
+}
+.icon-ico_folder_open:before {
+  content: "\e90f";
+}
+.icon-ico_frequence:before {
+  content: "\e910";
+}
+.icon-ico_gift:before {
+  content: "\e911";
+}
+.icon-ico_import:before {
+  content: "\e912";
+}
+.icon-ico_limite:before {
+  content: "\e913";
+}
+.icon-ico_loupe:before {
+  content: "\e914";
+}
+.icon-ico_menuBurger:before {
+  content: "\e915";
+}
+.icon-ico_month:before {
+  content: "\e916";
+}
+.icon-ico_pause:before {
+  content: "\e917";
+}
+.icon-ico_refresh:before {
+  content: "\e918";
+}
+.icon-ico_renommer:before {
+  content: "\e919";
+}
+.icon-ico_save:before {
+  content: "\e91a";
+}
+.icon-ico_shop:before {
+  content: "\e91b";
+}
+.icon-ico_user:before {
+  content: "\e91c";
+}
+.icon-ico_valid:before {
+  content: "\e91d";
+}
+.icon-ico_voir:before {
+  content: "\e91e";
+}
+.icon-logo_wod:before {
+  content: "\e91f";
+}
+.icon-logo_worldline:before {
+  content: "\e920";
+}
+.icon-ico_connect:before {
+  content: "\e921";
+}
+.icon-ico_trace:before {
+  content: "\e922";
+}
+.icon-ico_edit:before {
+  content: "\e923";
+}
+.icon-ico_basket:before {
+  content: "\e924";
+}
