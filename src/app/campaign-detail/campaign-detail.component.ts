@@ -79,29 +79,18 @@ export class CampaignDetailComponent implements OnInit , AfterViewInit{
       this.campaign = this.campaignService.campaignSharedData;
       this.nodes = this.campaignService.nodes;
     }else if((this.campaignService.campaignSharedData || this.campaignService.mediaSharedData ) && this.campaignService.mode === "1"){
+      if(this.campReferance != null){
+        this.campaignService.campaignSharedData = null;
+        this.loadCampaign(this.campReferance);
+     }else {
       this.campReferance = this.campaignService.campaignSharedData.reference;
       this.mediaBean = this.campaignService.mediaSharedData;
       this.campaign = this.campaignService.campaignSharedData;
       this.nodes = this.campaignService.nodes;
-      
+      }
        //this.nextPage = "campaignDetails";
-      
-      
     }else {
-     this.campaignService.getCmpaignByRef(this.campReferance).subscribe(
-        response => {
-         this.campaign = response;
-         this.nodes= this.campaign.campaignTree.nodes;
-         if(this.campaignService.referenceCampaign){
-         this.campaignService.campaignSharedData = this.campaign;
-         this.campaignService.nodes = this.nodes;
-         this.nextPage = "campaignDetails";
-         }
-        },
-        err => {
-          this.log.error(err);
-        })
-    
+      this.loadCampaign(this.campReferance);
       }
   }
 
@@ -152,7 +141,12 @@ export class CampaignDetailComponent implements OnInit , AfterViewInit{
   changeMargin(): any {
     return { 'margin-left': (4 + this.itemCampaign.level * 15) };
 }
-
+/**
+ * getMediaFromReference
+ * @param reference 
+ * @param cmpreference 
+ * @param nextPage 
+ */
 getMediaFromReference(reference : string, cmpreference : string , nextPage : string) {
   this.campaignService.getMediaByRef(reference,cmpreference).subscribe(
     response => {
@@ -165,6 +159,25 @@ getMediaFromReference(reference : string, cmpreference : string , nextPage : str
     })
   }
    
+/**
+ * loadCampaign
+ * @param campReferance 
+ */
+  loadCampaign(campReferance : any){
+    this.campaignService.getCmpaignByRef(campReferance).subscribe(
+      response => {
+       this.campaign = response;
+       this.nodes= this.campaign.campaignTree.nodes;
+       if(this.campaignService.referenceCampaign){
+       this.campaignService.campaignSharedData = this.campaign;
+       this.campaignService.nodes = this.nodes;
+       this.nextPage = "campaignDetails";
+       }
+      },
+      err => {
+        this.log.error(err);
+      })
+  }
 }
 
 

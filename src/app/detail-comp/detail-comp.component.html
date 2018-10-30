@@ -2,17 +2,28 @@
     <h2 translate>Détails de la campagne</h2>
     <div class="panel_body_b" >	
           
-            <p-tabMenu #menuItems [model]="items" [activeItem]="activeItem" (click)="activateMenu()"></p-tabMenu><br/>
+        <p-tabMenu #menuItems [model]="items" [activeItem]="activeItem" (click)="activateMenu()"></p-tabMenu><br/>
+        <form #actionOnCampaign="ngForm" (submit)="actionButtonEnregistrer(actionOnCampaign)">
+            
         <div class="row bordered inner">
             <div class="col-md-12 col-form-actions">
-                <button type="button" translate  class="btn btn-default float-right" (click)="doClear()">
+                <button *ngIf="isCloseButtonDisplayed()" type="button" translate  class="btn btn-default float-right" (click)="onActionFromCloseButton(actionOnCampaign)">
                     <em aria-hidden="true" class="icon-ico_close" title="{{'button.close' | translate}}"> </em>button.close</button>
 
-                <button type="button" translate  class="btn btn-default float-right" (click)="doClear()">
+                <button *ngIf="isSuspendButtonDisplayed()" type="button" translate  class="btn btn-default float-right" (click)="onActionFromSuspendButton(actionOnCampaign)">
                         <em aria-hidden="true" class="icon-ico_close" title="{{'button.suspend' | translate}}"> </em>button.suspend</button>
-                l
             </div>
         </div>
+        <p-dialog header="Raison de désactivation" [(visible)]="display" [width]="300">
+            <span>
+                <textarea [(ngModel)]="deactivationReason" pInputTextarea name="deactivationReason" [readOnly]="readOnly"></textarea>
+            </span>
+            <p-footer>
+                <button type="submit" pButton icon="pi pi-check"  label="Enregistrer"></button>
+                <button type="button" pButton icon="pi pi-close" (click)="display=false" label="Annuler" class="ui-button-secondary"></button>
+            </p-footer>
+        </p-dialog>
+        </form>
         <form #detailForm="ngForm" (submit)="doSave(detailForm)">
             <div class="container-fluid">
                 

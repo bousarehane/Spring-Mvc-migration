@@ -63,5 +63,8 @@ export class Campaign extends AdministrableObject {
   lastUpdatedBy:string;
   lastUpdatedDate:Date;
   playlistLocation:string;
+  deactivationReason?: string;
+
+
 }
 

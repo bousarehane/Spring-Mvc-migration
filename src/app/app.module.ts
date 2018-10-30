@@ -62,6 +62,7 @@ import { DetailMediaStep0Component } from './detail-media-step0/detail-media-ste
 import { HistoriqueCampComponent } from './historique-camp/historique-camp.component';
 import {TabMenuModule} from 'primeng/tabmenu';
 import { InfoGeneralComponent } from './info-general/info-general.component';
+import {DialogModule} from 'primeng/dialog';
 
 
 // AoT requires an exported function for factories
@@ -138,6 +139,7 @@ export class GlobalErrorHandler implements ErrorHandler {
     KeyFilterModule,
     MessagesModule,
     TabMenuModule,
+    DialogModule,
     SplitButtonModule,
      //  **** here for logger, here you can set levels according to environment
      LoggerModule.forRoot({

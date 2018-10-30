@@ -25,6 +25,7 @@ import { URLSearchParams } from '@angular/http';
 import { Http, Response } from '@angular/http';
 
 
+
 /**
  * service de gestion des campaigns
  */
@@ -230,4 +231,14 @@ genParams(params: object, httpParams = new HttpParams()): object {
 getImage(reference: string): Observable<any> {
   return this.http.get(environment.services.campaigns + '/image', { responseType: 'blob' });
 }
+ suspendCampaign(deactivationReason :string , campaignBeanPrime: Campaign):Observable<any>{
+  campaignBeanPrime.deactivationReason = deactivationReason;
+  return this.http.post<any>(environment.services.campaigns+ '/suspendCampaign', campaignBeanPrime);
+}
+
+closeCampaign(deactivationReason :string , campaignBeanPrime: Campaign):Observable<any>{
+  campaignBeanPrime.deactivationReason = deactivationReason;
+  return this.http.post<any>(environment.services.campaigns+ '/closeCampaign', campaignBeanPrime);
+}
+
 }
