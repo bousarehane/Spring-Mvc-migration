@@ -1,8 +1,12 @@
 /*********************/
 /**** GRID SYSTEM ****/
 /*********************/
+.create_camp{
+    float:right !important;
 
-.container { width: 930px; margin: 0 auto; }
+}
+ 
+.container { width: 930px; margin: 0 auto; } 
 
 .rowWithMinHeight { margin-left: 0px; margin-right: 0px; min-height: 25px; }
 .row { margin-left: 0px; margin-right: 0px; }

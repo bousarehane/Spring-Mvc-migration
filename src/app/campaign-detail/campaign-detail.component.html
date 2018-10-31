@@ -22,7 +22,10 @@
                                 
                                 <div style="margin-left:19px;">
                                 <div *ngIf="itemCampaign.terminal;else otherContentPrime">
-                                    Liste des terminaux
+                                    <a href=""  [routerLink]="['/detailCampaign']" 
+                                    (click)="getActionFromNodeLink(itemCampaign.type,nodes[0].reference,itemCampaign.reference)">
+                                    Liste des terminaux</a>
+                                   
                                 </div>
                                 <ng-template #otherContentPrime>
                                   <a href=""  [routerLink]="['/detailCampaign']" (click)="getActionFromNodeLink(itemCampaign.type,nodes[0].reference,itemCampaign.reference)">{{itemCampaign.name}} - {{itemCampaign.reference}}</a>
@@ -58,6 +61,10 @@
 
 <div class="panel_b campagneOuverte" *ngIf="nextPage === 'mediaDetailsStep0'">
     <app-detail-media-step0 [mediaBean]="mediaBean" [campaign]="campaign" ></app-detail-media-step0>
+</div>
+
+<div class="panel_b campagneOuverte" *ngIf="nextPage === 'terminalDashboard'">
+    <app-terminal-dashboard [terminalsListElements]="terminalsListElements" ></app-terminal-dashboard>
 </div>
 
 

@@ -1,0 +1,61 @@
+<div class="panel_b">
+  <h2 translate>Détails sur le média</h2>
+  <div class="panel_body_b">
+    <!-- <app-step-bar [currentStepIndex]="currentStepIndex"></app-step-bar> -->
+    <div class="row">
+      <div class="col-md-12 col-form-actions">
+        <button type="button" translate class="btn btn-default float-right" (click)="doAssignTerminal()">
+          <em aria-hidden="true" class="icon-ico_close" title="{{'button.close' | translate}}"> </em>button.assignEditTerminal</button>
+
+        <button type="button" translate class="btn btn-default float-right" (click)="doAddMoreMedia()">
+          <em aria-hidden="true" class="icon-ico_close" title="{{'button.suspend' | translate}}"> </em>button.export.terminals</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <button type="button" translate class="btn btn-default float-right" (click)="doAssignTerminal()">
+          <em aria-hidden="true" class="icon-ico_close" title="{{'button.close' | translate}}"> </em>CANCEL</button>
+      </div>
+    </div>
+    <p-dataTable *ngIf="terminalsListElements.length >0" [value]="terminalsListElements" selectionMode="single"
+      (onRowSelect)="onRowSelect($event)">
+
+      <p-column header="{{'Terminal ID' | translate}}" [style]="{'width':'15%'}" field="id">
+        <ng-template let-terminal="rowData" pTemplate type="body">
+          <span class="sizeText" title="{{terminal.id}}">{{terminal.id}}</span>
+        </ng-template> 
+      </p-column> 
+
+      <p-column header="{{'Address' | translate}}" [style]="{'width':'15%'}" field="address">
+        <ng-template let-terminal="rowData" pTemplate type="body">
+          <span class="sizeText" title="{{terminal.address}}">{{terminal.address}}</span>
+        </ng-template>
+      </p-column>
+
+      <p-column header="{{'Subscription Status' | translate}}">
+        <ng-template let-terminal="rowData" pTemplate type="body">
+          <span class="sizeText" title="{{terminal.contractStatus}}">{{terminal.subscriptionStatus}}</span>
+        </ng-template>
+      </p-column>
+
+      <p-column header="{{'Activation date' | translate}}">
+        <ng-template let-terminal="rowData" pTemplate type="body">
+          <span class="sizeText" title="{{terminal.activationDate | date: datePatternFull}}">{{terminal.activationDate | date: datePattern}}</span>
+        </ng-template>
+      </p-column>
+
+      <p-column header="{{'Deactivation Date' | translate}}">
+        <ng-template let-terminal="rowData" pTemplate type="body">
+          <span class="sizeText" title="{{terminal.deactivationDate | date: datePatternFull}}">{{terminal.deactivationDate | date: datePattern}}</span>
+        </ng-template>
+      </p-column>
+
+      <p-column header="{{'Ship To' | translate}}">
+        <ng-template let-terminal="rowData" pTemplate type="body">
+          <span class="sizeText" title="{{terminal.shipTo}}">{{terminal.shipTo}}</span>
+        </ng-template>
+      </p-column>
+
+    </p-dataTable>
+  </div>
+</div>

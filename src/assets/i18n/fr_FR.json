@@ -628,5 +628,13 @@
     "button.more.media":"Add more Media",
     "campaignTabBar.tab_0.label":"Tableau de bord",
     "campaignTabBar.tab_1.label":"Informations générales",
-    "campaignTabBar.historic.label":"Historique"
+    "campaignTabBar.historic.label":"Historique",
+    "Terminal List":"Liste des terminaux",
+    "Terminal ID":"Terminal ID",
+    "Address":"Adresse",
+    "Subscription Status":"Etat de l'abonnement",
+    "Activation date":"Date d'activation",
+    "Deactivation Date":"Date de désactivation",
+    "Ship To":"Ship To",
+    "button.export.terminals":"Exporter des terminaux"
 }

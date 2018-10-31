@@ -19,6 +19,7 @@ import { DetailCompComponent } from '../detail-comp/detail-comp.component';
 import { DetailMediaComponent } from '../detail-media/detail-media.component';
 import { environment } from '../../environments/environment.prod';
 import { DetailMediaStep0Component } from '../detail-media-step0/detail-media-step0.component';
+import { TerminalBean } from '../core/models/terminalBean';
 
 enum CampaignTreeNodeType { 
   CAMPAIGN,
@@ -43,6 +44,9 @@ enum guiVasMode {
 export class CampaignDetailComponent implements OnInit , AfterViewInit{
   campaign: Campaign;
   mediaBean: MediaBean;
+  terminals: SelectItem[];
+  terminalsListElements: Array<any>;
+
   campReferance: any;
   confirmationMessage: any;
   nodeIcon : any ;
@@ -63,6 +67,7 @@ export class CampaignDetailComponent implements OnInit , AfterViewInit{
   }
 
   ngOnInit() {
+    this.terminalsListElements;
     this.nextPage =this.campaignService.forwardToPageMessage;
     this.url = `${environment.services.campaigns}`;
     this.campaign = this.campaignService.mySharedData;
@@ -135,14 +140,15 @@ export class CampaignDetailComponent implements OnInit , AfterViewInit{
         this.getMediaFromReference(reference,this.campReferance,"mediaDetailsStep0");
 				//nextPage = "mediaDetailsStep0";
 			} else {
-        this.getMediaFromReference(reference,this.campReferance,"mediaDetails");
-				//nextPage = "mediaDetails";
+        this.getMediaFromReference(reference,this.campReferance,"mediaDetails"); 
+				//nextPage = "mediaDetails"; 
 			}
-		} else if (this.constractTypeFromValue(type) === CampaignTreeNodeType.TERMINAL) {
+		} else if (this.constractTypeFromValue(type) === CampaignTreeNodeType.TERMINAL) { 
 			if (this.campaignService.mode === guiVasMode.CREATION.toString()) {
 				nextPage = "terminalDetails";
 			} else {
-				nextPage = "terminalDashboard";
+        this._getTerminals("terminalDashboard");
+        //nextPage = "terminalDashboard";
 			}
 		}
     this.nextPage=nextPage;
@@ -164,7 +170,23 @@ getMediaFromReference(reference : string, cmpreference : string , nextPage : str
       this.log.error(err);
     })
   }
-   
+
+
+_getTerminals(nextPage: string) { 
+  
+  this.terminals = [];
+  this.campaignService.listTerminals(this.campaign).subscribe( 
+    response => {
+      this.terminalsListElements = response;
+      this.nextPage = nextPage;
+      return this.nextPage;
+    },
+    err => {
+      this.log.error(err);
+    })
+}
+
+      
 }
 
 
