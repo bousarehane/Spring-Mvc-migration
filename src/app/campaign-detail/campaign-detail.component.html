@@ -49,7 +49,7 @@
 </div>
 
 <div class="panel_b campagneOuverte" style="margin: 0 !important;" *ngIf="nextPage === 'campaignDetails'">
-    <app-detail-comp [campaign]="campaign" ></app-detail-comp>
+    <app-detail-comp [campaign]="campaign" (nodesToDisplay)="loadNodesToDisplay($event)" ></app-detail-comp>
 </div>
 
 <div class="panel_b campagneOuverte" *ngIf="nextPage === 'mediaDetails'">

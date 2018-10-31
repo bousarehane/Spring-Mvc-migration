@@ -241,4 +241,8 @@ closeCampaign(deactivationReason :string , campaignBeanPrime: Campaign):Observab
   return this.http.post<any>(environment.services.campaigns+ '/closeCampaign', campaignBeanPrime);
 }
 
+activeCampaign(campaignBeanPrime: Campaign):Observable<any>{
+  return this.http.post<any>(environment.services.campaigns+ '/activeCampaign', campaignBeanPrime);
+}
+
 }

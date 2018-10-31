@@ -10,6 +10,8 @@ import {Renderer} from '@angular/core';
 import {MenuItem} from 'primeng/api';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgForm,NgModel } from '@angular/forms';
 import * as VasConstants from '../core/globals/VasConstants';
+import { NotifMessageService } from '../../app/core/services/notifmessage.service';
+
 
 
 @Component({
@@ -20,19 +22,23 @@ import * as VasConstants from '../core/globals/VasConstants';
 export class DetailCompComponent implements OnInit {
 
   @Input() campaign: Campaign;
+  @Output() nodesToDisplay: EventEmitter<any> = new EventEmitter();
   items:MenuItem[];
   activeItem: MenuItem;
   @ViewChild('menuItems') menu: MenuItem[];
   display: boolean = false;
   deactivationReason: string;
   clickAction: string;
-
-  campaignToSuspend: Campaign;
+  displayCancelPopup: boolean = false;
+  displayActivePopup: boolean = false;
+  campaignToAction: Campaign;
  
+  constructor(private render:Renderer , private router: Router, private translateService: TranslateService ,
+       private campaignService: CampaignService ,
+       private log: NGXLogger,
+       private notifService: NotifMessageService) { 
 
-  constructor(private render:Renderer , private router: Router, private translateService: TranslateService ,   private campaignService: CampaignService , private log: NGXLogger) { 
-
-    this.campaignToSuspend = <Campaign>{};
+    this.campaignToAction = <Campaign>{};
   }
 
   ngOnInit() {
@@ -58,11 +64,16 @@ export class DetailCompComponent implements OnInit {
     
  }
   doClear() {
-}
+    this.displayCancelPopup = true;
+  }
 
+  onActionFromLeaveDashboredButton(){
+    this.router.navigate(['/searchCampaign']); 
+    this.displayCancelPopup = false;
+  }
 
 onActionFromSuspendButton(event){
-    this.display = true;
+ this.display = true;
  this.clickAction="suspend";
 }
 
@@ -71,26 +82,54 @@ onActionFromCloseButton(event){
   this.clickAction="close";
 }
 
+onActionFromActiveButton(event){
+  this.displayActivePopup = true;
+  this.clickAction="active";
+}
+
 actionButtonEnregistrer(form: NgForm){
-  this.campaignToSuspend.reference = this.campaign.reference;
+  this.campaignToAction.reference = this.campaign.reference;
   if(this.clickAction === "suspend"){
-  this.campaignService.suspendCampaign(this.deactivationReason,this.campaignToSuspend).subscribe(
+  this.campaignService.suspendCampaign(this.deactivationReason,this.campaignToAction).subscribe(
     (camp: Campaign) => {
+      this.campaign = camp;
       this.display = false;
+      this.nodesToDisplay.emit(camp.campaignTree.nodes);
     },
     err => {
-      this.log.error(err);
+      this.handleCampaignsErrors(form, err);
     })
-  }else{
-    this.campaignService.closeCampaign(this.deactivationReason,this.campaignToSuspend).subscribe(
+  }else if(this.clickAction === "close"){
+    this.campaignService.closeCampaign(this.deactivationReason,this.campaignToAction).subscribe(
       (camp: Campaign) => {
+        this.campaign = camp;
         this.display = false;
+        this.nodesToDisplay.emit(camp.campaignTree.nodes);
       },
       err => {
-        this.log.error(err);
+        this.handleCampaignsErrors(form, err);
+      })
+
+  }else{
+    this.campaignToAction.activationDate =this.campaign.activationDate;
+    this.campaignService.activeCampaign(this.campaignToAction).subscribe(
+      (camp: Campaign) => {
+        this.campaign = camp;
+        this.displayActivePopup = false;
+        this.nodesToDisplay.emit(camp.campaignTree.nodes);
+      },
+      err => {
+        this.handleCampaignsErrors(form, err);
       })
 
   }
+}
+
+handleCampaignsErrors(form, errors) {
+  for (const entry of errors.error) {
+    this.notifService.notifyErrorWithDetailFromApi(entry.message, errors); 
+  }
+ 
 }
 
 isActivateButtonDisplayed() {

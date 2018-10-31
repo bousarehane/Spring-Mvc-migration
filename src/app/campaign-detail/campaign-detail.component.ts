@@ -20,19 +20,19 @@ import { DetailMediaComponent } from '../detail-media/detail-media.component';
 import { environment } from '../../environments/environment.prod';
 import { DetailMediaStep0Component } from '../detail-media-step0/detail-media-step0.component';
 
-enum CampaignTreeNodeType { 
+enum CampaignTreeNodeType {
   CAMPAIGN,
   MEDIA,
   PADDING,
   TERMINAL
 }
-enum guiVasMode { 
+enum guiVasMode {
   CREATION,
   CREATION_MEDIA,
   DASHBOARD,
   DEFAULT,
   INFO
-  }
+}
 
 
 @Component({
@@ -40,14 +40,14 @@ enum guiVasMode {
   templateUrl: './campaign-detail.component.html',
   styleUrls: ['./campaign-detail.component.css']
 })
-export class CampaignDetailComponent implements OnInit , AfterViewInit{
+export class CampaignDetailComponent implements OnInit, AfterViewInit {
   campaign: Campaign;
   mediaBean: MediaBean;
   campReferance: any;
   confirmationMessage: any;
-  nodeIcon : any ;
-  nextPage : string;
-  url : any;
+  nodeIcon: any;
+  nextPage: string;
+  url: any;
 
   nodes: CampaignTreeNode[];
 
@@ -57,126 +57,131 @@ export class CampaignDetailComponent implements OnInit , AfterViewInit{
     private log: NGXLogger,
     private translate: TranslateService,
     private modalService: NgbModal,
-    private dateUtilService: DateUtilService,private route: ActivatedRoute, private router: Router,
+    private dateUtilService: DateUtilService, private route: ActivatedRoute, private router: Router,
   ) {
     this.campaign = <Campaign>{};
   }
 
   ngOnInit() {
-    this.nextPage =this.campaignService.forwardToPageMessage;
+    this.nextPage = this.campaignService.forwardToPageMessage;
     this.url = `${environment.services.campaigns}`;
     this.campaign = this.campaignService.mySharedData;
-    if(this.campaign){
+    if (this.campaign) {
       this.campReferance = this.campaign.reference;
     }
-    if(this.campaignService.referenceCampaign){
+    if (this.campaignService.referenceCampaign) {
       this.campReferance = this.campaignService.referenceCampaign;
     }
-   // this.campReferance = this.route.snapshot.params['reference'];
-    if(this.campaignService.campaignSharedData && this.campaignService.mediaSharedData && this.campaignService.mode != "1"){
+    // this.campReferance = this.route.snapshot.params['reference'];
+    if (this.campaignService.campaignSharedData && this.campaignService.mediaSharedData && this.campaignService.mode != "1") {
       this.mediaBean = this.campaignService.mediaSharedData;
       this.campReferance = this.campaignService.campaignSharedData.reference;
       this.campaign = this.campaignService.campaignSharedData;
       this.nodes = this.campaignService.nodes;
-    }else if((this.campaignService.campaignSharedData || this.campaignService.mediaSharedData ) && this.campaignService.mode === "1"){
-      if(this.campReferance != null){
+    } else if ((this.campaignService.campaignSharedData || this.campaignService.mediaSharedData) && this.campaignService.mode === "1") {
+      if (this.campReferance != null) {
         this.campaignService.campaignSharedData = null;
         this.loadCampaign(this.campReferance);
-     }else {
-      this.campReferance = this.campaignService.campaignSharedData.reference;
-      this.mediaBean = this.campaignService.mediaSharedData;
-      this.campaign = this.campaignService.campaignSharedData;
-      this.nodes = this.campaignService.nodes;
+      } else {
+        this.campReferance = this.campaignService.campaignSharedData.reference;
+        this.mediaBean = this.campaignService.mediaSharedData;
+        this.campaign = this.campaignService.campaignSharedData;
+        this.nodes = this.campaignService.nodes;
       }
-       //this.nextPage = "campaignDetails";
-    }else {
+      //this.nextPage = "campaignDetails";
+    } else {
       this.loadCampaign(this.campReferance);
-      }
+    }
   }
 
   ngAfterViewInit() {
-    
+
   }
-  constractTypeFromValue(type : string){
-    if("CAMPAIGN" === type){
+  constractTypeFromValue(type: string) {
+    if ("CAMPAIGN" === type) {
       return 0;
-    }else if("MEDIA" === type){
+    } else if ("MEDIA" === type) {
       return 1;
-    }else if("PADDING" === type){
+    } else if ("PADDING" === type) {
       return 2;
-    }else if("TERMINAL" === type){
+    } else if ("TERMINAL" === type) {
       return 3;
     }
 
   }
-  getActionFromNodeLink(type : string, parentReference : string, reference : string) {
+  getActionFromNodeLink(type: string, parentReference: string, reference: string) {
     var nextPage = "";
-		if (this.constractTypeFromValue(type) === CampaignTreeNodeType.PADDING) {
-			nextPage = "SearchCampaign";
-		} else if (this.constractTypeFromValue(type) === CampaignTreeNodeType.CAMPAIGN) {
-			if (this.campaignService.mode === guiVasMode.CREATION.toString()) {
-				nextPage = "campaignDetailsStep0";
-			} else {
-				nextPage = "campaignDetails";
-			}
-		} else if (this.constractTypeFromValue(type) === CampaignTreeNodeType.MEDIA) {
-			if (this.campaignService.mode === guiVasMode.CREATION.toString()) {
-        this.getMediaFromReference(reference,this.campReferance,"mediaDetailsStep0");
-				//nextPage = "mediaDetailsStep0";
-			} else {
-        this.getMediaFromReference(reference,this.campReferance,"mediaDetails");
-				//nextPage = "mediaDetails";
-			}
-		} else if (this.constractTypeFromValue(type) === CampaignTreeNodeType.TERMINAL) {
-			if (this.campaignService.mode === guiVasMode.CREATION.toString()) {
-				nextPage = "terminalDetails";
-			} else {
-				nextPage = "terminalDashboard";
-			}
-		}
-    this.nextPage=nextPage;
-		return this.nextPage; 
-	}
+    if (this.constractTypeFromValue(type) === CampaignTreeNodeType.PADDING) {
+      nextPage = "SearchCampaign";
+    } else if (this.constractTypeFromValue(type) === CampaignTreeNodeType.CAMPAIGN) {
+      if (this.campaignService.mode === guiVasMode.CREATION.toString()) {
+        nextPage = "campaignDetailsStep0";
+      } else {
+        nextPage = "campaignDetails";
+      }
+    } else if (this.constractTypeFromValue(type) === CampaignTreeNodeType.MEDIA) {
+      if (this.campaignService.mode === guiVasMode.CREATION.toString()) {
+        this.getMediaFromReference(reference, this.campReferance, "mediaDetailsStep0");
+        //nextPage = "mediaDetailsStep0";
+      } else {
+        this.getMediaFromReference(reference, this.campReferance, "mediaDetails");
+        //nextPage = "mediaDetails";
+      }
+    } else if (this.constractTypeFromValue(type) === CampaignTreeNodeType.TERMINAL) {
+      if (this.campaignService.mode === guiVasMode.CREATION.toString()) {
+        nextPage = "terminalDetails";
+      } else {
+        nextPage = "terminalDashboard";
+      }
+    }
+    this.nextPage = nextPage;
+    return this.nextPage;
+  }
 
   changeMargin(): any {
     return { 'margin-left': (4 + this.itemCampaign.level * 15) };
-}
-/**
- * getMediaFromReference
- * @param reference 
- * @param cmpreference 
- * @param nextPage 
- */
-getMediaFromReference(reference : string, cmpreference : string , nextPage : string) {
-  this.campaignService.getMediaByRef(reference,cmpreference).subscribe(
-    response => {
-     this.mediaBean = response;
-     this.nextPage = nextPage;
-     return this.nextPage;
-    },
-    err => {
-      this.log.error(err);
-    })
   }
-   
-/**
- * loadCampaign
- * @param campReferance 
- */
-  loadCampaign(campReferance : any){
-    this.campaignService.getCmpaignByRef(campReferance).subscribe(
+  /**
+   * getMediaFromReference
+   * @param reference 
+   * @param cmpreference 
+   * @param nextPage 
+   */
+  getMediaFromReference(reference: string, cmpreference: string, nextPage: string) {
+    this.campaignService.getMediaByRef(reference, cmpreference).subscribe(
       response => {
-       this.campaign = response;
-       this.nodes= this.campaign.campaignTree.nodes;
-       if(this.campaignService.referenceCampaign){
-       this.campaignService.campaignSharedData = this.campaign;
-       this.campaignService.nodes = this.nodes;
-       this.nextPage = "campaignDetails";
-       }
+        this.mediaBean = response;
+        this.nextPage = nextPage;
+        return this.nextPage;
       },
       err => {
         this.log.error(err);
       })
+  }
+
+  /**
+   * loadCampaign
+   * @param campReferance 
+   */
+  loadCampaign(campReferance: any) {
+    this.campaignService.getCmpaignByRef(campReferance).subscribe(
+      response => {
+        this.campaign = response;
+        this.nodes = this.campaign.campaignTree.nodes;
+        if (this.campaignService.referenceCampaign) {
+          this.campaignService.campaignSharedData = this.campaign;
+          this.campaignService.nodes = this.nodes;
+          this.nextPage = "campaignDetails";
+        }
+      },
+      err => {
+        this.log.error(err);
+      })
+  }
+
+
+  loadNodesToDisplay(event) {
+    this.nodes = event;
   }
 }
 
