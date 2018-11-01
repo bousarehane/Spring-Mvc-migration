@@ -107,11 +107,9 @@ export class GlobalErrorHandler implements ErrorHandler {
     DetailMediaStep0Component,
     HistoriqueCampComponent,
     InfoGeneralComponent,
-<<<<<<< HEAD
-    CampaignUpdateComponent
-=======
+    CampaignUpdateComponent,
     TerminalDashboardComponent,
->>>>>>> 1091f303e51970c7ae6aa6bb2ee03014d75cda28
+
   ],
   imports: [
     ModalModule.forRoot(),
