@@ -61,7 +61,7 @@ export class InfoGeneralComponent implements OnInit {
       this.activeItem =this.menu['activeItem'];
       if(this.activeItem.label === this.translateService.instant('campaignTabBar.tab_0.label')){
         this.campaignService.campaignSharedData = this.campaign;
-        this.campaignService.forwardToPageMessage = "campaignDetails";
+        //this.campaignService.forwardToPageMessage = "campaignDetails";
         this.router.navigate(['/detailCampaign']); 
       } else if(this.activeItem.label === this.translateService.instant('campaignTabBar.historic.label')){
         this.router.navigate(['/historiqueCmp']); 

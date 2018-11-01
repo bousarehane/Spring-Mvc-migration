@@ -1,4 +1,4 @@
-<div class="panel_b mainPanel">
+<div class="panel_b mainPanel" *ngIf="nextPage === 'campaignDetailsStep0' || nextPage === 'campaignDetails' || nextPage === 'mediaDetails' || nextPage === 'mediaDetailsStep0' ">
 <h2 translate>My Campaign</h2>
 <div class="panel_body_b" >
 <form #detailForm="ngForm" (submit)="doFind($event)">
@@ -9,7 +9,7 @@
               <div id="campaignTreeViewHeader" class="row padding-left subtitle border-bottom">
                   My Campaign
               </div>
-              <div id="campaignTreeViewContent" style="margin-right:1px;white-space: nowrap; overflow: auto;" class="row inner t-zone">
+        <div id="campaignTreeViewContent" style="margin-right:1px;white-space: nowrap; overflow: auto;" class="row inner t-zone">
                  <ul>
                     <div *ngFor="let itemCampaign of nodes; let first = first; index as i" [attr.data-index]="i">
                       
@@ -29,7 +29,7 @@
                                 </div>
                                 <ng-template #otherContentPrime>
                                   <a href=""  [routerLink]="['/detailCampaign']" (click)="getActionFromNodeLink(itemCampaign.type,nodes[0].reference,itemCampaign.reference)">{{itemCampaign.name}} - {{itemCampaign.reference}}</a>
-                                   <!--   <a href=""  [routerLink]="['reference', itemCampaign.reference, '/detailCampaign']" (click)="getActionFromNodeLink(itemCampaign.type,nodes[0].reference,itemCampaign.reference)">{{itemCampaign.name}} - {{itemCampaign.reference}}</a>!-->
+                                  <!--<a href=""  [routerLink]="['reference', itemCampaign.reference, '/detailCampaign']" (click)="getActionFromNodeLink(itemCampaign.type,nodes[0].reference,itemCampaign.reference)">{{itemCampaign.name}} - {{itemCampaign.reference}}</a>-->
                                     
                                 </ng-template>
                             </div>
@@ -38,7 +38,7 @@
                     </div>
                    
                  </ul>
-              </div>
+              </div> 
             </div>
           </div>
         </div>
@@ -52,7 +52,7 @@
 </div>
 
 <div class="panel_b campagneOuverte" style="margin: 0 !important;" *ngIf="nextPage === 'campaignDetails'">
-    <app-detail-comp [campaign]="campaign" ></app-detail-comp>
+    <app-detail-comp [campaign]="campaign" (nodesToDisplay)="loadNodesToDisplay($event)" ></app-detail-comp>
 </div>
 
 <div class="panel_b campagneOuverte" *ngIf="nextPage === 'mediaDetails'">

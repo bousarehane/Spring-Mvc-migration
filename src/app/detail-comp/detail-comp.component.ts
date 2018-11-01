@@ -8,6 +8,10 @@ import { DataTableModule, SharedModule } from 'primeng/primeng';
 import { Schedule, Growl, Message } from 'primeng/primeng';
 import {Renderer} from '@angular/core';
 import {MenuItem} from 'primeng/api';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgForm,NgModel } from '@angular/forms';
+import * as VasConstants from '../core/globals/VasConstants';
+import { NotifMessageService } from '../../app/core/services/notifmessage.service';
+
 
 
 @Component({
@@ -18,17 +22,26 @@ import {MenuItem} from 'primeng/api';
 export class DetailCompComponent implements OnInit {
 
   @Input() campaign: Campaign;
+  @Output() nodesToDisplay: EventEmitter<any> = new EventEmitter();
   items:MenuItem[];
   activeItem: MenuItem;
   @ViewChild('menuItems') menu: MenuItem[];
+  display: boolean = false;
+  deactivationReason: string;
+  clickAction: string;
+  displayCancelPopup: boolean = false;
+  displayActivePopup: boolean = false;
+  campaignToAction: Campaign;
  
+  constructor(private render:Renderer , private router: Router, private translateService: TranslateService ,
+       private campaignService: CampaignService ,
+       private log: NGXLogger,
+       private notifService: NotifMessageService) { 
 
-  constructor(private render:Renderer , private router: Router, private translateService: TranslateService ,   private campaignService: CampaignService) { }
+    this.campaignToAction = <Campaign>{};
+  }
 
   ngOnInit() {
-    //this.tabList.push(this.translateService.get('campaignTabBar.tab_0.label'));
-    //this.tabList.push(this.translateService.instant('campaignTabBar.tab_1.label'));
-    //this.tabList.push(this.translateService.instant('campaignTabBar.historic.label'));
     this.items = [
       {label: this.translateService.instant('campaignTabBar.tab_0.label'), icon: 'fa-bar-chart'},
       {label: this.translateService.instant('campaignTabBar.tab_1.label'), icon: 'fa-bar-chart'},
@@ -51,6 +64,85 @@ export class DetailCompComponent implements OnInit {
     
  }
   doClear() {
+    this.displayCancelPopup = true;
+  }
+
+  onActionFromLeaveDashboredButton(){
+    this.router.navigate(['/searchCampaign']); 
+    this.displayCancelPopup = false;
+  }
+
+onActionFromSuspendButton(event){
+ this.display = true;
+ this.clickAction="suspend";
+}
+
+onActionFromCloseButton(event){
+  this.display = true;
+  this.clickAction="close";
+}
+
+onActionFromActiveButton(event){
+  this.displayActivePopup = true;
+  this.clickAction="active";
+}
+
+actionButtonEnregistrer(form: NgForm){
+  this.campaignToAction.reference = this.campaign.reference;
+  if(this.clickAction === "suspend"){
+  this.campaignService.suspendCampaign(this.deactivationReason,this.campaignToAction).subscribe(
+    (camp: Campaign) => {
+      this.campaign = camp;
+      this.display = false;
+      this.nodesToDisplay.emit(camp.campaignTree.nodes);
+    },
+    err => {
+      this.handleCampaignsErrors(form, err);
+    })
+  }else if(this.clickAction === "close"){
+    this.campaignService.closeCampaign(this.deactivationReason,this.campaignToAction).subscribe(
+      (camp: Campaign) => {
+        this.campaign = camp;
+        this.display = false;
+        this.nodesToDisplay.emit(camp.campaignTree.nodes);
+      },
+      err => {
+        this.handleCampaignsErrors(form, err);
+      })
+
+  }else{
+    this.campaignToAction.activationDate =this.campaign.activationDate;
+    this.campaignService.activeCampaign(this.campaignToAction).subscribe(
+      (camp: Campaign) => {
+        this.campaign = camp;
+        this.displayActivePopup = false;
+        this.nodesToDisplay.emit(camp.campaignTree.nodes);
+      },
+      err => {
+        this.handleCampaignsErrors(form, err);
+      })
+
+  }
+}
+
+handleCampaignsErrors(form, errors) {
+  for (const entry of errors.error) {
+    this.notifService.notifyErrorWithDetailFromApi(entry.message, errors); 
+  }
+ 
+}
+
+isActivateButtonDisplayed() {
+  return VasConstants.CAMPAIGN_STATUS_SUSPENDED === this.campaign.status;
+}
+
+isSuspendButtonDisplayed() {
+  return VasConstants.CAMPAIGN_STATUS_AWAITING_ACTIVATION === this.campaign.status || VasConstants.CAMPAIGN_STATUS_ACTIVE === this.campaign.status;
+}
+
+isCloseButtonDisplayed() {
+  return !(VasConstants.CAMPAIGN_STATUS_CLOSED === this.campaign.status);
+
 }
 
 }

@@ -26,6 +26,7 @@ import { Http, Response } from '@angular/http';
 import { TerminalBean } from '../models/terminalBean';
 
 
+
 /**
  * service de gestion des campaigns
  */
@@ -231,6 +232,7 @@ genParams(params: object, httpParams = new HttpParams()): object {
 getImage(reference: string): Observable<any> {
   return this.http.get(environment.services.campaigns + '/image', { responseType: 'blob' });
 }
+<<<<<<< HEAD
 
 
 //List of Terminals 
@@ -245,3 +247,20 @@ listTerminals(campaign: Campaign): Observable<any[]> {
 }
  
  
+=======
+ suspendCampaign(deactivationReason :string , campaignBeanPrime: Campaign):Observable<any>{
+  campaignBeanPrime.deactivationReason = deactivationReason;
+  return this.http.post<any>(environment.services.campaigns+ '/suspendCampaign', campaignBeanPrime);
+}
+
+closeCampaign(deactivationReason :string , campaignBeanPrime: Campaign):Observable<any>{
+  campaignBeanPrime.deactivationReason = deactivationReason;
+  return this.http.post<any>(environment.services.campaigns+ '/closeCampaign', campaignBeanPrime);
+}
+
+activeCampaign(campaignBeanPrime: Campaign):Observable<any>{
+  return this.http.post<any>(environment.services.campaigns+ '/activeCampaign', campaignBeanPrime);
+}
+
+}
+>>>>>>> f5c384a3cccab48300aa3066a38af05be7442d57
