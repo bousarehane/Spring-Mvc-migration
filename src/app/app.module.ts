@@ -62,11 +62,8 @@ import { DetailMediaStep0Component } from './detail-media-step0/detail-media-ste
 import { HistoriqueCampComponent } from './historique-camp/historique-camp.component';
 import {TabMenuModule} from 'primeng/tabmenu';
 import { InfoGeneralComponent } from './info-general/info-general.component';
-<<<<<<< HEAD
 import { TerminalDashboardComponent } from './terminal-dashboard/terminal-dashboard.component';
-=======
 import {DialogModule} from 'primeng/dialog';
->>>>>>> f5c384a3cccab48300aa3066a38af05be7442d57
 
 
 // AoT requires an exported function for factories

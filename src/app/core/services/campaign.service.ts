@@ -232,8 +232,6 @@ genParams(params: object, httpParams = new HttpParams()): object {
 getImage(reference: string): Observable<any> {
   return this.http.get(environment.services.campaigns + '/image', { responseType: 'blob' });
 }
-<<<<<<< HEAD
-
 
 //List of Terminals 
 listTerminals(campaign: Campaign): Observable<any[]> {
@@ -243,11 +241,6 @@ listTerminals(campaign: Campaign): Observable<any[]> {
   return this.http.get<any[]>(url, {headers});
 }
 
- 
-}
- 
- 
-=======
  suspendCampaign(deactivationReason :string , campaignBeanPrime: Campaign):Observable<any>{
   campaignBeanPrime.deactivationReason = deactivationReason;
   return this.http.post<any>(environment.services.campaigns+ '/suspendCampaign', campaignBeanPrime);
@@ -263,4 +256,4 @@ activeCampaign(campaignBeanPrime: Campaign):Observable<any>{
 }
 
 }
->>>>>>> f5c384a3cccab48300aa3066a38af05be7442d57
+
