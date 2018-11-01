@@ -63,6 +63,7 @@ import { HistoriqueCampComponent } from './historique-camp/historique-camp.compo
 import {TabMenuModule} from 'primeng/tabmenu';
 import { InfoGeneralComponent } from './info-general/info-general.component';
 import {DialogModule} from 'primeng/dialog';
+import { CampaignUpdateComponent } from './campaign-update/campaign-update.component';
 
 
 // AoT requires an exported function for factories
@@ -104,7 +105,8 @@ export class GlobalErrorHandler implements ErrorHandler {
     AddMediaComponent,
     DetailMediaStep0Component,
     HistoriqueCampComponent,
-    InfoGeneralComponent
+    InfoGeneralComponent,
+    CampaignUpdateComponent
   ],
   imports: [
     ModalModule.forRoot(),

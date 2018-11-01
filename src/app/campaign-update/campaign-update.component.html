@@ -1,0 +1,194 @@
+
+<div class="panel_b">
+    <h2 translate>CREATE CAMPAIGN</h2>
+      <div class="panel_body_b" >	
+          <form #editForm="ngForm" (submit)="doSave(editForm)">
+
+              <input type="hidden" name="isDisplayPopup" id="isDisplayPopup" [(ngModel)]="isDisplayPopup"/>
+              <div class="container-fluid">
+                  
+                      <div class="row">
+                          <div class="col-md-12">
+                              <h1 class="title float-left">Campaign Details</h1>
+                          </div>
+                      </div>
+                  <div class="row padding-form-field">
+                      <div class="col-md-5">
+                          <label translate>NAME_OF_CAMPAIGN_</label>
+                      </div>
+                      <div class="col-md-7">
+                          <span title="{{campaign.name}}">{{campaign.name}}</span>          
+                      </div>
+                  </div>
+
+                  <div class="row padding-form-field">
+                      <div class="col-md-5">
+                          <label translate>Référence de la campagne</label>
+                      </div>
+                      <div class="col-md-7">
+                          <span title="{{campaign.reference}}">{{campaign.reference}}</span>
+                      </div>
+                  </div>
+
+                  <div class="row padding-form-field" >
+                      <div class="col-md-5">
+                          <label translate>TYPE_</label>
+                      </div>
+                    <div class="col-md-7">
+                          <span title="{{campaign.type}}">{{campaign.type}}</span>
+                    </div>   
+                  </div>
+
+                  <div *ngIf="campaign.displayMerchantReference" class="row padding-form-field">
+                      <div class="col-md-5">
+                          <label translate>REFERENCE_MARCHANT</label>
+                      </div>
+                      <div class="col-md-7">
+                          <input pInputText type="text" name="merchantReference" [(ngModel)]="campaign.merchantReference" #merchantReference="ngModel"  required>
+    
+                          <div *ngIf="(merchantReference.dirty || editForm.submitted) && merchantReference.invalid && merchantReference.errors.required" class="ui-message ui-messages-error">
+                              <div *ngIf="merchantReference.errors.required" translate>
+                                  ERROR_FORM_FIELD_MERCHANT_MANDATORY
+                              </div>
+                          </div>           
+                      </div>
+                  </div>
+
+                  <div class="row padding-form-field">
+                      <div class="col-md-5">
+                          <label translate>LEVEL_</label>
+                      </div>
+                      <div class="col-md-7">
+                              <p-dropdown required [options]="campaignLevelList" [(ngModel)]="campaign.level" placeholder="{{ 'CAMPAIGN_LEVEL_SELECT_PLACEHOLDER' | translate }}"
+                              name="level" [style]="{'width':'50%'}" #level="ngModel" (ngModelChange)="onChangeLevel(editForm)"></p-dropdown>
+
+                            <div *ngIf="(level.dirty || editForm.submitted) && level.invalid" class="ui-message ui-messages-error">
+                                <div *ngIf="level.errors.required" translate>
+                                    ERROR_FORM_FIELD_LEVEL_MANDATORY
+                                </div>
+                            </div>
+                    </div>   
+                  </div>
+
+                  <div class="row">
+                      <div class="col-md-5">
+                          <label translate>ACTIVATION_DATE</label>
+                      </div>
+                      <div class="col-md-7">
+                          <app-datetime required class="dflex ui-inputtext" name="dateActivation" [(ngModel)]="campaign.activationDate" [disabled]="readOnly" #dateActivation="ngModel"
+                              (ngModelChange)="onChangeInput($event)" ></app-datetime>
+
+                          <div *ngIf="(dateActivation.dirty || editForm.submitted) && dateActivation.invalid" class="ui-message ui-messages-error">
+                              <div *ngIf="dateActivation.errors.required" translate>
+                                  ERROR_FORM_FIELD_ACTIVATION_DATE_MANDATORY
+                              </div>
+                          </div>
+                      </div>
+                 </div>
+
+                 <div class="row">
+                    <div class="col-md-5">
+                        <label  translate>DEACTIVATION_DATE</label>
+                    </div>
+                    <div class="col-md-7">
+                            <app-datetime  class="dflex ui-inputtext" name="deactivationDate" [(ngModel)]="campaign.deactivationDate" #deactivationDate="ngModel"></app-datetime>
+                    </div>
+               </div>
+               <div class="row padding-form-field">
+                  <div class="col-md-5">
+                      <label  translate>ADVERTISING_CATEGORY</label>
+                  </div>
+                  <div class="col-md-7">
+                      <span title="{{campaign.advertisingCategoryCode}}">{{campaign.advertisingCategoryCode}}</span>
+              </div> 
+           </div>
+           
+           <div class="row padding-form-field">
+              <div class="col-md-5">
+                  <label translate>Etat:</label>
+              </div>
+              <div class="col-md-7">
+                  <span title="{{campaign.status}}">{{campaign.status}}</span>
+              </div>
+          </div>
+
+           <div class="row top-buffer">
+              <div class="col-md-12">
+                  <h1 class="title float-left">Détails sur l'organisation</h1>
+              </div>
+          </div>
+
+          <div class="row padding-form-field">
+              <div class="col-md-5">
+                  <label for="orgName" translate>ORGANISATION_NAME</label>
+              </div>
+              <div class="col-md-7">
+                  <span title="{{campaign.organizationName}}">{{campaign.organizationName}}</span>
+              </div>
+          </div>
+
+          <div class="row padding-form-field">
+              <div class="col-md-5">
+                  <label for="comment" translate>COMMENTAIRE</label>
+              </div>
+              <div class="col-md-7">
+                  <textarea [(ngModel)]="campaign.comment" pInputTextarea name="comment" [readOnly]="readOnly" (change)="onChangeInput($event)"></textarea>
+              </div>
+          </div>
+
+          <div *ngIf="campaign.displayDefaultCampaign" class="row padding-form-field">
+              <div class="col-md-5">
+                  <label for="defaultCampaign" translate>DEFAULT_CAMPAIGN</label>
+              </div>
+              <div class="col-md-7">
+                  <span title="{{campaign.defaultCampaignValue}}">{{campaign.defaultCampaignValue}}</span>
+              </div>
+          </div>
+          
+
+                  <div class="row">
+                      <div class="col-md-12 col-form-actions">
+                          
+                          <button type="submit" translate class="btn btn-primary float-right" *ngIf="! readOnly" >
+                              <em aria-hidden="true" class="icon-ico_save" title="{{'button.update' | translate}}"> </em>button.update</button>
+
+                          <button type="button" translate  class="btn btn-default float-right" (click)="doClear()">
+                                  <em aria-hidden="true" class="icon-ico_close" title="{{'CANCEL' | translate}}"> </em>CANCEL</button>
+                          
+                      </div>
+                  </div>
+              </div>
+              <ng-template #modalConfirmationClose let-c="close" let-d="dismiss">
+                  <div class="modal-header">
+                      <h6 class="modal-title" translate>DIALOGS_CONFIRMATION</h6>
+                      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body" [innerHTML]="'CONFIRM_CANCEL_ADD_CAMPAIGN' | translate"></div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-primary" (click)="c()" translate>DIALOGS_YES</button>
+                      <button type="button" class="btn btn-secondary" (click)="d()" translate>DIALOGS_NO</button>
+                  </div>
+              
+              </ng-template>
+
+              <ng-template #modalMerchantReference let-c="close" let-d="dismiss">
+                  <div class="modal-header">
+                      <h6 class="modal-title" translate>DIALOGS_CONFIRMATION</h6>
+                      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body" [innerHTML]="'ERRORMESSAGE.CAMPAIGNFORM.MERCHANTREF_NOT_FOUND_ON_MEX' | translate"></div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-primary" (click)="goToYes()" translate>DIALOGS_YES</button>
+                      <button type="button" class="btn btn-secondary" (click)="d()" translate>DIALOGS_NO</button>
+                  </div>
+              
+              </ng-template>
+          </form>
+
+     
+      </div>
+  </div>
