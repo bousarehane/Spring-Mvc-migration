@@ -1,22 +1,26 @@
 <form #searchForm="ngForm" (submit)="doFind($event)">
-      <div class="container-fluid">
+    <div class="container-fluid">
 
-            <div class="row">
-                <div class="link-button float-right" id="searchCampaign-buttonsBlock">
-                    <a class="link-button" (click)="redirectToAddCampaign()">Create Campaign</a>
-                  
-                </div>
-           </div>
-          <div class="row">
-              <div class="col-md-5">
-                  <label translate>NAME_OF_CAMPAIGN_</label>
-              </div>
-              <div class="col-md-7">
-                  <input type="text" [(ngModel)]="searchModel.name" pInputText name="name">
-              </div>
-          </div>
+        <div class="row">
+            <!-- <div class="link-button float-right" id="searchCampaign-buttonsBlock">
+                <a class="link-button" (click)="redirectToAddCampaign()">Create Campaign</a>
 
-          <div class="row">
+            </div> -->
+            <div class="col-sm-12 col-md-12 col-xs-12">
+                <button type="button" class="btn btn-primary float-right" (click)="redirectToAddCampaign()" translate>
+                Create Campaign</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <label translate>NAME_OF_CAMPAIGN_</label>
+            </div> 
+            <div class="col-md-7">
+                <input type="text" [(ngModel)]="searchModel.name" pInputText name="name">
+            </div>
+        </div>
+
+        <div class="row">
             <div class="col-md-5">
                 <label translate>REFERENCE_CAMPAIGN</label>
             </div>
@@ -25,71 +29,81 @@
             </div>
         </div>
 
-          <div class="row">
+        <div class="row">
             <div class="col-md-5">
                 <label translate>TYPE_</label>
             </div>
             <div class="col-md-7">
-                <p-dropdown [options]="typeParams" [(ngModel)]="searchModel.type" placeholder="{{ 'CHOOSE_TYPE' | translate }}" name="type"
-                    [style]="{'width':'100%'}"></p-dropdown>
+                <p-dropdown [options]="typeParams" [(ngModel)]="searchModel.type" placeholder="{{ 'CHOOSE_TYPE' | translate }}"
+                    name="type" [style]="{'width':'100%'}"></p-dropdown>
             </div>
         </div>
 
 
         <div class="row">
-        <div class="col-md-5">
-            <label translate>DATE_ACTIVATION</label>
+            <div class="col-md-5">
+                <label translate>DATE_ACTIVATION</label>
+            </div>
+            <div class="col-md-7">
+                <app-datetime class="dflex" name="dateActivation" [(ngModel)]="searchModel.dateActivation" [disabled]="readOnly"
+                    #dateActivation="ngModel" (ngModelChange)="onChangeInput($event)"></app-datetime>
+            </div>
         </div>
-        <div class="col-md-7">
-            <app-datetime class="dflex" name="dateActivation" [(ngModel)]="searchModel.dateActivation" [disabled]="readOnly" #dateActivation="ngModel"
-                (ngModelChange)="onChangeInput($event)" ></app-datetime>
-        </div>
-       </div>
 
-       <div class="row">
-        <div class="col-md-5">
-            <label translate>DATE_DESACTIVATION</label>
+        <div class="row">
+            <div class="col-md-5">
+                <label translate>DATE_DESACTIVATION</label>
+            </div>
+            <div class="col-md-7">
+                <app-datetime class="dflex" name="dateDesactivation" [(ngModel)]="searchModel.dateDesactivation"
+                    [disabled]="readOnly" #dateDesactivation="ngModel" (ngModelChange)="onChangeInput($event)"></app-datetime>
+            </div>
         </div>
-        <div class="col-md-7">
-            <app-datetime class="dflex" name="dateDesactivation" [(ngModel)]="searchModel.dateDesactivation" [disabled]="readOnly" #dateDesactivation="ngModel"
-                (ngModelChange)="onChangeInput($event)" ></app-datetime>
-        </div>
-       </div>
 
-       <div class="row">
-        <div class="col-md-5">
-            <label translate>CAMPAIGN_ETAT</label>
+        <div class="row">
+            <div class="col-md-5">
+                <label translate>CAMPAIGN_ETAT</label>
+            </div>
+            <div class="col-md-7">
+                <p-dropdown [options]="statusParams" [(ngModel)]="searchModel.status" placeholder="{{ 'CHOOSE_STATUS' | translate }}"
+                    name="status" [style]="{'width':'100%'}"></p-dropdown>
+            </div>
         </div>
-        <div class="col-md-7">
-            <p-dropdown [options]="statusParams" [(ngModel)]="searchModel.status" placeholder="{{ 'CHOOSE_STATUS' | translate }}" name="status"
-                [style]="{'width':'100%'}"></p-dropdown>
-        </div>
-       </div>
 
-       <div class="row">
-        <div class="col-md-5">
-            <label translate>CAMPAIGN_ORGANISATION</label>
+        <div class="row">
+            <div class="col-md-5">
+                <label translate>CAMPAIGN_ORGANISATION</label>
+            </div>
+            <div class="col-md-7">
+                <input type="text" [(ngModel)]="searchModel.orgName" pInputText name="orgName">
+            </div>
         </div>
-        <div class="col-md-7">
-            <input type="text" [(ngModel)]="searchModel.orgName" pInputText name="orgName">
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="col-md-5">
-            <label translate>CAMPAIGN_DEFAULT</label>
-        </div>
-        <div class="col-md-7">
+        <div class="row">
+            <div class="col-md-5">
+                <label translate>CAMPAIGN_DEFAULT</label>
+            </div>
+            <div class="col-md-7">
                 <p-checkbox [(ngModel)]="searchModel.defaultCampaign" binary="true" name="defaultCampaign"></p-checkbox>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 col-form-actions">
+                <!-- <button class="link-button"  pButton type="submit" [disabled]="searchForm.invalid"
+                    label="{{'SEARCH' | translate}}"></button> -->
+                <!-- <button class="link-button" pButton type="button" label="{{'CLEAR' | translate}}" (click)="doClear()"></button> -->
+
+
+                <button type="submit" class="btn btn-primary float-right" [disabled]="searchForm.invalid" 
+                translate>
+                    Chercher</button>
+
+                <button type="button" class="btn btn-primary float-right" (click)="doClear()" translate>
+                    Effacer</button>
+
+
+            </div>
         </div>
     </div>
-
-          <div class="row">
-              <div class="col-md-12 col-form-actions">
-                  <button class="link-button" style="color: #0066A1"pButton type="submit" [disabled]="searchForm.invalid" label="{{'SEARCH' | translate}}"></button>
-                  <button class="link-button" pButton type="button" label="{{'CLEAR' | translate}}" (click)="doClear()"></button>
-                  
-              </div>
-          </div>
-      </div>
-  </form>
+</form>

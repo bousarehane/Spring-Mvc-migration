@@ -23,6 +23,7 @@ import { CampaignTree } from '../models/CampaignTree';
 import { CampaignSearch } from '../../core/models/campaignSearch';
 import { URLSearchParams } from '@angular/http';
 import { Http, Response } from '@angular/http';
+import { TerminalBean } from '../models/terminalBean';
 
 
 
@@ -204,7 +205,7 @@ getMediaByRef(reference: any , campaignReference: any):Observable<MediaBean>{
 
 searchWithReference(reference: any , campaignReference: any) {
   this._mediaBean = null;
-  this.getMediaByRef(reference,campaignReference).subscribe(
+  this.getMediaByRef(reference,campaignReference).subscribe( 
     response => {
      this._mediaBean = response;
     },)
@@ -231,6 +232,15 @@ genParams(params: object, httpParams = new HttpParams()): object {
 getImage(reference: string): Observable<any> {
   return this.http.get(environment.services.campaigns + '/image', { responseType: 'blob' });
 }
+
+//List of Terminals 
+listTerminals(campaign: Campaign): Observable<any[]> {
+  let headers = new HttpHeaders();
+  headers = headers.set('Content-Type', 'application/json; charset=utf-8');
+  const url = `${environment.services.campaigns}/terminalsByReference/?reference=${campaign.reference}`;
+  return this.http.get<any[]>(url, {headers});
+}
+
  suspendCampaign(deactivationReason :string , campaignBeanPrime: Campaign):Observable<any>{
   campaignBeanPrime.deactivationReason = deactivationReason;
   return this.http.post<any>(environment.services.campaigns+ '/suspendCampaign', campaignBeanPrime);
@@ -246,3 +256,4 @@ activeCampaign(campaignBeanPrime: Campaign):Observable<any>{
 }
 
 }
+

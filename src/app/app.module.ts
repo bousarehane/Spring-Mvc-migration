@@ -7,7 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler, Injectable } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router'; 
 import { ROUTES } from './app.routes';
 import { CampaignComponent } from './campaign/campaign.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -62,6 +62,7 @@ import { DetailMediaStep0Component } from './detail-media-step0/detail-media-ste
 import { HistoriqueCampComponent } from './historique-camp/historique-camp.component';
 import {TabMenuModule} from 'primeng/tabmenu';
 import { InfoGeneralComponent } from './info-general/info-general.component';
+import { TerminalDashboardComponent } from './terminal-dashboard/terminal-dashboard.component';
 import {DialogModule} from 'primeng/dialog';
 import { CampaignUpdateComponent } from './campaign-update/campaign-update.component';
 
@@ -106,7 +107,11 @@ export class GlobalErrorHandler implements ErrorHandler {
     DetailMediaStep0Component,
     HistoriqueCampComponent,
     InfoGeneralComponent,
+<<<<<<< HEAD
     CampaignUpdateComponent
+=======
+    TerminalDashboardComponent,
+>>>>>>> 1091f303e51970c7ae6aa6bb2ee03014d75cda28
   ],
   imports: [
     ModalModule.forRoot(),
