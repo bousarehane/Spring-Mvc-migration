@@ -88,8 +88,9 @@ export class CampaignDetailComponent implements OnInit , AfterViewInit{
       this.mediaBean = this.campaignService.mediaSharedData;
       this.campaign = this.campaignService.campaignSharedData;
       this.nodes = this.campaignService.nodes;
-      
-       //this.nextPage = "campaignDetails";
+      if(!this.nextPage){
+       this.nextPage = "campaignDetails";
+      }
       
       
     }else {

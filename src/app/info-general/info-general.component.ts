@@ -43,11 +43,15 @@ export class InfoGeneralComponent implements OnInit {
   nodeIcon : any ;
   nextPage : string;
   url : any;
-    constructor(private render:Renderer , private router: Router , private translateService: TranslateService ,   private campaignService: CampaignService) { }
+    constructor(private render:Renderer , private router: Router , 
+      private translateService: TranslateService ,  
+      private campaignService: CampaignService,
+      private route: ActivatedRoute) { }
   
     ngOnInit() {
      this.campaign= this.campaignService.campaignSharedData;
      this.nodes= this.campaignService.nodes;
+     this.confirmationMessage = this.campaignService.confirmationMessage;
 
       this.items = [
         {label: this.translateService.instant('campaignTabBar.tab_0.label'), icon: 'fa-bar-chart'},
@@ -58,6 +62,7 @@ export class InfoGeneralComponent implements OnInit {
     }
 
     activateMenu(){
+      this.campaignService.confirmationMessage =""; 
       this.activeItem =this.menu['activeItem'];
       if(this.activeItem.label === this.translateService.instant('campaignTabBar.tab_0.label')){
         this.campaignService.campaignSharedData = this.campaign;
@@ -131,5 +136,29 @@ export class InfoGeneralComponent implements OnInit {
       },
       err => {
       })
+    }
+
+ /**
+  * forward to update campaign
+  * doUpdateCampaign
+  */
+    doUpdateCampaign(){
+      this.router.navigate(['/updateCampaign'],
+      {queryParams: {reference: this.campaign.reference}});
+    }
+
+    /**
+     * doAddMedia
+     */
+    doAddMedia(){
+      this.campaignService.mySharedData = this.campaign;
+      this.campaignService.forwardToDetailMedia = "detail";
+      this.router.navigate(['/addMedia']);
+    }
+    /**
+     * doAssignEditTerminal
+     */
+    doAssignEditTerminal(){
+
     }
   }

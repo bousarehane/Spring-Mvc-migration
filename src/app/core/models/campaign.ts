@@ -11,6 +11,8 @@ import { AdministrableObject } from './administrable-object';
 import { CampaignLevel } from './campaign-level';
 import { MediaForCampaign } from './media-for-campaign';
 import { CampaignTree } from './campaignTree';
+import { MediaBean } from './MediaBean';
+
 
 
 export type CampaignStatus = 'AWAITING_ACTIVATION' | 'ACTIVE' | 'SUSPENDED' | 'CLOSED';
@@ -64,5 +66,6 @@ export class Campaign extends AdministrableObject {
   lastUpdatedDate:Date;
   playlistLocation:string;
   deactivationReason?: string;
+  medias?: Array<MediaBean>;
 }
 

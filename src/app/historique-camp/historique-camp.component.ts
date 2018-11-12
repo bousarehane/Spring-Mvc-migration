@@ -22,7 +22,8 @@ export class HistoriqueCampComponent implements OnInit {
   @ViewChild('menuItems') menu: MenuItem[];
   historique:string;
    
-    constructor(private render:Renderer , private router: Router , private translateService: TranslateService) { }
+    constructor(private render:Renderer , private router: Router , 
+      private campaignService: CampaignService ,private translateService: TranslateService) { }
   
     ngOnInit() {
       this.historique ="hicham";
@@ -35,6 +36,7 @@ export class HistoriqueCampComponent implements OnInit {
     }
 
     activateMenu(){
+      this.campaignService.confirmationMessage =""; 
       this.activeItem =this.menu['activeItem'];
       if(this.activeItem.label === this.translateService.instant('campaignTabBar.tab_0.label')){
         this.router.navigate(['/detailCampaign']); 

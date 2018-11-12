@@ -122,17 +122,7 @@ export class CampaignFormComponent implements OnInit , AfterViewInit {
           },
           () => { this.log.debug('Creat campaign Completed'); }
         );
-      } else {
-        this.campaignService.updateCampaign(this.campaign , this.campaign.id)
-          .subscribe(
-          (camp: Campaign) => {
-          },
-          errors => {
-            this.handleCampaignSaveErrors(form, errors);
-          }
-          );
       }
-      
     }
   }
 

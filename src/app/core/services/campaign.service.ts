@@ -48,6 +48,7 @@ export class CampaignService {
   referenceCampaign:string;
   referenceMedia:string;
   mode:string;
+  forwardToDetailMedia:string;
   nodes:CampaignTreeNode[];
   get mediaBean(): MediaBean {
     return this._mediaBean;
@@ -103,8 +104,9 @@ export class CampaignService {
     return this.http.post<any>(environment.services.campaigns + '/createCampaigns/', campaigns); 
   }
 
-  updateCampaign(campaign: Campaign, campaignId: string) {
-    return this.http.put<any>(`${environment.services.campaigns}/${campaignId}`, campaign);
+  updateCampaign(campaign: Campaign):Observable<Campaign> {
+    //return this.http.put<any>(`${environment.services.campaigns}/${campaignId}`, campaign);
+    return this.http.post<Campaign>(environment.services.campaigns + '/updateCampaign/', campaign); 
   }
 
   deleteCampaign(campaignId: string) {

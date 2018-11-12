@@ -52,16 +52,19 @@
             
         <div class="row bordered inner">
             <div class="col-md-12 col-form-actions">
-                <button type="button" translate  class="btn btn-default float-right" (click)="doClear()">
+                <button type="button" translate  class="btn btn-default float-right" (click)="doUpdateCampaign()">
                     <em aria-hidden="true" class="icon-ico_close" title="{{'button.update' | translate}}"> </em>button.update</button>
 
-                <button type="button" translate  class="btn btn-default float-right" (click)="doClear()">
+                <button type="button" translate  class="btn btn-default float-right" (click)="doAddMedia()">
                         <em aria-hidden="true" class="icon-ico_close" title="{{'button.addMedia' | translate}}"> </em>button.addMedia</button>
                 
                 <button type="button" translate  class="btn btn-default float-right" (click)="doClear()">
                         <em aria-hidden="true" class="icon-ico_close" title="{{'button.assignEditTerminal' | translate}}"> </em>button.assignEditTerminal</button>
     
             </div>
+        </div>
+        <div *ngIf="confirmationMessage"  class="vasConfirmationMessage">
+            <span title="{{confirmationMessage}}">{{confirmationMessage}}</span>  
         </div>
         <form #detailForm="ngForm" (submit)="doSave(detailForm)">
             <div class="container-fluid">

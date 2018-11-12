@@ -21,6 +21,7 @@ import { environment } from '../../environments/environment.prod';
 import { ValidationService } from '../../app/core/services/validation.service';
 import { InputValidationComponent } from '../input-validation/input-validation.component';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import * as VasConstants from '../core/globals/VasConstants';
 
 @Component({
   selector: 'app-campaign-update',
@@ -29,6 +30,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class CampaignUpdateComponent implements OnInit , AfterViewInit {
   campaign: Campaign;
+  campaignTow: Campaign;
   isDisplayPopup: boolean;
   campaignTypeList: SelectItem[];
   typeListElements: Array<string>;
@@ -36,6 +38,7 @@ export class CampaignUpdateComponent implements OnInit , AfterViewInit {
   levelListElements: Array<any>;
   advertisingCategoryList: SelectItem[];
   advertisingCatListElements: Array<any>;
+  refrenceCampaign: string;
 
 
   // Référence de la vue du modal
@@ -63,13 +66,24 @@ export class CampaignUpdateComponent implements OnInit , AfterViewInit {
     private translateService: TranslateService,
     private modalService: NgbModal,
 
+    private route: ActivatedRoute,
+
     private log: NGXLogger) {
     this.campaign = <Campaign>{};
-    this.initcampaignLevelList();
+    this.campaignTow = <Campaign>{};
+    
+  
     this.isDisplayPopup = false;
   }
 
   ngOnInit() {
+    this.route
+    .queryParams
+    .subscribe(params => {
+        this.refrenceCampaign = params['reference'];
+    });
+    this.initcampaignLevelList();
+    this.getCampaignByReference(this.refrenceCampaign);
     this.isDisplayPopup = false;
   }
   ngAfterViewInit(): void {
@@ -96,7 +110,22 @@ export class CampaignUpdateComponent implements OnInit , AfterViewInit {
     } else {
       // update
         let campaignIsSaved: boolean = false;
-        this.campaignService.updateCampaign(this.campaign , this.campaign.id).subscribe(
+        this.campaignTow.name = this.campaign.name;
+        this.campaignTow.reference = this.campaign.reference;
+        this.campaignTow.comment = this.campaign.comment;
+        this.campaignTow.id = this.campaign.id;
+        this.campaignTow.type  = this.campaign.type;
+        this.campaignTow.level = this.campaign.level;
+        this.campaignTow.organizationName = this.campaign.organizationName;
+        this.campaignTow.defaultCampaign = this.campaign.defaultCampaign;
+        this.campaignTow.activationDate = this.campaign.activationDate;
+        this.campaignTow.deactivationDate = this.campaign.deactivationDate;
+        this.campaignTow.status = this.campaign.status;
+        this.campaignTow.advertisingCategoryCode = this.campaign.advertisingCategoryCode;
+        this.campaignTow.terminalAmount = this.campaign.terminalAmount;
+
+
+        this.campaignService.updateCampaign(this.campaignTow).subscribe(
           (camp: Campaign) => {
             if(camp.displayPopup){
               this.modalRef = this.modalService.open(this.modalMerchantReference);
@@ -210,13 +239,42 @@ export class CampaignUpdateComponent implements OnInit , AfterViewInit {
       })
     
   }
-
-  gotoCampaignDetail() {
-    this.campaignService.mySharedData = this.campaign;
-    this.campaignService.confirmationMessage = 'The campaign "'+this.campaign.name+'" has been created successfully'
-    this.campaignService.forwardToPageMessage="campaignDetailsStep0";
-    this.campaignService.mode="0";
-    this.router.navigate(['/detailCampaign']);
+/**
+ * gotoCampaignDetail
+ */
+gotoCampaignDetail() {
+    this.campaignService.campaignSharedData = this.campaign;
+    this.campaignService.confirmationMessage = 'La campagne "'+this.campaign.name+'" a été mise à jour'
+    this.campaignService.forwardToPageMessage="campaignDetails";
+    this.campaignService.mode="1";
+    this.router.navigate(['/infoGeneralCmp']); 
+    
   }
 
+/**
+ * getCampaignByReference
+ * @param campReferance 
+ */
+  getCampaignByReference(campReferance: string){
+    this.campaignService.getCmpaignByRef(campReferance).subscribe(
+      response => {
+       this.campaign = response;
+
+       if (VasConstants.CAMPAIGN_TYPE_EXTERNAL === this.campaign.type)
+       {
+         this.campaignLevelList = this.campaignLevelList.filter(item => item.value !== VasConstants.CAMPAIGN_LEVEL_2);
+         this.campaignLevelList = this.campaignLevelList.filter(item => item.value !== VasConstants.CAMPAIGN_LEVEL_3);
+       }
+       else if (VasConstants.CAMPAIGN_TYPE_INTERNAL === this.campaign.type)
+       {
+         this.campaignLevelList = this.campaignLevelList.filter(item => item.value !== VasConstants.CAMPAIGN_LEVEL_1);
+       }
+
+       this.campaign.displayMerchantReference = (VasConstants.CAMPAIGN_TYPE_INTERNAL === this.campaign.type);
+       this.campaign.displayDefaultCampaign = (VasConstants.CAMPAIGN_TYPE_EXTERNAL === this.campaign.type);
+      },
+      err => {
+        this.log.error(err);
+      })
+  }
 }
