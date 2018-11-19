@@ -58,7 +58,7 @@
                 <button type="button" translate  class="btn btn-default float-right" (click)="doAddMedia()">
                         <em aria-hidden="true" class="icon-ico_close" title="{{'button.addMedia' | translate}}"> </em>button.addMedia</button>
                 
-                <button type="button" translate  class="btn btn-default float-right" (click)="doClear()">
+                <button type="button" translate  class="btn btn-default float-right" (click)="doAssignEditTerminal()">
                         <em aria-hidden="true" class="icon-ico_close" title="{{'button.assignEditTerminal' | translate}}"> </em>button.assignEditTerminal</button>
     
             </div>
@@ -167,6 +167,16 @@
                   <button type="button" translate  class="btn btn-default float-right" (click)="doClear()">
                           <em aria-hidden="true" class="icon-ico_close" title="{{'CANCEL' | translate}}"> </em>CANCEL</button>
               </div>
+
+              <p-dialog header="Quitter une page" [(visible)]="displayCancelPopup" [width]="300">
+                <span>
+                    Etes-vous sûr de vouloir quitter la page "Détails de la campagne" ?
+                </span>
+                <p-footer>
+                    <button type="button" pButton icon="pi pi-check" (click)="onActionFromLeaveDashboredButton()" label="Oui"></button>
+                    <button type="button" pButton icon="pi pi-close" (click)="displayCancelPopup=false" label="Non" class="ui-button-secondary"></button>
+                </p-footer>
+            </p-dialog>
           </div>
             </div>
         </form>

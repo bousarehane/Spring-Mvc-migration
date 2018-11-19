@@ -50,6 +50,7 @@ export class CampaignFormComponent implements OnInit , AfterViewInit {
 
    private modalRef: NgbModalRef;
    
+   private modalRefClose: NgbModalRef;
 
 
   constructor(
@@ -137,7 +138,8 @@ export class CampaignFormComponent implements OnInit , AfterViewInit {
   }
 
   doClear() {
-      this.modalService.open(this.modelConfirmationClose).result.then((result) => {
+      this.modalRefClose = this.modalService.open(this.modelConfirmationClose);
+      this.modalRefClose.result.then((result) => {
       }, (reason) => {
       });
   }
@@ -241,7 +243,10 @@ export class CampaignFormComponent implements OnInit , AfterViewInit {
       });
 
   }
-
+/**
+ * goToNo
+ * @param event 
+ */
   goToNo(event){
     this.campaignService.goToNoMerchantPopup().subscribe(
       response => {
@@ -261,4 +266,8 @@ export class CampaignFormComponent implements OnInit , AfterViewInit {
     this.router.navigate(['/detailCampaign']);
   }
 
+  clickOnYes(){
+    this.modalRefClose.close();
+    this.router.navigate(['/searchCampaign']); 
+  }
 }

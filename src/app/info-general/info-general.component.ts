@@ -43,6 +43,7 @@ export class InfoGeneralComponent implements OnInit {
   nodeIcon : any ;
   nextPage : string;
   url : any;
+  displayCancelPopup: boolean = false;
     constructor(private render:Renderer , private router: Router , 
       private translateService: TranslateService ,  
       private campaignService: CampaignService,
@@ -66,7 +67,7 @@ export class InfoGeneralComponent implements OnInit {
       this.activeItem =this.menu['activeItem'];
       if(this.activeItem.label === this.translateService.instant('campaignTabBar.tab_0.label')){
         this.campaignService.campaignSharedData = this.campaign;
-        //this.campaignService.forwardToPageMessage = "campaignDetails";
+        this.campaignService.forwardToPageMessage = "campaignDetails";
         this.router.navigate(['/detailCampaign']); 
       } else if(this.activeItem.label === this.translateService.instant('campaignTabBar.historic.label')){
         this.router.navigate(['/historiqueCmp']); 
@@ -74,9 +75,6 @@ export class InfoGeneralComponent implements OnInit {
         this.router.navigate(['/infoGeneralCmp']); 
       }
    }
-    doClear() {
-   }
-
 
    constractTypeFromValue(type : string){
     if("CAMPAIGN" === type){
@@ -160,5 +158,19 @@ export class InfoGeneralComponent implements OnInit {
      */
     doAssignEditTerminal(){
 
+    }
+
+    /**
+     * doClear()
+     */
+    doClear() {
+      this.displayCancelPopup = true;
+    }
+  /**
+   * onActionFromLeaveDashboredButton()
+   */
+    onActionFromLeaveDashboredButton(){
+      this.router.navigate(['/searchCampaign']); 
+      this.displayCancelPopup = false;
     }
   }

@@ -43,6 +43,7 @@ export class AddMediaComponent implements OnInit {
   currentStepIndex:number;
   currentFileUpload: File;
   @ViewChild('addMediaForm') addMediaForm: NgForm;
+  displayCancelPopup: boolean = false;
   nodes: CampaignTreeNode[];
   
   constructor(private campaignService: CampaignService , private logService: LogService , 
@@ -175,5 +176,19 @@ export class AddMediaComponent implements OnInit {
       })
      
   }
+
+   /**
+     * doClear()
+     */
+    doClear() {
+      this.displayCancelPopup = true;
+    }
+  /**
+   * onActionFromLeaveDashboredButton()
+   */
+    onActionFromLeaveDashboredButton(){
+      this.router.navigate(['/searchCampaign']); 
+      this.displayCancelPopup = false;
+    }
 
 }

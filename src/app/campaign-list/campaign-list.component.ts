@@ -229,7 +229,7 @@ export class CampaignListComponent implements OnInit, AfterViewInit, AfterViewCh
     detail:event.data.name + ' - ' + event.data.language});
 
     this.campaignService.referenceCampaign = event.data.campaignRef;
-    this.campaignService.mode="1";
+    this.campaignService.mode="3";
     this.router.navigate(['/detailCampaign']);
     
 }
