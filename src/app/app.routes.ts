@@ -14,6 +14,7 @@ import { DetailMediaComponent } from './detail-media/detail-media.component';
 import { AddMediaComponent } from './add-media/add-media.component';
 import { HistoriqueCampComponent } from './historique-camp/historique-camp.component';
 import { InfoGeneralComponent } from './info-general/info-general.component';
+import { CampaignUpdateComponent } from './campaign-update/campaign-update.component';
 
 import { Routes } from '@angular/router';
 
@@ -29,6 +30,7 @@ export const ROUTES: Routes = [
     { path: 'addMedia', component: AddMediaComponent },
     { path: 'historiqueCmp', component: HistoriqueCampComponent },
     { path: 'infoGeneralCmp', component: InfoGeneralComponent },
+    { path: 'updateCampaign', component: CampaignUpdateComponent },
     
 ];
 

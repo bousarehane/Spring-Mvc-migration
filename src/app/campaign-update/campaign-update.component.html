@@ -1,6 +1,6 @@
 
 <div class="panel_b">
-    <h2 translate>CREATE CAMPAIGN</h2>
+    <h2 translate>UPDATE CAMPAIGN</h2>
       <div class="panel_body_b" >	
           <form #editForm="ngForm" (submit)="doSave(editForm)">
 
@@ -17,16 +17,16 @@
                           <label translate>NAME_OF_CAMPAIGN_</label>
                       </div>
                       <div class="col-md-7">
-                          <input pInputText type="text" name="name" [(ngModel)]="campaign.name" #namee="ngModel"  required minlength="5">
+                          <span title="{{campaign.name}}">{{campaign.name}}</span>          
+                      </div>
+                  </div>
 
-                          <div *ngIf="(namee.dirty || editForm.submitted) && namee.invalid && namee.errors.required" class="ui-message ui-messages-error">
-                              <div *ngIf="namee.errors.required" translate>
-                                  ERROR_FORM_FIELD_NAME_MANDATORY
-                              </div>
-                          </div>
-                          <app-input-validation [control]="namee" [custom]="validateField1"
-                          [errDef]="{ custom:    'Name must be diferent from sysa',
-                                      minlength: 'The name should be at least 5 characteres'}" ></app-input-validation>             
+                  <div class="row padding-form-field">
+                      <div class="col-md-5">
+                          <label translate>Référence de la campagne</label>
+                      </div>
+                      <div class="col-md-7">
+                          <span title="{{campaign.reference}}">{{campaign.reference}}</span>
                       </div>
                   </div>
 
@@ -34,16 +34,8 @@
                       <div class="col-md-5">
                           <label translate>TYPE_</label>
                       </div>
-                      <div class="col-md-7">
-
-                              <p-dropdown required [options]="campaignTypeList" [(ngModel)]="campaign.type" placeholder="{{ 'CAMPAIGN_TYPE_SELECT_PLACEHOLDER' | translate }}"
-                              name="type" [style]="{'width':'50%'}" #type="ngModel" (ngModelChange)="onChangeType(editForm)"></p-dropdown>
-
-                            <div *ngIf="(type.dirty || editForm.submitted) && type.invalid" class="ui-message ui-messages-error">
-                                <div *ngIf="type.errors.required" translate>
-                                    ERROR_FORM_FIELD_TYPE_MANDATORY 
-                                </div>
-                            </div>
+                    <div class="col-md-7">
+                          <span title="{{campaign.type}}">{{campaign.type}}</span>
                     </div>   
                   </div>
 
@@ -61,8 +53,6 @@
                           </div>           
                       </div>
                   </div>
-
-                  
 
                   <div class="row padding-form-field">
                       <div class="col-md-5">
@@ -109,20 +99,22 @@
                       <label  translate>ADVERTISING_CATEGORY</label>
                   </div>
                   <div class="col-md-7">
-                      <p-dropdown required [options]="advertisingCategoryList" [(ngModel)]="campaign.advertisingCategoryCode" placeholder="{{ 'CAMPAIGN_ADVETRISING_SELECT_PLACEHOLDER' | translate }}"
-                      name="advertising" [style]="{'width':'50%'}" #advertising="ngModel"></p-dropdown>
-
-                    <div *ngIf="(advertising.dirty || editForm.submitted) && advertising.invalid" class="ui-message ui-messages-error">
-                        <div *ngIf="advertising.errors.required" translate>
-                            ERROR_FORM_FIELD_ADVETRISING
-                        </div>
-                    </div>
+                      <span title="{{campaign.advertisingCategoryCode}}">{{campaign.advertisingCategoryCode}}</span>
               </div> 
            </div>
+           
+           <div class="row padding-form-field">
+              <div class="col-md-5">
+                  <label translate>Etat:</label>
+              </div>
+              <div class="col-md-7">
+                  <span title="{{campaign.status}}">{{campaign.status}}</span>
+              </div>
+          </div>
 
            <div class="row top-buffer">
               <div class="col-md-12">
-                  <h1 class="title float-left">Organization Details</h1>
+                  <h1 class="title float-left">Détails sur l'organisation</h1>
               </div>
           </div>
 
@@ -131,13 +123,7 @@
                   <label for="orgName" translate>ORGANISATION_NAME</label>
               </div>
               <div class="col-md-7">
-                  <input pInputText type="text" name="orgName" [(ngModel)]="campaign.organizationName" #orgName="ngModel"  required>
-
-                  <div *ngIf="(orgName.dirty || editForm.submitted) && orgName.invalid && orgName.errors.required" class="ui-message ui-messages-error">
-                      <div *ngIf="orgName.errors.required" translate>
-                          ERROR_FORM_FIELD_ORGANISATION_NAME
-                      </div>
-                  </div>       
+                  <span title="{{campaign.organizationName}}">{{campaign.organizationName}}</span>
               </div>
           </div>
 
@@ -155,19 +141,17 @@
                   <label for="defaultCampaign" translate>DEFAULT_CAMPAIGN</label>
               </div>
               <div class="col-md-7">
-                  <input type="checkbox" id="defaultCampaign" name="defaultCampaign" [(ngModel)]="campaign.defaultCampaign" (ngModelChange)="onChangeInput($event)">
+                  <span title="{{campaign.defaultCampaignValue}}">{{campaign.defaultCampaignValue}}</span>
               </div>
           </div>
-          
-
                   <div class="row">
                       <div class="col-md-12 col-form-actions">
                           
                           <button type="submit" translate class="btn btn-primary float-right" *ngIf="! readOnly" >
-                              <em aria-hidden="true" class="icon-ico_save" title="{{'SAVE_CAMPAIGN' | translate}}"> </em>SAVE</button>
+                              <em aria-hidden="true" class="icon-ico_save" title="{{'button.update' | translate}}"> </em>button.update</button>
 
                           <button type="button" translate  class="btn btn-default float-right" (click)="doClear()">
-                                  <em aria-hidden="true" class="icon-ico_close" title="{{'CLEAR' | translate}}"> </em>CLEAR</button>
+                                  <em aria-hidden="true" class="icon-ico_close" title="{{'CANCEL' | translate}}"> </em>CANCEL</button>
                           
                       </div>
                   </div>
@@ -181,7 +165,7 @@
                   </div>
                   <div class="modal-body" [innerHTML]="'CONFIRM_CANCEL_ADD_CAMPAIGN' | translate"></div>
                   <div class="modal-footer">
-                      <button type="button" class="btn btn-primary" (click)="clickOnYes()" translate>DIALOGS_YES</button>
+                      <button type="button" class="btn btn-primary" (click)="c()" translate>DIALOGS_YES</button>
                       <button type="button" class="btn btn-secondary" (click)="d()" translate>DIALOGS_NO</button>
                   </div>
               

@@ -75,7 +75,7 @@ export class CampaignDetailComponent implements OnInit , AfterViewInit{
     if(this.campaign){
       this.campReferance = this.campaign.reference;
     }
-    if(this.campaignService.referenceCampaign){
+    if(this.campaignService.referenceCampaign && !this.campReferance){
       this.campReferance = this.campaignService.referenceCampaign;
     }
    // this.campReferance = this.route.snapshot.params['reference'];
@@ -89,8 +89,9 @@ export class CampaignDetailComponent implements OnInit , AfterViewInit{
       this.mediaBean = this.campaignService.mediaSharedData;
       this.campaign = this.campaignService.campaignSharedData;
       this.nodes = this.campaignService.nodes;
-      
-       //this.nextPage = "campaignDetails";
+      if(!this.nextPage){
+       this.nextPage = "campaignDetails";
+      }
       
       
     }else {
@@ -101,7 +102,9 @@ export class CampaignDetailComponent implements OnInit , AfterViewInit{
          if(this.campaignService.referenceCampaign){
          this.campaignService.campaignSharedData = this.campaign;
          this.campaignService.nodes = this.nodes;
+         if(!this.nextPage){
          this.nextPage = "campaignDetails";
+         }
          }
         },
         err => {

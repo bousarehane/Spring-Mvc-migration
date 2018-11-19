@@ -65,6 +65,7 @@ import { InfoGeneralComponent } from './info-general/info-general.component';
 import { TerminalDashboardComponent } from './terminal-dashboard/terminal-dashboard.component';
 import {DialogModule} from 'primeng/dialog';
 import { HistoricMediaComponent } from './historic-media/historic-media.component';
+import { CampaignUpdateComponent } from './campaign-update/campaign-update.component';
 
 
 // AoT requires an exported function for factories
@@ -107,6 +108,7 @@ export class GlobalErrorHandler implements ErrorHandler {
     DetailMediaStep0Component,
     HistoriqueCampComponent,
     InfoGeneralComponent,
+    CampaignUpdateComponent,
     TerminalDashboardComponent,
     HistoricMediaComponent,
   ],

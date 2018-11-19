@@ -43,6 +43,7 @@ export class AddMediaComponent implements OnInit {
   currentStepIndex:number;
   currentFileUpload: File;
   @ViewChild('addMediaForm') addMediaForm: NgForm;
+  displayCancelPopup: boolean = false;
   nodes: CampaignTreeNode[];
   
   constructor(private campaignService: CampaignService , private logService: LogService , 
@@ -115,9 +116,11 @@ export class AddMediaComponent implements OnInit {
     .subscribe(
     (media: MediaBean) => {
      this.mediaBean = media;
-
-      this.gotoCampaignDetail();
-  
+   if(this.campaignService.forwardToDetailMedia === "detail"){
+    this.gotoCampaignDetailPrime();
+   }else {
+    this.gotoCampaignDetail();
+   }
     },
     errors => {
       this.handleMediaSaveErrors(form, errors);
@@ -154,5 +157,38 @@ export class AddMediaComponent implements OnInit {
       })
      
   }
+
+  gotoCampaignDetailPrime() {
+    this.campaignService.campaignSharedData =   this.campaign;
+    this.campaignService.mediaSharedData =   this.mediaBean;
+    this.campaignService.confirmationMessage = 'The media "'+this.mediaBean.name+'" has been created successfully';
+    this.campaignService.forwardToPageMessage="mediaDetails";
+    this.campaignService.mode="1";
+    this.campaignService.getCmpaignByRefMedia(this.campaign.reference).subscribe(
+      response => {
+       this.campaign = response;
+       this.nodes= this.campaign.campaignTree.nodes;
+       this.campaignService.nodes =  this.nodes;
+       this.router.navigate(['/detailCampaign']);
+      },
+      err => {
+        this.log.error(err);
+      })
+     
+  }
+
+   /**
+     * doClear()
+     */
+    doClear() {
+      this.displayCancelPopup = true;
+    }
+  /**
+   * onActionFromLeaveDashboredButton()
+   */
+    onActionFromLeaveDashboredButton(){
+      this.router.navigate(['/searchCampaign']); 
+      this.displayCancelPopup = false;
+    }
 
 }

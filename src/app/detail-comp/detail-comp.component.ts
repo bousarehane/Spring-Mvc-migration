@@ -48,9 +48,13 @@ export class DetailCompComponent implements OnInit {
       {label: this.translateService.instant('campaignTabBar.historic.label'), icon: 'fa-calendar'}, 
   ];
   this.activeItem = this.items[0];
-  
+
+  if(this.campaign === null || this.campaign  === undefined){
+    this.campaign = this.campaignService.campaignSharedData;
+  }
   }
   activateMenu(){
+    this.campaignService.confirmationMessage ="";
     this.activeItem =this.menu['activeItem'];
     if(this.activeItem.label === this.translateService.instant('campaignTabBar.tab_0.label')){
       this.campaignService.campaignSharedData = this.campaign;

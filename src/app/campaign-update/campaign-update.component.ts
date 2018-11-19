@@ -21,16 +21,16 @@ import { environment } from '../../environments/environment.prod';
 import { ValidationService } from '../../app/core/services/validation.service';
 import { InputValidationComponent } from '../input-validation/input-validation.component';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-
-
+import * as VasConstants from '../core/globals/VasConstants';
 
 @Component({
-  selector: 'app-campaign-form',
-  templateUrl: './campaign-form.component.html',
-  styleUrls: ['./campaign-form.component.css']
+  selector: 'app-campaign-update',
+  templateUrl: './campaign-update.component.html',
+  styleUrls: ['./campaign-update.component.css']
 })
-export class CampaignFormComponent implements OnInit , AfterViewInit {
+export class CampaignUpdateComponent implements OnInit , AfterViewInit {
   campaign: Campaign;
+  campaignTow: Campaign;
   isDisplayPopup: boolean;
   campaignTypeList: SelectItem[];
   typeListElements: Array<string>;
@@ -38,6 +38,7 @@ export class CampaignFormComponent implements OnInit , AfterViewInit {
   levelListElements: Array<any>;
   advertisingCategoryList: SelectItem[];
   advertisingCatListElements: Array<any>;
+  refrenceCampaign: string;
 
 
   // Référence de la vue du modal
@@ -50,7 +51,6 @@ export class CampaignFormComponent implements OnInit , AfterViewInit {
 
    private modalRef: NgbModalRef;
    
-   private modalRefClose: NgbModalRef;
 
 
   constructor(
@@ -66,44 +66,66 @@ export class CampaignFormComponent implements OnInit , AfterViewInit {
     private translateService: TranslateService,
     private modalService: NgbModal,
 
+    private route: ActivatedRoute,
+
     private log: NGXLogger) {
     this.campaign = <Campaign>{};
-    this.initcampaignTypeList();
-    this.initcampaignLevelList();
-    this.initAdvertisingCategory();
+    this.campaignTow = <Campaign>{};
+    
+  
     this.isDisplayPopup = false;
   }
 
   ngOnInit() {
+    this.route
+    .queryParams
+    .subscribe(params => {
+        this.refrenceCampaign = params['reference'];
+    });
+    this.initcampaignLevelList();
+    this.getCampaignByReference(this.refrenceCampaign);
     this.isDisplayPopup = false;
   }
   ngAfterViewInit(): void {
     
    }
   
-
-  validateField1(context: NgModel ): boolean {
-    if (context.control.value === 'sysa') {
-      return false;
-    }
-    return true;
-  }
-
+  /**
+   * control() de form
+   */
   private control(): boolean {
     if(this.editForm.invalid){
       return false;
     }
     return true;
   }
+  /**
+   * submit form after validation
+   * @param form 
+   */
  doSave(form: NgForm) {
     // controls
     if (!this.control()) {
       return;
     } else {
-      // creation
-      if (this.campaign.id == null || this.campaign.id === '') {
+      // update
         let campaignIsSaved: boolean = false;
-        this.campaignService.createCampaign(this.campaign).subscribe(
+        this.campaignTow.name = this.campaign.name;
+        this.campaignTow.reference = this.campaign.reference;
+        this.campaignTow.comment = this.campaign.comment;
+        this.campaignTow.id = this.campaign.id;
+        this.campaignTow.type  = this.campaign.type;
+        this.campaignTow.level = this.campaign.level;
+        this.campaignTow.organizationName = this.campaign.organizationName;
+        this.campaignTow.defaultCampaign = this.campaign.defaultCampaign;
+        this.campaignTow.activationDate = this.campaign.activationDate;
+        this.campaignTow.deactivationDate = this.campaign.deactivationDate;
+        this.campaignTow.status = this.campaign.status;
+        this.campaignTow.advertisingCategoryCode = this.campaign.advertisingCategoryCode;
+        this.campaignTow.terminalAmount = this.campaign.terminalAmount;
+
+
+        this.campaignService.updateCampaign(this.campaignTow).subscribe(
           (camp: Campaign) => {
             if(camp.displayPopup){
               this.modalRef = this.modalService.open(this.modalMerchantReference);
@@ -121,15 +143,17 @@ export class CampaignFormComponent implements OnInit , AfterViewInit {
           errors => {
             this.handleCampaignSaveErrors(form, errors);
           },
-          () => { this.log.debug('Creat campaign Completed'); }
+          () => { this.log.debug('update campaign Completed'); }
         );
-      }
     }
   }
 
-
+/**
+ * get all errors
+ * @param form 
+ * @param errors 
+ */
   handleCampaignSaveErrors(form, errors) {
-    //this.notifService.notifyErrorWithDetailFromApi('ERROR_SAVING_CAMPAIGN', errors);
     for (const entry of errors.error) {
       this.notifService.notifyErrorWithDetailFromApi(entry.message, errors); 
     }
@@ -137,29 +161,19 @@ export class CampaignFormComponent implements OnInit , AfterViewInit {
     this.log.error(errors);
   }
 
+/**
+ * return to dashbord page
+ */
   doClear() {
-      this.modalRefClose = this.modalService.open(this.modelConfirmationClose);
-      this.modalRefClose.result.then((result) => {
+      this.modalService.open(this.modelConfirmationClose).result.then((result) => {
       }, (reason) => {
       });
   }
   
-
-  private initcampaignTypeList() {
-    // initialiser this.campaign;
-    this.campaignTypeList = [];
-    this.campaignService.getCampaignType().subscribe(
-      response => {
-        this.typeListElements = response;
-        for (const entry of this.typeListElements) {
-          this.campaignTypeList.push({ label: entry, value: entry });
-        }
-      },
-      err => {
-        this.log.error(err);
-      })
-  }
-
+/**
+ * initcampaignLevelList
+ * get list of levels
+ */
   private initcampaignLevelList() {
     // initialiser this.campaign;
     this.campaignLevelList = [];
@@ -175,47 +189,10 @@ export class CampaignFormComponent implements OnInit , AfterViewInit {
       })
   }
 
-
-  private initAdvertisingCategory() {
-    // initialiser this.campaign;
-    this.advertisingCategoryList = [];
-    this.campaignService.getAdvertisingCategory().subscribe(
-      response => {
-        this.advertisingCatListElements = response;
-        for (const entry of this.advertisingCatListElements) {
-          this.advertisingCategoryList.push({ label: entry, value: entry });
-        }
-      },
-      err => {
-        this.log.error(err);
-      })
-  }
-
-  onChangeInput($event) {
-    
-  }
-
-  onChangeType(event) {
-    this.campaignService.changeTypeEvent(this.campaign).subscribe(
-      response => {
-        this.campaign.displayMerchantReference = response.displayMerchantReference;
-        this.campaign.displayDefaultCampaign = response.displayDefaultCampaign;
-        this.campaign.availableCampaignLevels =response.availableCampaignLevels;
-        if(response.merchantReference){
-          this.campaign.merchantReference =response.merchantReference;
-        }
-      if (this.campaign !== undefined && this.campaign.availableCampaignLevels != undefined && this.campaign.availableCampaignLevels.length > 0) {
-          this.campaignLevelList = [];
-        for (const entry of this.campaign.availableCampaignLevels) {
-          this.campaignLevelList.push({ label: entry, value: entry });
-        }
-      }
-      },
-      err => {
-        this.log.error(err);
-      })
-  }
-
+/**
+ * onChangeLevel
+ * @param event 
+ */
   onChangeLevel(event) {
     this.campaignService.changeLevelEvent(this.campaign).subscribe(
       response => {
@@ -230,6 +207,10 @@ export class CampaignFormComponent implements OnInit , AfterViewInit {
       })
   }
 
+  /**
+   * goToYes in popup
+   * @param event 
+   */
   goToYes(event){
     this.campaignService.goToYesMerchantPopup().subscribe(
       (camp: Campaign) => {
@@ -243,10 +224,11 @@ export class CampaignFormComponent implements OnInit , AfterViewInit {
       });
 
   }
-/**
- * goToNo
- * @param event 
- */
+
+  /**
+   * goToNo in popup
+   * @param event 
+   */
   goToNo(event){
     this.campaignService.goToNoMerchantPopup().subscribe(
       response => {
@@ -257,17 +239,42 @@ export class CampaignFormComponent implements OnInit , AfterViewInit {
       })
     
   }
-
-  gotoCampaignDetail() {
-    this.campaignService.mySharedData = this.campaign;
-    this.campaignService.confirmationMessage = 'The campaign "'+this.campaign.name+'" has been created successfully'
-    this.campaignService.forwardToPageMessage="campaignDetailsStep0";
-    this.campaignService.mode="0";
-    this.router.navigate(['/detailCampaign']);
+/**
+ * gotoCampaignDetail
+ */
+gotoCampaignDetail() {
+    this.campaignService.campaignSharedData = this.campaign;
+    this.campaignService.confirmationMessage = 'La campagne "'+this.campaign.name+'" a été mise à jour'
+    this.campaignService.forwardToPageMessage="campaignDetails";
+    this.campaignService.mode="1";
+    this.router.navigate(['/infoGeneralCmp']); 
+    
   }
 
-  clickOnYes(){
-    this.modalRefClose.close();
-    this.router.navigate(['/searchCampaign']); 
+/**
+ * getCampaignByReference
+ * @param campReferance 
+ */
+  getCampaignByReference(campReferance: string){
+    this.campaignService.getCmpaignByRef(campReferance).subscribe(
+      response => {
+       this.campaign = response;
+
+       if (VasConstants.CAMPAIGN_TYPE_EXTERNAL === this.campaign.type)
+       {
+         this.campaignLevelList = this.campaignLevelList.filter(item => item.value !== VasConstants.CAMPAIGN_LEVEL_2);
+         this.campaignLevelList = this.campaignLevelList.filter(item => item.value !== VasConstants.CAMPAIGN_LEVEL_3);
+       }
+       else if (VasConstants.CAMPAIGN_TYPE_INTERNAL === this.campaign.type)
+       {
+         this.campaignLevelList = this.campaignLevelList.filter(item => item.value !== VasConstants.CAMPAIGN_LEVEL_1);
+       }
+
+       this.campaign.displayMerchantReference = (VasConstants.CAMPAIGN_TYPE_INTERNAL === this.campaign.type);
+       this.campaign.displayDefaultCampaign = (VasConstants.CAMPAIGN_TYPE_EXTERNAL === this.campaign.type);
+      },
+      err => {
+        this.log.error(err);
+      })
   }
 }

@@ -43,14 +43,20 @@ export class InfoGeneralComponent implements OnInit {
   nodeIcon : any ;
   nextPage : string;
   url : any;
+ displayCancelPopup: boolean = false;
   filteredHistoric:boolean= false;
   referenceHistoricMedia: string; 
 
-    constructor(private render:Renderer , private router: Router , private translateService: TranslateService ,   private campaignService: CampaignService) { }
+   
+    constructor(private render:Renderer , private router: Router , 
+      private translateService: TranslateService ,  
+      private campaignService: CampaignService,
+      private route: ActivatedRoute) { }
   
     ngOnInit() {
      this.campaign= this.campaignService.campaignSharedData;
      this.nodes= this.campaignService.nodes;
+     this.confirmationMessage = this.campaignService.confirmationMessage;
      this.filteredHistoric= this.campaignService.filteredHistoricShared;
      this.referenceHistoricMedia= this.campaignService.referenceMedia;
       this.items = [
@@ -62,10 +68,11 @@ export class InfoGeneralComponent implements OnInit {
     }
 
     activateMenu(){
+      this.campaignService.confirmationMessage =""; 
       this.activeItem =this.menu['activeItem'];
       if(this.activeItem.label === this.translateService.instant('campaignTabBar.tab_0.label')){
         this.campaignService.campaignSharedData = this.campaign;
-        //this.campaignService.forwardToPageMessage = "campaignDetails";
+        this.campaignService.forwardToPageMessage = "campaignDetails";
         this.router.navigate(['/detailCampaign']); 
       } else if(this.activeItem.label === this.translateService.instant('campaignTabBar.historic.label')){
         this.router.navigate(['/historiqueCmp']); 
@@ -73,9 +80,6 @@ export class InfoGeneralComponent implements OnInit {
         this.router.navigate(['/infoGeneralCmp']); 
       }
    }
-    doClear() {
-   }
-
 
    constractTypeFromValue(type : string){
     if("CAMPAIGN" === type){
@@ -139,5 +143,44 @@ export class InfoGeneralComponent implements OnInit {
       },
       err => {
       })
+}
+
+ /**
+  * forward to update campaign
+  * doUpdateCampaign
+  */
+    doUpdateCampaign(){
+      this.router.navigate(['/updateCampaign'],
+      {queryParams: {reference: this.campaign.reference}});
+    }
+
+    /**
+     * doAddMedia
+     */
+    doAddMedia(){
+      this.campaignService.mySharedData = this.campaign;
+      this.campaignService.forwardToDetailMedia = "detail";
+      this.router.navigate(['/addMedia']);
+    }
+    /**
+     * doAssignEditTerminal
+     */
+    doAssignEditTerminal(){
+
+    }
+
+    /**
+     * doClear()
+     */
+    doClear() {
+      this.displayCancelPopup = true;
+    }
+  /**
+   * onActionFromLeaveDashboredButton()
+   */
+    onActionFromLeaveDashboredButton(){
+      this.router.navigate(['/searchCampaign']); 
+      this.displayCancelPopup = false;
     }
   }
+  
