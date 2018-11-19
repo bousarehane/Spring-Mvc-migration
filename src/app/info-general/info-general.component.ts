@@ -43,12 +43,16 @@ export class InfoGeneralComponent implements OnInit {
   nodeIcon : any ;
   nextPage : string;
   url : any;
+  filteredHistoric:boolean= false;
+  referenceHistoricMedia: string; 
+
     constructor(private render:Renderer , private router: Router , private translateService: TranslateService ,   private campaignService: CampaignService) { }
   
     ngOnInit() {
      this.campaign= this.campaignService.campaignSharedData;
      this.nodes= this.campaignService.nodes;
-
+     this.filteredHistoric= this.campaignService.filteredHistoricShared;
+     this.referenceHistoricMedia= this.campaignService.referenceMedia;
       this.items = [
         {label: this.translateService.instant('campaignTabBar.tab_0.label'), icon: 'fa-bar-chart'},
         {label: this.translateService.instant('campaignTabBar.tab_1.label'), icon: 'fa-bar-chart'},
@@ -96,6 +100,7 @@ export class InfoGeneralComponent implements OnInit {
 			} else {
         nextPage = "campaignDetails";
         this.campaignService.forwardToPageMessage = "campaignDetails";
+        this.filteredHistoric= false;
         this.router.navigate(['/detailCampaign']); 
 			}
 		} else if (this.constractTypeFromValue(type) === CampaignTreeNodeType.MEDIA) {
@@ -105,7 +110,8 @@ export class InfoGeneralComponent implements OnInit {
 			} else {
         this.getMediaFromReference(reference,parentReference,"mediaDetails");
         this.campaignService.forwardToPageMessage = "mediaDetails";
-				nextPage = "mediaDetails";
+        this.filteredHistoric= true;
+        nextPage = "mediaDetails";
 			}
 		} else if (this.constractTypeFromValue(type) === CampaignTreeNodeType.TERMINAL) {
 			if (this.campaignService.mode === guiVasMode.CREATION.toString()) {
@@ -115,7 +121,9 @@ export class InfoGeneralComponent implements OnInit {
 			}
 		}
     this.nextPage=nextPage;
-   
+    this.campaignService.filteredHistoricShared =   this.filteredHistoric;
+    this.campaignService.referenceMedia= reference;
+
 		return this.nextPage; 
 	}
  

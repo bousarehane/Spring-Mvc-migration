@@ -56,6 +56,7 @@ export class CampaignDetailComponent implements OnInit , AfterViewInit{
   nodes: CampaignTreeNode[];
 
   itemCampaign: CampaignTreeNode;
+  filteredHistoric:boolean= false;
   constructor(
     private campaignService: CampaignService,
     private log: NGXLogger,
@@ -133,13 +134,15 @@ export class CampaignDetailComponent implements OnInit , AfterViewInit{
 			if (this.campaignService.mode === guiVasMode.CREATION.toString()) {
 				nextPage = "campaignDetailsStep0";
 			} else {
-				nextPage = "campaignDetails";
+        this.filteredHistoric= false;
+        nextPage = "campaignDetails";
 			}
 		} else if (this.constractTypeFromValue(type) === CampaignTreeNodeType.MEDIA) {
 			if (this.campaignService.mode === guiVasMode.CREATION.toString()) {
         this.getMediaFromReference(reference,this.campReferance,"mediaDetailsStep0");
 				//nextPage = "mediaDetailsStep0";
 			} else {
+        this.filteredHistoric= true;
         this.getMediaFromReference(reference,this.campReferance,"mediaDetails"); 
 				//nextPage = "mediaDetails"; 
 			}
@@ -151,6 +154,7 @@ export class CampaignDetailComponent implements OnInit , AfterViewInit{
         //nextPage = "terminalDashboard";
 			}
 		}
+    this.campaignService.filteredHistoricShared =   this.filteredHistoric;
     this.nextPage=nextPage;
 		return this.nextPage; 
 	}
@@ -173,18 +177,16 @@ getMediaFromReference(reference : string, cmpreference : string , nextPage : str
 
 
 _getTerminals(nextPage: string) {   
-  this.terminals = [];
   this.campaignService.listTerminals(this.campaign).subscribe( 
     response => {
       this.terminalsListElements = response;
       this.nextPage = nextPage;
       return this.nextPage;
-    },
+    }, 
     err => {
       this.log.error(err);
     })
 }
-
       
 }
 

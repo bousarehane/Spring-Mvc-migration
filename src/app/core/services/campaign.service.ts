@@ -49,6 +49,8 @@ export class CampaignService {
   referenceMedia:string;
   mode:string;
   nodes:CampaignTreeNode[];
+  filteredHistoricShared:boolean;
+  // referenceHistoricMediaShared:string;
   get mediaBean(): MediaBean {
     return this._mediaBean;
 }
@@ -253,6 +255,27 @@ closeCampaign(deactivationReason :string , campaignBeanPrime: Campaign):Observab
 
 activeCampaign(campaignBeanPrime: Campaign):Observable<any>{
   return this.http.post<any>(environment.services.campaigns+ '/activeCampaign', campaignBeanPrime);
+}
+
+// listHistoric(reference: any, startDate: any, endDate: any): Observable<any[]> {
+//   let headers = new HttpHeaders();
+//   headers = headers.set('Content-Type', 'application/json; charset=utf-8');
+//   const url = `${environment.services.campaigns}/searchHistoric`;
+//   return this.http.post<any[]>(url, {reference : reference ,startDate : startDate , endDate : endDate } ,{headers});
+// }
+
+listHistoric(reference: any, startDate: any, endDate: any): Observable<any> {
+  let headers = new HttpHeaders();
+  headers = headers.set('Content-Type', 'application/json; charset=utf-8');
+  const url = `${environment.services.campaigns}/searchHistoric`;
+  return this.http.post<any>(url, {reference : reference ,startDate : startDate , endDate : endDate } ,{headers});
+}
+
+listHistoricMedia(reference: any, referenceMedia: any, startDate: any, endDate: any): Observable<any> {
+  let headers = new HttpHeaders();
+  headers = headers.set('Content-Type', 'application/json; charset=utf-8');
+  const url = `${environment.services.campaigns}/searchHistoricMedia`;
+  return this.http.post<any>(url, {reference : reference , referenceMedia : referenceMedia ,startDate : startDate , endDate : endDate } ,{headers});
 }
 
 }

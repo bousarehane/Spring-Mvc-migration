@@ -1,10 +1,232 @@
+<div class="panel_b mainPanel">
+    <h2 translate>My Campaign</h2>
+    <div class="panel_body_b">
+        <form #detailForm="ngForm" (submit)="doFind($event)">
+            <div class="container-fluid">
+                <div style="margin-top: 10px;margin-left: 20px;">
+                    <div class="row col-3" style="padding-left: 0; padding-right: 0;">
+                        <div id="campaignTreeView" class="bordered">
+                            <div id="campaignTreeViewHeader" class="row padding-left subtitle border-bottom">
+                                My Campaign
+                            </div>
+                            <div id="campaignTreeViewContent" style="margin-right:1px;white-space: nowrap; overflow: auto;"
+                                class="row inner t-zone">
+                                <ul>
+                                    <div *ngFor="let itemCampaign of nodes; let first = first; index as i"
+                                        [attr.data-index]="i">
 
+                                        <div *ngIf="itemCampaign.padding;else otherContent">
+                                            <div class="padding"></div>
+                                        </div>
+                                        <ng-template #otherContent>
+                                            <li [style]="itemCampaign.nodeLineStyle">
+                                                <img class="treeIcon" src="{{itemCampaign.nodeIcon}}" />
+
+                                                <div style="margin-left:19px;">
+                                                    <div *ngIf="itemCampaign.terminal;else otherContentPrime">
+                                                        <a href="" [routerLink]="['/detailCampaign']" (click)="getActionFromNodeLink(itemCampaign.type,nodes[0].reference,itemCampaign.reference)">
+                                                            Liste des terminaux</a>
+                                                    </div>
+                                                    <ng-template #otherContentPrime>
+                                                        <a href="" [routerLink]="['/infoGeneralCmp']" (click)="getActionFromNodeLink(itemCampaign.type,nodes[0].reference,itemCampaign.reference)">{{itemCampaign.name}}
+                                                            - {{itemCampaign.reference}}</a>
+                                                        <!--   <a href=""  [routerLink]="['reference', itemCampaign.reference, '/detailCampaign']" (click)="getActionFromNodeLink(itemCampaign.type,nodes[0].reference,itemCampaign.reference)">{{itemCampaign.name}} - {{itemCampaign.reference}}</a>!-->
+
+                                                    </ng-template>
+                                                </div>
+                                            </li>
+                                        </ng-template>
+                                    </div>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 <div class="panel_b">
     <h2 translate>historique de la campagne</h2>
-    <div class="panel_body_b" >	
-    <p-tabMenu #menuItems [model]="items" [activeItem]="activeItem" (click)="activateMenu()"></p-tabMenu><br/>
-    <span title="{{historique}}">{{historique}}</span>
-</div>
-</div>
-  
+    <div class="panel_body_b">
+        <p-tabMenu #menuItems [model]="items" [activeItem]="activeItem" (click)="activateMenu()"></p-tabMenu><br />
+        <form (submit)="searchHistoric(filteredHistoric,parentReference,referenceHistoricMedia)" #fromTo="ngForm">
+            <!-- <app-datetime required class="dflex ui-inputtext" #startDate name="startDate">
+            </app-datetime> -->
+            <!-- <app-datetime required class="dflex ui-inputtext" #endDate name="endDate">
+            </app-datetime> -->
 
+            <!-- <app-datetime required class="dflex ui-inputtext" #startDate name="startDate" [disabled]="readOnly" 
+                (ngModelChange)="onChangeInput($event)"></app-datetime>
+            <app-datetime required class="dflex ui-inputtext" #endDate name="endDate" [disabled]="readOnly"
+            (ngModelChange)="onChangeInput($event)"></app-datetime>    -->
+
+            <input type="date" #startDate class="" name="startDate">
+            <input type="date" #endDate class="" name="endDate">
+            <input type="hidden" #reference [value]="reference" name="reference">
+            <input type="hidden" #referenceMedia [value]="referenceMedia" name="referenceMedia">
+            <div class="col-md-12">
+                <button type="submit" class="btn btn-default float-right">Search</button>
+            </div>
+        </form>
+        <div *ngIf="filteredHistoric">
+            <h1>filteredHistoric : True</h1>
+        </div>
+        <div *ngIf="!filteredHistoric">
+            <h1>filteredHistoric : False</h1>
+        </div>
+        <div *ngIf="_filteredHistoric">
+            <h1>_filteredHistoric: True</h1>
+        </div>
+        <div *ngIf="!_filteredHistoric">
+            <h1>_filteredHistoric: False</h1>
+        </div>
+        <div>{{referenceHistoricMedia}}</div>
+        <!-- <div *ngIf="filteredHistoric"> -->
+            <p-dataTable *ngIf="!filteredHistoric && !_filteredHistoric && listHistoric" [value]="listHistoric.loggingCampaignAction" selectionMode="single"
+                (onRowSelect)="onRowSelect($event)">
+
+                <p-column header="" [style]="{'width':'15%'}" field="id">
+                    <ng-template let-campaign="rowData" pTemplate type="body">
+                        <span class="sizeText" title="{{campaign.mediaRef}}">{{campaign.updatedDate}}</span>
+                    </ng-template>
+                </p-column>
+
+                <p-column header="" [style]="{'width':'15%'}" field="id">
+                    <ng-template let-campaign="rowData" pTemplate type="body">
+                        <span class="sizeText" title="{{campaign.mediaRef}}">{{campaign.updatedBy}}</span>
+                    </ng-template>
+                </p-column>
+
+                <p-column header="" [style]="{'width':'15%'}" field="id">
+                    <ng-template let-campaign="rowData" pTemplate type="body">
+                        <span class="sizeText" title="{{campaign.mediaRef}}">{{campaign.status}}</span>
+                    </ng-template>
+                </p-column>
+
+                <p-column header="" [style]="{'width':'15%'}" field="id">
+                    <ng-template let-campaign="rowData" pTemplate type="body">
+                        <span class="sizeText" title="{{campaign.status}}">{{campaign.status}}</span>
+                    </ng-template>
+                </p-column>
+
+                <p-column header="" [style]="{'width':'15%'}" field="id">
+                    <ng-template let-campaign="rowData" pTemplate type="body">
+                        <span class="sizeText" title="{{campaign.status}}">{{campaign.startDate}}</span>
+                    </ng-template>
+                </p-column>
+
+                <p-column header="{{'Address' | translate}}" [style]="{'width':'15%'}" field="address">
+                    <ng-template let-campaign="rowData" pTemplate type="body">
+                        <span class="sizeText" title="{{campaign.updatedDate}}">{{campaign.endDate}}</span>
+                    </ng-template>
+                </p-column>
+
+            </p-dataTable>
+        <!-- </div> -->
+        <!-- <div *ngIf="!_filteredHistoric"> -->
+            <p-dataTable *ngIf="!filteredHistoric && !_filteredHistoric && listHistoric" [value]="listHistoric.loggingCampaignMediaActions" selectionMode="single"
+            (onRowSelect)="onRowSelect($event)">
+
+            <p-column header="{{'Terminal ID' | translate}}" [style]="{'width':'15%'}" field="id">
+                <ng-template let-mediaBean="rowData" pTemplate type="body">
+                    <span class="sizeText" title="{{mediaBean.updatedDate | date: datePatternFull}}">{{mediaBean.updatedDate
+                        | date: datePattern}}</span>
+                </ng-template>
+            </p-column>
+
+            <p-column header="{{'Terminal ID' | translate}}" [style]="{'width':'15%'}" field="id">
+                <ng-template let-mediaBean="rowData" pTemplate type="body">
+                    <span class="sizeText" title="{{mediaBean.updatedBy}}">{{mediaBean.updatedBy}}</span>
+                </ng-template>
+            </p-column>
+
+            <p-column header="{{'Terminal ID' | translate}}" [style]="{'width':'15%'}" field="id">
+                <ng-template let-mediaBean="rowData" pTemplate type="body">
+                    <span class="sizeText" title="{{mediaBean.terminalRef}}">{{mediaBean.mediaRef}}</span>
+                </ng-template>
+            </p-column>
+
+            <p-column header="{{'Address' | translate}}" [style]="{'width':'15%'}" field="address">
+                <ng-template let-mediaBean="rowData" pTemplate type="body">
+                    <span class="sizeText" title="{{mediaBean.status}}">{{mediaBean.status}}</span>
+                </ng-template>
+            </p-column>
+
+        </p-dataTable>
+    <!-- </div> -->
+    <!-- <div *ngIf="filteredHistoric"> -->
+
+        <p-dataTable *ngIf="!filteredHistoric && !_filteredHistoric && listHistoric" [value]="listHistoric.loggingCampaignTerminalActions" selectionMode="single"
+            (onRowSelect)="onRowSelect($event)">
+
+            <p-column header="{{'Terminal ID' | translate}}" [style]="{'width':'15%'}" field="id">
+                <ng-template let-terminal="rowData" pTemplate type="body">
+                    <span class="sizeText" title="{{terminal.updatedDate | date: datePatternFull}}">{{terminal.updatedDate
+                        | date: datePattern}}</span>
+                </ng-template>
+            </p-column>
+
+            <p-column header="{{'Terminal ID' | translate}}" [style]="{'width':'15%'}" field="id">
+                <ng-template let-terminal="rowData" pTemplate type="body">
+                    <span class="sizeText" title="{{terminal.updatedBy}}">{{terminal.updatedBy}}</span>
+                </ng-template>
+            </p-column>
+
+            <p-column header="{{'Terminal ID' | translate}}" [style]="{'width':'15%'}" field="id">
+                <ng-template let-terminal="rowData" pTemplate type="body">
+                    <span class="sizeText" title="{{terminal.terminalRef}}">{{terminal.terminalRef}}</span>
+                </ng-template>
+            </p-column>
+
+            <p-column header="{{'Address' | translate}}" [style]="{'width':'15%'}" field="address">
+                <ng-template let-terminal="rowData" pTemplate type="body">
+                    <span class="sizeText" title="{{terminal.status}}">{{terminal.status}}</span>
+                </ng-template>
+            </p-column>
+
+        </p-dataTable>
+
+        <p-dataTable *ngIf="(!_filteredHistoric && filteredHistoric) && listHistoric" [value]="listHistoric.loggingCampaignMediaActions" selectionMode="single"
+                (onRowSelect)="onRowSelect($event)">
+                <p-column header="" [style]="{'width':'15%'}" field="id">
+                    <ng-template let-mediaBean="rowData" pTemplate type="body">
+                        <span class="sizeText" title="{{mediaBean.mediaRef}}">{{mediaBean.updatedDate}}</span>
+                    </ng-template>
+                </p-column>
+
+                <p-column header="" [style]="{'width':'15%'}" field="id">
+                    <ng-template let-mediaBean="rowData" pTemplate type="body">
+                        <span class="sizeText" title="{{mediaBean.mediaRef}}">{{mediaBean.updatedBy}}</span>
+                    </ng-template>
+                </p-column>
+
+                <p-column header="" [style]="{'width':'15%'}" field="id">
+                    <ng-template let-mediaBean="rowData" pTemplate type="body">
+                        <span class="sizeText" title="{{mediaBean.mediaRef}}">{{mediaBean.status}}</span>
+                    </ng-template>
+                </p-column>
+
+                <p-column header="" [style]="{'width':'15%'}" field="id">
+                    <ng-template let-mediaBean="rowData" pTemplate type="body">
+                        <span class="sizeText" title="{{mediaBean.status}}">{{mediaBean.status}}</span>
+                    </ng-template>
+                </p-column>
+
+                <p-column header="" [style]="{'width':'15%'}" field="id">
+                    <ng-template let-mediaBean="rowData" pTemplate type="body">
+                        <span class="sizeText" title="{{mediaBean.status}}">{{mediaBean.mediaRef}}</span>
+                    </ng-template>
+                </p-column>
+
+                <p-column header="{{'Address' | translate}}" [style]="{'width':'15%'}" field="address">
+                    <ng-template let-mediaBean="rowData" pTemplate type="body">
+                        <span class="sizeText" title="{{mediaBean.updatedDate}}">{{mediaBean.endDate}}</span>
+                    </ng-template>
+                </p-column>
+
+            </p-dataTable>
+<!-- </div> -->
+    </div>
+</div>

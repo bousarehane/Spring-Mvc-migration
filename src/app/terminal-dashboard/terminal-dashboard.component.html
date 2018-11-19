@@ -17,7 +17,7 @@
           <em aria-hidden="true" class="icon-ico_close" title="{{'button.close' | translate}}"> </em>CANCEL</button>
       </div>
     </div>
-    <p-dataTable *ngIf="terminalsListElements.length >0" [value]="terminalsListElements" selectionMode="single"
+    <p-dataTable *ngIf="terminalsListElements" [value]="terminalsListElements" selectionMode="single"
       (onRowSelect)="onRowSelect($event)">
 
       <p-column header="{{'Terminal ID' | translate}}" [style]="{'width':'15%'}" field="id">

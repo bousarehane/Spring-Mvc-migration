@@ -1,6 +1,7 @@
 <div class="panel_b">
     <h2 translate>Détails sur le média</h2>
     <div class="panel_body_b" >	
+        <p-tabMenu #menuItems [model]="items" [activeItem]="activeItem" (click)="activateMenu()"></p-tabMenu>
 
         <div class="row">
             <div class="col-md-12 col-form-actions">

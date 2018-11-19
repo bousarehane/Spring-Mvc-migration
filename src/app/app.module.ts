@@ -64,6 +64,7 @@ import {TabMenuModule} from 'primeng/tabmenu';
 import { InfoGeneralComponent } from './info-general/info-general.component';
 import { TerminalDashboardComponent } from './terminal-dashboard/terminal-dashboard.component';
 import {DialogModule} from 'primeng/dialog';
+import { HistoricMediaComponent } from './historic-media/historic-media.component';
 
 
 // AoT requires an exported function for factories
@@ -107,6 +108,7 @@ export class GlobalErrorHandler implements ErrorHandler {
     HistoriqueCampComponent,
     InfoGeneralComponent,
     TerminalDashboardComponent,
+    HistoricMediaComponent,
   ],
   imports: [
     ModalModule.forRoot(),
