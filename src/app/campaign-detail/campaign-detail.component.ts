@@ -158,6 +158,7 @@ export class CampaignDetailComponent implements OnInit , AfterViewInit{
 			}
 		}
     this.campaignService.filteredHistoricShared =   this.filteredHistoric;
+    this.campaignService.referenceMedia= reference;
     this.nextPage=nextPage;
 		return this.nextPage; 
 	}

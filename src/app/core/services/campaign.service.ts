@@ -107,7 +107,7 @@ export class CampaignService {
   }
 
   updateCampaign(campaign: Campaign):Observable<Campaign> {
-    //return this.http.put<any>(`${environment.services.campaigns}/${campaignId}`, campaign);
+    // return this.http.put<any>(`${environment.services.campaigns}/${campaignId}`, campaign);
     return this.http.post<Campaign>(environment.services.campaigns + '/updateCampaign/', campaign); 
   }
 

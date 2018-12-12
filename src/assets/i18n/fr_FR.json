@@ -636,5 +636,17 @@
     "Activation date":"Date d'activation",
     "Deactivation Date":"Date de désactivation",
     "Ship To":"Ship To",
-    "button.export.terminals":"Exporter des terminaux"
+    "button.export.terminals":"Exporter des terminaux",
+    "Date":"Date",
+    "User":"Utilisateur",
+    "Action":"Action",
+    "Field":"Champ",
+    "From":"De",
+    "To":"A",
+    "Last updated Date":"Dernière Date de mise à jour",
+    "Media Reference":"Référence du média",
+    "Status":"Etat",
+    "Historic":"Historique",
+    "Media Historic":"Historique du média",
+    "Terminal Historic":"Historique du terminal"
 }

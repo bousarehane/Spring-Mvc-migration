@@ -29,12 +29,16 @@ export class HistoriqueCampComponent implements OnInit {
 
   // @Input() filtre: string;
 
-  campaign: Campaign;
+  cities: number[];
+   campaign: Campaign;
   mediaBean: MediaBean;
-  @ViewChild('startDate') startDate: ElementRef;
+  // @ViewChild('startDate2') startDate: ElementRef;
+  // @ViewChild('endDate2') endDate: ElementRef;
   @ViewChild('reference') reference: ElementRef;
   @ViewChild('referenceMedia') referenceMedia: ElementRef;
-  @ViewChild('endDate') endDate: ElementRef;
+  startDate : Date;
+  endDate: Date;
+
 
   items: MenuItem[];
   activeItem: MenuItem;
@@ -103,7 +107,7 @@ export class HistoriqueCampComponent implements OnInit {
     this.reference.nativeElement.value = this.campaign.reference;
     this.referenceMedia.nativeElement.value = referenceHistoricMedia;
     if(!this.filteredHistoric) {
-    this.campaignService.listHistoric(this.reference.nativeElement.value, this.startDate.nativeElement.value, this.endDate.nativeElement.value).subscribe(
+    this.campaignService.listHistoric(this.reference.nativeElement.value, this.startDate, this.endDate).subscribe(
       response => {
         this.listHistoric = response; 
         console.log(this.listHistoric);
@@ -114,7 +118,7 @@ export class HistoriqueCampComponent implements OnInit {
       }
     );
     }else {
-      this.campaignService.listHistoricMedia(this.reference.nativeElement.value, this.referenceMedia.nativeElement.value ,this.startDate.nativeElement.value, this.endDate.nativeElement.value).subscribe(
+      this.campaignService.listHistoricMedia(this.reference.nativeElement.value, this.referenceMedia.nativeElement.value ,this.startDate, this.endDate).subscribe(
         response => {
           this.listHistoricMedia = response; 
           console.log(this.listHistoricMedia);
