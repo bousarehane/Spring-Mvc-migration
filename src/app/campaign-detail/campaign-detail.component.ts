@@ -190,6 +190,14 @@ _getTerminals(nextPage: string) {
       this.log.error(err);
     })
 }
+
+/**
+ * loadNodesToDisplay
+ * @param event 
+ */
+loadNodesToDisplay(event){
+ this.nodes=event;
+}
       
 }
 

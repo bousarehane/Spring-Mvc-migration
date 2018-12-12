@@ -24,13 +24,13 @@ enum guiVasMode {
   DASHBOARD,
   DEFAULT,
   INFO
-  }
+  } 
 @Component({
-  selector: 'app-info-general',
-  templateUrl: './info-general.component.html',
-  styleUrls: ['./info-general.component.css']
+  selector: 'app-info-general-media',
+  templateUrl: './info-general-media.component.html',
+  styleUrls: ['./info-general-media.component.css']
 })
-export class InfoGeneralComponent implements OnInit {
+export class InfoGeneralMediaComponent implements OnInit {
   
   items:MenuItem[];
   activeItem: MenuItem;
@@ -56,6 +56,7 @@ export class InfoGeneralComponent implements OnInit {
     ngOnInit() {
       
      this.campaign= this.campaignService.campaignSharedData;
+     this.mediaBean= this.campaignService.mediaSharedData;
      this.nodes= this.campaignService.nodes;
      this.confirmationMessage = this.campaignService.confirmationMessage;
      this.filteredHistoric= this.campaignService.filteredHistoricShared;
@@ -73,12 +74,12 @@ export class InfoGeneralComponent implements OnInit {
       this.activeItem =this.menu['activeItem'];
       if(this.activeItem.label === this.translateService.instant('campaignTabBar.tab_0.label')){
         this.campaignService.campaignSharedData = this.campaign;
-        this.campaignService.forwardToPageMessage = "campaignDetails";
+        this.campaignService.forwardToPageMessage = "mediaDetails";
         this.router.navigate(['/detailCampaign']); 
       } else if(this.activeItem.label === this.translateService.instant('campaignTabBar.historic.label')){
         this.router.navigate(['/historiqueCmp']); 
       }else if(this.activeItem.label === this.translateService.instant('campaignTabBar.tab_1.label')){
-        this.router.navigate(['/infoGeneralCmp']); 
+        this.router.navigate(['/infoGeneralMedia']); 
       }
    }
 
@@ -182,6 +183,20 @@ export class InfoGeneralComponent implements OnInit {
     onActionFromLeaveDashboredButton(){
       this.router.navigate(['/searchCampaign']); 
       this.displayCancelPopup = false;
+    }
+
+    /**
+     * doUpdateMedia
+     */
+    doUpdateMedia(){
+
+    }
+    
+    /**
+     * doDeplacerMedia
+     */
+    doDeplacerMedia(){
+
     }
   }
   
