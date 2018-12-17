@@ -19,4 +19,5 @@ export class MediaBean extends AdministrableObject {
     lastUpdatedDate: Date;
     height:number;
     width:number;
+    deactivationReason?: string;
   }

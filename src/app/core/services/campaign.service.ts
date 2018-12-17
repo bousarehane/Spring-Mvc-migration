@@ -280,5 +280,20 @@ listHistoricMedia(reference: any, referenceMedia: any, startDate: any, endDate: 
   return this.http.post<any>(url, {reference : reference , referenceMedia : referenceMedia ,startDate : startDate , endDate : endDate } ,{headers});
 }
 
+suspendMedia(deactivationReason :string , mediaBeanPrime: MediaBean):Observable<any>{
+  mediaBeanPrime.deactivationReason = deactivationReason;
+  return this.http.post<any>(environment.services.campaigns+ '/suspendMedia', mediaBeanPrime);
+}
+
+closeMedia(deactivationReason :string , mediaBeanPrime: MediaBean):Observable<any>{
+  mediaBeanPrime.deactivationReason = deactivationReason;
+  return this.http.post<any>(environment.services.campaigns+ '/closeMedia', mediaBeanPrime);
+}
+
+activeMedia(mediaBeanPrime: MediaBean):Observable<any>{
+  return this.http.post<any>(environment.services.campaigns+ '/activeMedia', mediaBeanPrime);
+}
+
+
 }
 

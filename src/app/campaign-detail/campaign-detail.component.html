@@ -56,7 +56,7 @@
 </div>
 
 <div class="panel_b campagneOuverte" *ngIf="nextPage === 'mediaDetails'">
-    <app-detail-media [mediaBean]="mediaBean" ></app-detail-media>
+    <app-detail-media [mediaBean]="mediaBean" [campaign]="campaign" (nodesToDisplay)="loadNodesToDisplay($event)" ></app-detail-media>
 </div>
 
 <div class="panel_b campagneOuverte" *ngIf="nextPage === 'mediaDetailsStep0'">

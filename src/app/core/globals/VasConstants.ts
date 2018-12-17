@@ -13,3 +13,7 @@ export const CAMPAIGN_STATUS_CLOSED: string="CLOSED";
   export const  CAMPAIGN_LEVEL_1: number = 1;
   export const  CAMPAIGN_LEVEL_2: number = 2;
   export const  CAMPAIGN_LEVEL_3: number = 3;
+
+  export const MEDIA_STATUS_ACTIVE: string  = "ACTIVE";
+  export const MEDIA_STATUS_SUSPENDED: string = "SUSPENDED";
+  export const MEDIA_STATUS_CLOSED: string    = "CLOSED";
