@@ -20,7 +20,7 @@
     <p-dataTable *ngIf="terminalsListElements" [value]="terminalsListElements" selectionMode="single"
       (onRowSelect)="onRowSelect($event)">
 
-      <p-column header="{{'Terminal ID' | translate}}" [style]="{'width':'15%'}" field="id">
+      <p-column header="{{'Terminal_ID' | translate}}" [style]="{'width':'15%'}" field="id">
         <ng-template let-terminal="rowData" pTemplate type="body">
           <span class="sizeText" title="{{terminal.id}}">{{terminal.id}}</span>
         </ng-template> 
@@ -32,25 +32,25 @@
         </ng-template>
       </p-column>
 
-      <p-column header="{{'Subscription Status' | translate}}">
+      <p-column header="{{'Subscription_Status' | translate}}">
         <ng-template let-terminal="rowData" pTemplate type="body">
           <span class="sizeText" title="{{terminal.contractStatus}}">{{terminal.subscriptionStatus}}</span>
         </ng-template>
       </p-column>
 
-      <p-column header="{{'Activation date' | translate}}">
+      <p-column header="{{'Activation.Date' | translate}}">
         <ng-template let-terminal="rowData" pTemplate type="body">
           <span class="sizeText" title="{{terminal.activationDate | date: datePatternFull}}">{{terminal.activationDate | date: datePattern}}</span>
         </ng-template>
       </p-column>
 
-      <p-column header="{{'Deactivation Date' | translate}}">
+      <p-column header="{{'Deactivation.Date' | translate}}">
         <ng-template let-terminal="rowData" pTemplate type="body">
           <span class="sizeText" title="{{terminal.deactivationDate | date: datePatternFull}}">{{terminal.deactivationDate | date: datePattern}}</span>
         </ng-template>
       </p-column>
 
-      <p-column header="{{'Ship To' | translate}}">
+      <p-column header="{{'Ship_To' | translate}}">
         <ng-template let-terminal="rowData" pTemplate type="body">
           <span class="sizeText" title="{{terminal.shipTo}}">{{terminal.shipTo}}</span>
         </ng-template>
