@@ -74,7 +74,7 @@ export class DetailCompComponent implements OnInit {
   onActionFromLeaveDashboredButton(){
     this.router.navigate(['/searchCampaign']); 
     this.displayCancelPopup = false;
-  }
+  } 
 
 onActionFromSuspendButton(event){
  this.display = true;

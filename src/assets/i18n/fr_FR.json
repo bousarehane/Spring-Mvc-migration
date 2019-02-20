@@ -648,5 +648,6 @@
     "Status":"Etat",
     "Historic":"Historique",
     "Media Historic":"Historique du média",
-    "Terminal Historic":"Historique du terminal"
+    "Terminal Historic":"Historique du terminal",
+    "confirmMessage.terminalForm.Unassign":"Etes-vous sûr de vouloir desassigner la liste de terminaux ?"
 }

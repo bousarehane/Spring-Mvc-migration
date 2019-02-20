@@ -43,9 +43,10 @@ export class InfoGeneralMediaComponent implements OnInit {
   nodeIcon : any ;
   nextPage : string;
   url : any;
- displayCancelPopup: boolean = false;
+  displayCancelPopup: boolean = false;
   filteredHistoric:boolean= false;
-  referenceHistoricMedia: string; 
+  referenceHistoricMedia: string;
+   
 
    
     constructor(private render:Renderer , private router: Router , 
@@ -191,7 +192,7 @@ export class InfoGeneralMediaComponent implements OnInit {
     doUpdateMedia(){
 
     }
-    
+
     /**
      * doDeplacerMedia
      */

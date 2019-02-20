@@ -1,0 +1,63 @@
+<p class="errorP" *ngIf="errorMessage">
+    {{ errorMessage }}
+</p>
+
+<p-dataTable  [value]="terminals" *ngIf="visible" [lazy]="true" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[5,10,20]"
+[totalRecords]="totalRecords"    (onLazyLoad)="loadterminalLazy($event)" scrollable="true"   resizableColumns="true"  [(selection)]="terminalsToBeSelected" (onRowSelect)="onRowSelected($event)" (onRowUnselect)="onRowUnselect($event)" (onHeaderCheckboxToggle)="onTableHeaderCheckboxToggle($event)" >
+
+    <p-column [style]="{'width':'38px'}" selectionMode="multiple" >
+    
+    </p-column>
+
+    <p-column header="{{'Terminal ID' | translate}}" [style]="{'width':'15%'}" field="id" >
+          <ng-template let-terminal="rowData" pTemplate type="body" >
+              <span class="sizeText" title="{{terminal.id}}">{{terminal.id}}</span>
+          </ng-template>
+    </p-column>
+      
+    <p-column header="{{'Ship To' | translate}}" [style]="{'width':'15%'}"  field="shipTo"  >
+        <ng-template let-terminal="rowData" pTemplate type="body">
+            <span class="sizeText" title="{{terminal.shipTo}}">{{terminal.shipTo}}</span>
+        </ng-template>
+    </p-column>
+  
+    <p-column header="{{'Adresse' | translate}}" [style]="{'width':'15%'}"  field="address">
+          <ng-template let-terminal="rowData" pTemplate type="body">
+            <span class="sizeText" title="{{terminal.address}}">{{terminal.address}}</span>
+          </ng-template>
+    </p-column>
+  
+    <p-column header="{{'Etat de labonnement' | translate}}" [style]="{'width':'15%'}"  field="subscriptionStatus" >
+          <ng-template let-terminal="rowData" pTemplate type="body">
+            <span class="sizeText" title="{{terminal.subscriptionStatus}}">{{terminal.subscriptionStatus}}</span>
+          </ng-template>
+     </p-column>
+  
+     <p-column header="{{'Activation date' | translate}}"   field="activationDate" >
+        <ng-template let-terminal="rowData" pTemplate type="body" let-i="rowIndex">
+            <div class="dSameLine caldate">
+                <div class="input-group-cal">
+                    <p-calendar class="calendarStyle" [attr.id]="i" #dateActivation [(ngModel)]="terminal.activationDate" appendTo="body" ></p-calendar>
+                    <button  type="button" class="input-group-append datepicker-group-append" (click)="openCalendarActivationDate(i)">
+                        <em class="fa fa-calendar"></em>
+                    </button> 
+                  
+                </div>
+            </div>
+        </ng-template>
+    </p-column>
+    
+     <p-column header="{{'Deactivation Date' | translate}}"  field="deactivationDate" >
+        <ng-template let-terminal="rowData" pTemplate type="body" let-i="rowIndex">
+            <div class="dSameLine caldate">
+                <div class="input-group-cal">
+                    <p-calendar class="calendarStyle" #deactivationDate [(ngModel)]="terminal.deactivationDate" appendTo="body" ></p-calendar>
+                    <button  type="button" class="input-group-append datepicker-group-append" (click)="openCalendarDeactivationDate(i)">
+                        <em class="fa fa-calendar"></em>
+                    </button>
+                </div>
+              </div>
+        </ng-template>
+    </p-column>
+   
+  </p-dataTable>

@@ -167,7 +167,8 @@ export class InfoGeneralComponent implements OnInit {
      * doAssignEditTerminal
      */
     doAssignEditTerminal(){
-
+     this.campaignService.mySharedData = this.campaign;
+     this.router.navigate(['/assignTerminal']);
     }
 
     /**

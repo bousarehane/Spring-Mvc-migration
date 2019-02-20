@@ -1,0 +1,46 @@
+<p class="errorP" *ngIf="errorMessage">
+    {{ errorMessage }}
+</p>
+
+<p-dataTable  *ngIf="visible" [value]="terminals" [lazy]="true" [rows]="10" [paginator]="true" [rowsPerPageOptions]="[5,10,20]"
+[totalRecords]="totalRecords"   [(selection)]="terminalsToBeSelected" (onRowSelect)="onRowSelected($event)" (onRowUnselect)="onRowUnselect($event)" (onHeaderCheckboxToggle)="onTableHeaderCheckboxToggle($event)"  (onSort)="sortColumn($event)" (onLazyLoad)="loadterminalLazy($event)" scrollable="true"   resizableColumns="true" >
+
+  
+    <p-column [style]="{'width':'38px'}"  selectionMode="multiple" >
+
+    </p-column>
+    <p-column header="{{'Terminal ID' | translate}}" [style]="{'width':'15%'}" field="id" [sortable]="true"  [filter]="true" filterMatchMode="contains">
+          <ng-template let-terminal="rowData" pTemplate type="body" >
+              <span class="sizeText" title="{{terminal.id}}">{{terminal.id}}</span>
+          </ng-template>
+    </p-column>
+      
+    <p-column header="{{'Ship To' | translate}}" [style]="{'width':'15%'}"  field="shipTo" [sortable]="true" [filter]="true"  filterMatchMode="contains" >
+        <ng-template let-terminal="rowData" pTemplate type="body">
+            <span class="sizeText" title="{{terminal.shipTo}}">{{terminal.shipTo}}</span>
+        </ng-template>
+    </p-column>
+  
+    <p-column header="{{'Adresse' | translate}}" [style]="{'width':'15%'}"  field="address" [sortable]="true" [filter]="true"  filterMatchMode="contains">
+          <ng-template let-terminal="rowData" pTemplate type="body">
+            <span class="sizeText" title="{{terminal.address}}">{{terminal.address}}</span>
+          </ng-template>
+    </p-column>
+  
+    <p-column header="{{'Code postal' | translate}}" [style]="{'width':'15%'}"  field="zipCode" [sortable]="true" [filter]="true"  filterMatchMode="contains" >
+          <ng-template let-terminal="rowData" pTemplate type="body">
+            <span class="sizeText" title="{{terminal.zipCode}}">{{terminal.zipCode}}</span>
+          </ng-template>
+     </p-column>
+     <p-column header="{{'MCC' | translate}}" [style]="{'width':'15%'}"  field="mccCode" [sortable]="true" [sortable]="true" [filter]="true" filterMatchMode="contains" >
+          <ng-template let-terminal="rowData" pTemplate type="body">
+              <span class="sizeText" title="{{terminal.mccCode}}">{{terminal.mccCode}}</span>
+          </ng-template>
+     </p-column>
+    <p-column header="{{'Statut du contrat' | translate}}" [style]="{'width':'15%'}"  field="contractStatus" [sortable]="true" [filter]="true"  filterMatchMode="contains" >
+        <ng-template let-terminal="rowData" pTemplate type="body">
+            <span class="sizeText" title="{{terminal.contractStatus}}">{{terminal.contractStatus}}</span>
+        </ng-template>
+    </p-column>
+   
+  </p-dataTable>
