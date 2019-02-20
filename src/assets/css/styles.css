@@ -1433,6 +1433,12 @@ footer {
     .sizeText {
         font-size: 12px;
     }
+    .lineHeight {
+        line-height: 6;
+    }
+    .lineSpacing {
+        margin-bottom: 15px;
+    }
     .menuCampagne li {
         display: inline-block;
         width: auto;
