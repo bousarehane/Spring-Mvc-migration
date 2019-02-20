@@ -1981,3 +1981,28 @@ div.link-button p { display: inline; }
 .createcmp{
     color: red;
 }
+
+form div.formLine
+{
+    display: table;
+    width: 100%;
+}
+
+form div.halfFormLineLeft,
+form div.halfFormLineRight
+{
+    display: table;
+    width: 50%;
+    height: auto;
+	padding-bottom: 0px;
+}
+
+form div.halfFormLineLeft
+{
+    float: left;
+}
+
+form div.halfFormLineRight
+{
+    float: right;
+}

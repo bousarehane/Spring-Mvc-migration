@@ -1,0 +1,178 @@
+<div class="panel_b">
+    <h2 translate>Détails de la campagne</h2>
+    <div class="panel_body_b">
+        <form #assignTerminalForm="ngForm" (submit)="doSave(assignTerminalForm)">
+            <div class="container-fluid">
+                <input type="hidden" name="nameCampaign" id="nameCampaign" [(ngModel)]="campaignPrime.name" #nameCampaign="ngModel"/>
+                <div class="row padding-form-field">
+                    <div class="col-md-5">
+                        <label translate>NAME_OF_CAMPAIGN_</label>
+                    </div>
+                    <div class="col-md-7">
+                        <span title="{{campaign.name}}">{{campaign.name}}</span>
+                    </div>
+                </div>
+
+                <div class="row padding-form-field">
+                    <div class="col-md-5">
+                        <label translate>Référence de la campagne</label>
+                    </div>
+                    <div class="col-md-7">
+                        <span title="{{campaign.reference}}">{{campaign.reference}}</span>
+                    </div>
+                </div>
+
+                <div class="row padding-form-field">
+                    <div class="col-md-5">
+                        <label translate>TYPE_</label>
+                    </div>
+                    <div class="col-md-7">
+                        <span title="{{campaign.type}}">{{campaign.type}}</span>
+                    </div>
+                </div>
+
+
+                <div *ngIf="campaign.displayMerchantReference" class="row padding-form-field">
+                    <div class="col-md-5">
+                        <label translate>REFERENCE_MARCHANT</label>
+                    </div>
+                    <div class="col-md-7">
+                        <span title="{{campaign.merchantReference}}">{{campaign.merchantReference}}</span>
+                    </div>
+                </div>
+
+                <div class="row padding-form-field">
+                    <div class="col-md-5">
+                        <label translate>LEVEL_</label>
+                    </div>
+                    <div class="col-md-7">
+                        <span title="{{campaign.level}}">{{campaign.level}}</span>
+                    </div>
+                </div>
+
+                <div class="row padding-form-field">
+                    <div class="col-md-5">
+                        <label translate>ACTIVATION_DATE</label>
+                    </div>
+                    <div class="col-md-7">
+                        <span title="{{campaign.activationDate | date: datePatternFull}}">{{campaign.activationDate | date: datePattern}}</span>
+                    </div>
+                </div>
+                <div class="row padding-form-field">
+                    <div class="col-md-5">
+                        <label translate>DEACTIVATION_DATE</label>
+                    </div>
+                    <div class="col-md-7">
+                        <span title="{{campaign.deactivationDate | date: datePatternFull}}">{{campaign.deactivationDate | date: datePattern}}</span>
+                    </div>
+                </div>
+
+
+                <div class="row padding-form-field">
+                    <div class="col-md-5">
+                        <label translate>Code de catégorie publicitaire:</label>
+                    </div>
+                    <div class="col-md-7">
+                        <span title="{{campaign.advertisingCategoryCode}}">{{campaign.advertisingCategoryCode}}</span>
+                    </div>
+                </div>
+
+                <div class="row padding-form-field">
+                    <div class="col-md-5">
+                        <label translate>Etat:</label>
+                    </div>
+                    <div class="col-md-7">
+                        <span title="{{campaign.status}}">{{campaign.status}}</span>
+                    </div>
+                </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="title float-left">Attribuer un terminal</h1>
+                    </div>
+                  </div>
+
+
+               <div class="padding-form-field row panel">
+                    <div class="col-md-5">
+                        <label translate>Attribuer la liste des terminaux:</label>
+                    </div>
+                    <div class="col-md-2">
+                          <input type='file' name="file"   (change)="onSelectFile($event)">
+                      </div>  
+ 
+                      <div class="col-md-2">
+                      <button type="button" translate  class="btn btn-default float-right" (click)="uploadFile(assignTerminalForm , $event)">
+                        <em aria-hidden="true" class="icon-ico_close" title="{{'Upload' | translate}}"> </em>Upload</button>
+                     </div>
+                     <div class="col-md-3"></div>
+                     <div *ngIf="checkExternalCampaign" class="padding-form-field row col-md-12">
+                        
+                           <div style="margin-left: 15px;" class="col-md-5">
+                               <label translate>Désassigner la liste des terminaux:</label>
+                           </div>
+                           <div class="col-md-2">
+                              <p-checkbox [(ngModel)]="csvListUnassign" binary="true" name="csvListUnassign"></p-checkbox>
+                           </div>
+       
+                 </div>
+                </div>
+
+                <div class="padding-form-field row panel">
+                <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="title float-left">Terminaux disponibles</h1>
+                        </div>
+                </div>
+                <div class="col-md-12">
+                    <app-list-available-terminals  #childAvailable [campaign]="campaign"  [terminals]="terminals"  [datasource]="datasource"  [totalRecords]="totalRecords" 
+                         (listTerminalToAssign)="doAssignTerminal($event)">
+                    </app-list-available-terminals>
+                </div>
+
+                <div class="row" style="width: 100%; text-align: center;padding-top: 10px;">
+                        <div class="col-md-12">
+                                <a (click)="assign()" > <img src="../../assets/img/assign.png"/></a>
+                                <a (click)="unassign()" > <img src="../../assets/img/unassign.png"/></a>
+                        </div>
+
+                        <div class="col-md-12">
+                        <!--<button type="button" translate class="btn btn-primary float-right" (click)="doSave()" >
+                               <em aria-hidden="true" class="icon-ico_save" title="{{'SAVE_CAMPAIGN' | translate}}"> </em>SAVE</button>-->
+
+                        <button type="submit" translate class="btn btn-primary float-right"  >
+                                <em aria-hidden="true" class="icon-ico_save" title="{{'SAVE_CAMPAIGN' | translate}}"> </em>SAVE</button>
+          
+                        <button type="button" translate  class="btn btn-default float-right" (click)="doClear()">
+                                <em aria-hidden="true" class="icon-ico_close" title="{{'CLEAR' | translate}}"> </em>CLEAR</button>
+                        </div>
+                </div>
+
+                <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="title float-left">Terminal attribué</h1>
+                        </div>
+                </div>
+                <div class="col-md-12">
+                        <app-list-assign-terminals #childAssign [campaign]="campaign" [terminals]="terminalsUnassign"  [datasource]="datasourceUnassign"  [totalRecords]="totalRecordsUnassign" 
+                           (listTerminalToUnAssign)="doUnAssignTerminal($event)">
+                        </app-list-assign-terminals>
+                </div>
+                </div>
+    
+            </div>
+            <ng-template #modalUnassignTerminal let-c="close" let-d="dismiss">
+                <div class="modal-header">
+                    <h6 class="modal-title" translate>DIALOGS_CONFIRMATION</h6>
+                    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" [innerHTML]="'confirmMessage.terminalForm.Unassign' | translate"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" (click)="goToYes()" translate>DIALOGS_YES</button>
+                    <button type="button" class="btn btn-secondary" (click)="d()" translate>DIALOGS_NO</button>
+                </div>
+            </ng-template>
+        </form>
+    </div>
+</div>

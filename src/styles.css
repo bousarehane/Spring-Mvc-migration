@@ -636,3 +636,28 @@ div.ui-growl-item span.toastAction:hover {
 .ui-inputtext.ng-dirty.ng-invalid, p-dropdown.ng-dirty.ng-invalid > .ui-dropdown, p-autocomplete.ng-dirty.ng-invalid > .ui-autocomplete > .ui-inputtext, p-calendar.ng-dirty.ng-invalid > .ui-calendar > .ui-inputtext, p-chips.ng-dirty.ng-invalid > .ui-inputtext, p-inputmask.ng-dirty.ng-invalid > .ui-inputtext, p-checkbox.ng-dirty.ng-invalid .ui-chkbox-box, p-radiobutton.ng-dirty.ng-invalid .ui-radiobutton-box, p-inputswitch.ng-dirty.ng-invalid .ui-inputswitch, p-listbox.ng-dirty.ng-invalid .ui-inputtext, p-multiselect.ng-dirty.ng-invalid > .ui-multiselect, p-spinner.ng-dirty.ng-invalid > .ui-inputtext, p-selectbutton.ng-dirty.ng-invalid .ui-button, p-togglebutton.ng-dirty.ng-invalid .ui-button {
     border-bottom-color:#c0c0c0;
 }
+
+
+.panel { border: 1px solid #CCCCCC; padding: 5px 10px; margin: 10px 0; line-height: 30px; }
+.panel label { line-height: 30px; }
+.panel input[type="text"], .panel input[type="password"], .panel select { margin: 6px 0 5px; }
+.panel .t-calendar-trigger { margin-top: 5px !important; }
+.panel input[type="radio"] { height: 24px; vertical-align: top; margin: 3px 0; } 
+
+.panel-warning { background-color: #FFEEDD; border: 1px dotted #D21033; color: #D21033; line-height: 20px; }
+.panel-warning h1 { font-weight: bold; font-size: 13px; margin: 0px; }
+.panel-warning input { margin-top: 20px; height: 44px; background-image: none; }
+.calendarStyle input {
+    width: 100%;
+    margin: 0;
+    outline: medium none;
+    font-weight: normal;
+    color: #222222;
+    margin: 0 !important
+}
+
+a.terminalButton
+{
+	margin: 25px 20px 15px 20px;
+	border: none;
+}

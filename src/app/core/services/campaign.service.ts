@@ -24,6 +24,8 @@ import { CampaignSearch } from '../../core/models/campaignSearch';
 import { URLSearchParams } from '@angular/http';
 import { Http, Response } from '@angular/http';
 import { TerminalBean } from '../models/terminalBean';
+import { NGXLogger } from "ngx-logger";
+import { ListTerminalBean } from '../models/listTerminalBean';
 
 
 
@@ -35,7 +37,8 @@ export class CampaignService {
 
  
   constructor(private http: HttpClient, // injection du service http
-    private dateUtilService: DateUtilService // injection du service dateUtilService
+    private dateUtilService: DateUtilService, // injection du service dateUtilService
+    private log: NGXLogger,
   ) {
   }
 
@@ -51,7 +54,6 @@ export class CampaignService {
   forwardToDetailMedia:string;
   nodes:CampaignTreeNode[];
   filteredHistoricShared:boolean;
-  // referenceHistoricMediaShared:string;
   get mediaBean(): MediaBean {
     return this._mediaBean;
 }
@@ -62,12 +64,7 @@ export class CampaignService {
 }
 
   createCampaign(campaign: any):Observable<Campaign> {
-    /*let headers = new HttpHeaders();
-    headers = headers.set('Content-Type', 'application/json; charset=utf-8');
-   
-    let urlSearchParams = new URLSearchParams();
-    urlSearchParams.set('campaign', campaign);
-    urlSearchParams.set('isDisplayPopup', isDisplayPopup);*/
+
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json; charset=utf-8');
 
@@ -101,6 +98,31 @@ export class CampaignService {
 
     return this.http.post<MediaBean>(environment.services.campaigns+ '/upload', formdata);
   }
+
+  uploadTerminals(file: File , csvListUnassign , datasourceAssign ,  datasourceUnassign):Observable<ListTerminalBean>{
+      let headers = new HttpHeaders();
+      headers.append('Accept', 'application/json');
+
+      const formdata: FormData = new FormData();
+    
+      formdata.append('file', file);
+      
+      formdata.append('csvListUnassign', new Blob([JSON.stringify(csvListUnassign)],
+      {
+          type: "application/json"
+      }));
+
+      formdata.append('datasourceAssign', new Blob([JSON.stringify(datasourceAssign)],
+      {
+          type: "application/json"
+      }));
+  
+      formdata.append('datasourceUnassign', new Blob([JSON.stringify(datasourceUnassign)],
+      {
+          type: "application/json"
+      }));
+      return this.http.post<ListTerminalBean>(environment.services.campaigns+ '/uploadTerminals', formdata);
+    }
   
   createList(campaigns: Array<Campaign>) {
     return this.http.post<any>(environment.services.campaigns + '/createCampaigns/', campaigns); 
@@ -190,19 +212,6 @@ getCmpaignByRefMedia(reference: any):Observable<Campaign>{
 getMediaByRef(reference: any , campaignReference: any):Observable<MediaBean>{
   let headers = new HttpHeaders();
   headers = headers.set('Content-Type', 'application/json; charset=utf-8');
-      // Initialize Params Object
-      /*let Params = new HttpParams();
-
-      const OPTIONS = {
-        headers: new HttpHeaders({
-            'Content-Type': 'application/json'
-        }),
-        params: new HttpParams().set('reference', reference)
-    };
-    let opts = Object.assign({}, OPTIONS, this.genParams({ campaignReference: campaignReference }, OPTIONS.params));
-    */
-  
-  //return this.http.get<MediaBean>(environment.services.campaigns + '/detailMedia/'+reference+'/'+campaignReference,  opts); 
   return this.http.get<MediaBean>(environment.services.campaigns + '/detailMedia/'+reference+'/'+campaignReference,  {headers}); 
 
 }
@@ -259,13 +268,6 @@ activeCampaign(campaignBeanPrime: Campaign):Observable<any>{
   return this.http.post<any>(environment.services.campaigns+ '/activeCampaign', campaignBeanPrime);
 }
 
-// listHistoric(reference: any, startDate: any, endDate: any): Observable<any[]> {
-//   let headers = new HttpHeaders();
-//   headers = headers.set('Content-Type', 'application/json; charset=utf-8');
-//   const url = `${environment.services.campaigns}/searchHistoric`;
-//   return this.http.post<any[]>(url, {reference : reference ,startDate : startDate , endDate : endDate } ,{headers});
-// }
-
 listHistoric(reference: any, startDate: any, endDate: any): Observable<any> {
   let headers = new HttpHeaders();
   headers = headers.set('Content-Type', 'application/json; charset=utf-8');
@@ -295,5 +297,34 @@ activeMedia(mediaBeanPrime: MediaBean):Observable<any>{
 }
 
 
+listAssignTerminals(campaign: Campaign): Observable<ListTerminalBean> {
+  let headers = new HttpHeaders();
+  headers = headers.set('Content-Type', 'application/json; charset=utf-8');
+  return this.http.get<ListTerminalBean>(environment.services.campaigns + '/assignTerminal/'+campaign.reference,  {headers}); 
+  
+}
+
+
+goToYesPopup():Observable<ListTerminalBean>{
+  let headers = new HttpHeaders();
+  headers = headers.set('Content-Type', 'application/json; charset=utf-8');
+  const url = `${environment.services.campaigns}/formToYes`;
+  return this.http.get<ListTerminalBean>(url, {headers});
+}
+
+goToNoPopup():Observable<any>{
+  let headers = new HttpHeaders();
+  headers = headers.set('Content-Type', 'application/json; charset=utf-8');
+  
+  return this.http.get<any>(environment.services.campaigns + '/formToNo', {headers}); 
+}
+
+saveAssignTerminals(campaignPrime: Campaign , datasourceAssign: TerminalBean[] , datasourceAvailable: TerminalBean[]): Observable<any> {
+  
+  campaignPrime.assignedTerminals = datasourceAssign
+  campaignPrime.availableTerminals = datasourceAvailable;
+
+  return this.http.post<any>(environment.services.campaigns+ '/assignTerminal/save', campaignPrime);
+}
 }
 

@@ -16,6 +16,7 @@ import { HistoriqueCampComponent } from './historique-camp/historique-camp.compo
 import { InfoGeneralComponent } from './info-general/info-general.component';
 import { CampaignUpdateComponent } from './campaign-update/campaign-update.component';
 import { InfoGeneralMediaComponent } from './info-general-media/info-general-media.component';
+import { AssignTerminalComponent } from './assign-terminal/assign-terminal.component';
 
 import { Routes } from '@angular/router';
 
@@ -33,7 +34,7 @@ export const ROUTES: Routes = [
     { path: 'infoGeneralCmp', component: InfoGeneralComponent },
     { path: 'updateCampaign', component: CampaignUpdateComponent },
     { path: 'infoGeneralMedia', component: InfoGeneralMediaComponent },
-    
+    { path: 'assignTerminal', component: AssignTerminalComponent },
     
 ];
 

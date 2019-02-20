@@ -12,7 +12,7 @@
                             <div id="campaignTreeViewContent" style="margin-right:1px;white-space: nowrap; overflow: auto;"
                                 class="row inner t-zone">
                                 <ul>
-                                    <div *ngFor="let itemCampaign of nodes; let first = first; index as i"
+                                    <div *ngFor="let itemCampaign of nodes; let first = first; let i = index;"
                                         [attr.data-index]="i">
 
                                         <div *ngIf="itemCampaign.padding;else otherContent">
@@ -20,9 +20,11 @@
                                         </div>
                                         <ng-template #otherContent>
                                             <li [style]="itemCampaign.nodeLineStyle">
-                                                <img class="treeIcon" src="{{itemCampaign.nodeIcon}}" />
-
-                                                <div style="margin-left:19px;">
+                                                
+                                                <img *ngIf="i == 0" class="treeIcon" src="{{itemCampaign.nodeIcon}}" /> 
+                                                <img *ngIf="i != 0" style="margin-left: 10px;" src="{{itemCampaign.nodeIcon}}" /> 
+                                                
+                                                <div *ngIf="i == 0" style="margin-left:19px;">
                                                     <div *ngIf="itemCampaign.terminal;else otherContentPrime">
                                                         <a href="" translate [routerLink]="['/detailCampaign']" (click)="getActionFromNodeLink(itemCampaign.type,nodes[0].reference,itemCampaign.reference)">
                                                             Terminal_List</a>
@@ -34,6 +36,18 @@
 
                                                     </ng-template>
                                                 </div>
+                                                <div *ngIf="i != 0" style="margin-left:29px;">
+                                                        <div *ngIf="itemCampaign.terminal;else otherContentPrime">
+                                                            <a href="" [routerLink]="['/detailCampaign']" (click)="getActionFromNodeLink(itemCampaign.type,nodes[0].reference,itemCampaign.reference)">
+                                                                Liste des terminaux</a>
+                                                        </div>
+                                                        <ng-template #otherContentPrime>
+                                                            <a href="" [routerLink]="['/infoGeneralCmp']" (click)="getActionFromNodeLink(itemCampaign.type,nodes[0].reference,itemCampaign.reference)">{{itemCampaign.name}}
+                                                                - {{itemCampaign.reference}}</a>
+                                                            <!--   <a href=""  [routerLink]="['reference', itemCampaign.reference, '/detailCampaign']" (click)="getActionFromNodeLink(itemCampaign.type,nodes[0].reference,itemCampaign.reference)">{{itemCampaign.name}} - {{itemCampaign.reference}}</a>!-->
+    
+                                                        </ng-template>
+                                             </div>
                                             </li>
                                         </ng-template>
                                     </div>

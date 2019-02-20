@@ -66,6 +66,9 @@ import { TerminalDashboardComponent } from './terminal-dashboard/terminal-dashbo
 import {DialogModule} from 'primeng/dialog';
 import { CampaignUpdateComponent } from './campaign-update/campaign-update.component';
 import { InfoGeneralMediaComponent } from './info-general-media/info-general-media.component';
+import { AssignTerminalComponent } from './assign-terminal/assign-terminal.component';
+import { ListAvailableTerminalsComponent } from './list-available-terminals/list-available-terminals.component';
+import { ListAssignTerminalsComponent } from './list-assign-terminals/list-assign-terminals.component';
 
 
 // AoT requires an exported function for factories
@@ -111,6 +114,9 @@ export class GlobalErrorHandler implements ErrorHandler {
     CampaignUpdateComponent,
     TerminalDashboardComponent,
     InfoGeneralMediaComponent,
+    AssignTerminalComponent,
+    ListAvailableTerminalsComponent,
+    ListAssignTerminalsComponent,
   ],
   imports: [
     ModalModule.forRoot(),

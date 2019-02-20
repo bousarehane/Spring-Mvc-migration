@@ -93,7 +93,23 @@ export class CampaignDetailComponent implements OnInit , AfterViewInit{
        this.nextPage = "campaignDetails";
       }
       
-      
+    }else if(this.campaignService.forwardToPageMessage=="terminalDashboard"){
+
+      this.campaignService.getCmpaignByRef(this.campReferance).subscribe(
+        response => {
+         this.campaign = response;
+         this.nodes= this.campaign.campaignTree.nodes;
+         if(this.campaignService.referenceCampaign){
+         this.campaignService.campaignSharedData = this.campaign;
+         this.campaignService.nodes = this.nodes;
+         this._getTerminals("terminalDashboard");
+    
+         }
+        },
+        err => {
+          this.log.error(err);
+        })
+
     }else {
      this.campaignService.getCmpaignByRef(this.campReferance).subscribe(
         response => {

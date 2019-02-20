@@ -12,6 +12,8 @@ import { CampaignLevel } from './campaign-level';
 import { MediaForCampaign } from './media-for-campaign';
 import { CampaignTree } from './campaignTree';
 import { MediaBean } from './MediaBean';
+import { TerminalBean } from './TerminalBean';
+
 
 
 
@@ -67,5 +69,7 @@ export class Campaign extends AdministrableObject {
   playlistLocation:string;
   deactivationReason?: string;
   medias?: Array<MediaBean>;
+  assignedTerminals?:Array<TerminalBean>;
+  availableTerminals?:Array<TerminalBean>;
 }
 
