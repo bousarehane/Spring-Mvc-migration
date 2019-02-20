@@ -21,9 +21,10 @@
                                   <img class="treeIcon" src="{{itemCampaign.nodeIcon}}" /> 
                                   
                                   <div style="margin-left:19px;">
-                                  <div *ngIf="itemCampaign.terminal;else otherContentPrime">
-                                      Liste des terminaux
-                                  </div>
+                                    <div *ngIf="itemCampaign.terminal;else otherContentPrime">
+                                        <a href="" translate [routerLink]="['/detailCampaign']" (click)="getActionFromNodeLink(itemCampaign.type,nodes[0].reference,itemCampaign.reference)">
+                                            Terminal_List</a>
+                                    </div>
                                   <ng-template #otherContentPrime>
                                     <a href=""  [routerLink]="['/infoGeneralCmp']" (click)="getActionFromNodeLink(itemCampaign.type,nodes[0].reference,itemCampaign.reference)">{{itemCampaign.name}} - {{itemCampaign.reference}}</a>
                                      <!--   <a href=""  [routerLink]="['reference', itemCampaign.reference, '/detailCampaign']" (click)="getActionFromNodeLink(itemCampaign.type,nodes[0].reference,itemCampaign.reference)">{{itemCampaign.name}} - {{itemCampaign.reference}}</a>!-->

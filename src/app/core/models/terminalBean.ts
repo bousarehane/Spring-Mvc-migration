@@ -6,8 +6,8 @@ export class TerminalBean extends AdministrableObject{
     shipTo: string;
     contractStatus :string ;
     subscriptionStatus:string;
-    activationDate:string;
-    deactivationDate :string;
+    activationDate :Date;
+    deactivationDate :Date;
     zipCode:string;
     mccCode:string;
 }

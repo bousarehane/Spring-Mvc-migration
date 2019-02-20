@@ -22,8 +22,8 @@
                                     
                                     <div style="margin-left:19px;">
                                         <div *ngIf="itemCampaign.terminal;else otherContentPrime">
-                                            <a href="" [routerLink]="['/detailCampaign']" (click)="getActionFromNodeLink(itemCampaign.type,nodes[0].reference,itemCampaign.reference)">
-                                                Liste des terminaux</a>
+                                            <a href="" translate [routerLink]="['/detailCampaign']" (click)="getActionFromNodeLink(itemCampaign.type,nodes[0].reference,itemCampaign.reference)">
+                                                Terminal_List</a>
                                         </div>
                                     <ng-template #otherContentPrime>
                                       <a href=""  [routerLink]="['/infoGeneralCmp']" (click)="getActionFromNodeLink(itemCampaign.type,nodes[0].reference,itemCampaign.reference)">{{itemCampaign.name}} - {{itemCampaign.reference}}</a>

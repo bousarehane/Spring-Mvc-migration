@@ -64,7 +64,6 @@ import {TabMenuModule} from 'primeng/tabmenu';
 import { InfoGeneralComponent } from './info-general/info-general.component';
 import { TerminalDashboardComponent } from './terminal-dashboard/terminal-dashboard.component';
 import {DialogModule} from 'primeng/dialog';
-import { HistoricMediaComponent } from './historic-media/historic-media.component';
 import { CampaignUpdateComponent } from './campaign-update/campaign-update.component';
 import { InfoGeneralMediaComponent } from './info-general-media/info-general-media.component';
 
@@ -111,7 +110,6 @@ export class GlobalErrorHandler implements ErrorHandler {
     InfoGeneralComponent,
     CampaignUpdateComponent,
     TerminalDashboardComponent,
-    HistoricMediaComponent,
     InfoGeneralMediaComponent,
   ],
   imports: [
